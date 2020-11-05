@@ -1,0 +1,23 @@
+{
+  "name": "TTB_Store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "set NODE_ENV=development&&nodemon --inspect index.js",
+    "test": "set NODE_ENV=production&&nodemon --inspect index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
