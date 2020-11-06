@@ -10,13 +10,6 @@ const accountSchema = new Schema({
     trim: true,
     lowercase: true,
   },
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true,
-  },
   password: {
     type: String,
     default: null,

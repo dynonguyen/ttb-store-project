@@ -54,7 +54,7 @@ app.listen(PORT, () => {
 
 // ! ================== Routes - Api ================== //
 
-//Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
+// Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/src/build', 'index.html'));
 });
