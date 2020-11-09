@@ -7,7 +7,6 @@ import routesConfig from 'configs/routesConfig';
 
 function App() {
   const { renderRoutes, routes } = routesConfig;
-  console.log(routes);
   //rendering...
   return (
     <BrowserRouter>
@@ -19,7 +18,6 @@ function App() {
           </Route>
         </Switch>
       </div>
-      ;
     </BrowserRouter>
   );
 }
