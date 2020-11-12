@@ -20,7 +20,7 @@ const postSendVerifyCode = async (req, res, next) => {
           : `bởi đăng nhập với ${account.authType}`;
       let error = `Email đã được sử dụng ${suffixError} !`;
 
-      if (account) return res.status(401).json({ message: error });
+      if (account) return res.status(400).json({ message: error });
     }
 
     //cấu hình email sẽ gửi
@@ -78,7 +78,7 @@ const postSignUp = async (req, res, next) => {
           : `bởi đăng nhập với ${account.authType}`;
       let error = `Email đã được sử dụng ${suffixError} !`;
 
-      if (account) return res.status(401).json({ message: error });
+      if (account) return res.status(400).json({ message: error });
     }
 
     // kiểm tra mã xác thực

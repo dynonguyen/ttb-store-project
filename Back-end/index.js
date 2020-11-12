@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 // ! import local file
 const corsConfig = require('./src/configs/cors.config');
@@ -54,6 +56,8 @@ app.listen(PORT, () => {
 });
 
 // ! ================== Routes - Api ================== //
+// api documentations
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // api liên quan đến account
 app.use('/accounts', accountApi);
