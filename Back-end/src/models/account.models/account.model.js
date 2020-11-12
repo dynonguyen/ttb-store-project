@@ -18,13 +18,9 @@ const accountSchema = new Schema({
     type: String,
     default: null,
   },
-  facebookId: {
-    type: String,
-    default: null,
-  },
   authType: {
     type: String,
-    enum: ['local', 'google', 'facebook'],
+    enum: ['local', 'google'],
     default: 'local',
   },
   failedLoginTimes: {
