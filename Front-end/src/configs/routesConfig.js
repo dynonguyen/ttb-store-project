@@ -5,6 +5,9 @@ import constants from 'constants/index.js';
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
 const Login = React.lazy(() => import('containers/Login'));
+const ForgotPassword = React.lazy(() =>
+  import('containers/Login/ForgotPassword'),
+);
 
 const routes = [
   {
@@ -21,6 +24,11 @@ const routes = [
     path: constants.ROUTES.LOGIN,
     exact: true,
     main: () => <Login />,
+  },
+  {
+    path: constants.ROUTES.FORGOT_PASSWORD,
+    exact: true,
+    main: () => <ForgotPassword />,
   },
 ];
 

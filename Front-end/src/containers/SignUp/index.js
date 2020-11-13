@@ -310,7 +310,7 @@ function SignUp() {
                 {/* Button submit */}
                 <Col className="p-t-8 p-b-0 t-center" span={24}>
                   <Button
-                    className="SignUp-submit-btn w-50"
+                    className="SignUp-submit-btn w-100"
                     size="large"
                     type="primary"
                     htmlType="submit"
@@ -320,11 +320,11 @@ function SignUp() {
                 </Col>
 
                 <Col span={24} className="p-t-0 t-center">
-                  <div className="or-option w-50" style={{ color: '#acacac' }}>
+                  <div className="or-option" style={{ color: '#acacac' }}>
                     HOẶC
                   </div>
                   <LoginGoogle
-                    className="w-50 m-0-auto"
+                    className="login-gg m-0-auto"
                     title={windowWidth > 375 ? 'Đăng nhập với Gmail' : 'Gmail'}
                   />
                   <div className="m-t-10 font-weight-500">

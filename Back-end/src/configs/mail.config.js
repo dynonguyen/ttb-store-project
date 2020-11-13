@@ -76,7 +76,7 @@ const htmlResetPassword = (token) => {
     ${headerHtmlMail}
     <h2 style="padding: 10px 0; margin-bottom: 10px;">
         Xin chào anh (chị),<br />
-        Chúng tôi đã nhận được yêu cầu lấy lại mật khẩu từ bạn.<br />
+        Cửa hàng TTB Store đã nhận được yêu cầu lấy lại mật khẩu từ quý khách.<br />
         Đừng lo lắng, hãy nhập mã này để khôi phục:
     </h2>
     <h1 style="background: #eee;padding: 10px;">
@@ -92,8 +92,8 @@ const htmlWarningLogin = () => {
    ${headerHtmlMail}
     <h2 style="padding: 10px 0; margin-bottom: 10px;">
         Xin Chào anh (chị),<br />
-        Chúng tôi nghi ngờ có ai đó đã cố gắng đăng nhập vào tài khoản của bạn.<br />
-        Nếu bạn không nhớ mật khẩu hãy nhấn vào "Quên mật khẩu" để lấy lại mật khẩu<br/>
+        Cửa hàng nghi ngờ có ai đó đã cố gắng đăng nhập vào tài khoản của quý khách.<br />
+        Nếu quý khác không nhớ mật khẩu hãy nhấn vào "Quên mật khẩu" để lấy lại mật khẩu<br/>
     </h2>
     <h1>Cảm ơn.</h1>
   </div>`;

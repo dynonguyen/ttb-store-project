@@ -49,7 +49,7 @@
       "post": {
         "tags": ["accounts"],
         "summary": "Đăng ký tài khoản mới",
-        "description": "",
+        "description": "Chức năng đăng ký",
         "parameters": [
           {
             "name": "email",
@@ -111,11 +111,73 @@
         }
       }
     },
+    "/accounts/verify/forgot": {
+      "post": {
+        "tags": ["accounts"],
+        "summary": "Gửi mã xác nhận reset mật khẩu",
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ message: 'success' }"
+          },
+          "406": {
+            "description": "{ message: 'Tài khoản không tồn tại.', error }"
+          }
+        }
+      }
+    },
+    "/accounts/reset-pw": {
+      "post": {
+        "tags": ["accounts"],
+        "summary": "Reset lại mật khẩu",
+        "description": "Chức năng quên mật khẩu",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "description": "mật khẩu mới",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "verifyCode",
+            "in": "path",
+            "description": "Mã xác nhận",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ message: 'success' }"
+          },
+          "409": {
+            "description": "{ message: 'Thay đổi mật khẩu thất bại.', error }"
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "tags": ["login"],
         "summary": "Đăng nhập local",
-        "description": "đăng nhập với tài khoản đã đăng ký",
+        "description": "Chức năng đăng nhập với tài khoản đã đăng ký",
         "parameters": [
           {
             "name": "email",

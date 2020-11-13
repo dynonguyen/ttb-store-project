@@ -150,7 +150,9 @@ function Login() {
                     <FastField name="keepLogin" component={CheckboxField}>
                       <b>Duy trì đăng nhập</b>
                     </FastField>
-                    <Link to="/accounts/forget" style={{ color: '#50aaff' }}>
+                    <Link
+                      to={constants.ROUTES.FORGOT_PASSWORD}
+                      style={{ color: '#50aaff' }}>
                       <b>Quên mật khẩu ?</b>
                     </Link>
                   </div>
@@ -159,7 +161,7 @@ function Login() {
                 {/* Button submit */}
                 <Col className="p-t-8 p-b-0 t-center" span={24}>
                   <Button
-                    className="SignUp-submit-btn w-100"
+                    className="Login-submit-btn w-100"
                     size="large"
                     type="primary"
                     htmlType="submit"

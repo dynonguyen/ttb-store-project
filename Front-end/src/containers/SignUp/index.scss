@@ -1,14 +1,4 @@
 .SignUp {
-  .verify-btn {
-    border-radius: 0;
-    border: none;
-    background-color: #5ab45f;
-    &:hover {
-      -webkit-filter: brightness(1.2);
-      filter: brightness(1.2);
-    }
-  }
-
   .gender-field .ant-select-selection-placeholder {
     color: #888;
   }
@@ -19,5 +9,15 @@
 
   .ant-input-password-icon {
     color: rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .SignUp {
+    .or-option,
+    &-submit-btn,
+    .login-gg {
+      width: 50% !important;
+    }
   }
 }

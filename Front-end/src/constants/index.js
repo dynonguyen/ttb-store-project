@@ -7,6 +7,7 @@ const GENDER_OPTIONS = [
 const ROUTES = {
   SIGNUP: '/signup',
   LOGIN: '/login',
+  FORGOT_PASSWORD: '/login/forgot-pw',
 };
 
 export default {
