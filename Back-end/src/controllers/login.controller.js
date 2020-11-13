@@ -8,7 +8,6 @@ const jwtConfig = require('../configs/jwt.config');
 // Note: login success -> create refresh token -> create jwt -> set cookie client
 const postLogin = async (req, res, next) => {
   try {
-    console.log(req);
     const { email, password, keepLogin } = req.body.account;
 
     // kiểm tra tài khoản có tồn tại không?
