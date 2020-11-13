@@ -8,6 +8,12 @@ const loginApi = {
     const url = LOGIN_API_ENDPOINT;
     return axiosClient.post(url, account);
   },
+
+  // fn: đăng nhập với google
+  postLoginWithGoogle: (accessToken) => {
+    const url = LOGIN_API_ENDPOINT + '/gg';
+    return axiosClient.post(url, accessToken);
+  },
 };
 
 export default loginApi;

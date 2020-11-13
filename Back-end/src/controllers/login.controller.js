@@ -94,6 +94,43 @@ const postLogin = async (req, res, next) => {
   }
 };
 
+// fn: Đăng nhập với google
+const postLoginWithGoogle = async (req, res, next) => {
+  try {
+    // user from middleware passport
+    const { user } = req;
+
+    // nếu user có type = local thì báo lỗi
+    if (user.authType === 'local') {
+      return res.status(401).json({ message: 'Email đã được đăng ký.' });
+    }
+
+    // tạo refresh token
+    const refreshToken = await jwtConfig.encodedToken(
+      process.env.JWT_SECRET_REFRESH_KEY,
+      { userID: user._id, keepLogin: true },
+      constants.JWT_REFRESH_EXPIRES_TIME,
+    );
+    //save refresh token into database
+    await AccountModel.updateOne({ _id: user._id }, { refreshToken });
+
+    //create JWToken -> set header -> send client
+    const token = await jwtConfig.encodedToken(process.env.JWT_SECRET_KEY, {
+      userID: user._id,
+    });
+    const expiresIn = new Date(Date.now() + constants.COOKIE_EXPIRES_TIME);
+    //set cookie for web browser
+    res.cookie('access_token', token, {
+      httpOnly: true,
+      expires: expiresIn,
+    });
+    res.status(200).json({ refreshToken, success: true });
+  } catch (error) {
+    return res.status(401).json({ message: 'Lỗi! Vui lòng thử lại.', error });
+  }
+};
+
 module.exports = {
   postLogin,
+  postLoginWithGoogle,
 };
