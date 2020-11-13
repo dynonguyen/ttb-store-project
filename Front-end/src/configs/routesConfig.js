@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import constants from 'constants/index.js';
 
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
+const Login = React.lazy(() => import('containers/Login'));
 
 const routes = [
   {
@@ -11,9 +13,14 @@ const routes = [
     main: () => <h1>Home Website</h1>,
   },
   {
-    path: '/signup',
+    path: constants.ROUTES.SIGNUP,
     exact: true,
     main: () => <SignUp />,
+  },
+  {
+    path: constants.ROUTES.LOGIN,
+    exact: true,
+    main: () => <Login />,
   },
 ];
 

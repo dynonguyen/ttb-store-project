@@ -1,24 +1,4 @@
 .SignUp {
-  &-title {
-    position: relative;
-    &::after {
-      content: "";
-      width: 12%;
-      height: 3px;
-      background-color: #000;
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      transition: 1s;
-    }
-
-    &:hover::after {
-      width: 100%;
-      background: rgb(34, 193, 195);
-      background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
-    }
-  }
-
   .verify-btn {
     border-radius: 0;
     border: none;

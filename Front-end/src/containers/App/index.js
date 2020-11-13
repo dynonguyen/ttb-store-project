@@ -1,6 +1,10 @@
 //commons css
 import 'commons/utils/index.scss';
 import 'antd/dist/antd.css';
+
+//configuration
+import 'configs/message.config';
+
 //React
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';

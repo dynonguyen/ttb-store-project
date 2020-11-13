@@ -21,13 +21,15 @@ import './index.scss';
 function SignUp() {
   const windowWidth = window.screen.width;
 
-  // trạng thái gửi mã xác thực
+  // fn: trạng thái gửi mã xác thực
   const [isSending, setIsSending] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRedirectLogin, setIsRedirectLogin] = useState(false);
+
+  // ref kiểm tra đã nhập email hay chưa, hỗ trợ việc gửi mã xác nhận
   const emailRef = useRef('');
 
-  // gửi mã xác nhận
+  // fn: gửi mã xác nhận
   const onSendCode = async () => {
     try {
       // kiểm tra email
@@ -35,8 +37,7 @@ function SignUp() {
       const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
       if (!regex.test(email)) {
-        message.config({ maxCount: 1 });
-        message.error('Email không hợp lệ !', 2);
+        message.error('Email không hợp lệ !');
         return;
       }
       // set loading, tránh việc gửi liên tục
@@ -53,12 +54,12 @@ function SignUp() {
       if (error.response) {
         message.error(error.response.data.message);
       } else {
-        message.error('Gửi thất bại, thử lại', 2);
+        message.error('Gửi thất bại, thử lại');
       }
     }
   };
 
-  // xứ lý đăng ký
+  // fn: xứ lý đăng ký
   const onSignUp = async (account) => {
     try {
       setIsSubmitting(true);
@@ -73,12 +74,12 @@ function SignUp() {
       if (error.response) {
         message.error(error.response.data.message);
       } else {
-        message.error('Đăng ký thất bại, thử lại', 2);
+        message.error('Đăng ký thất bại, thử lại');
       }
     }
   };
 
-  //giá trọ khởi tạo cho formik
+  // giá trọ khởi tạo cho formik
   const initialValue = {
     email: '',
     verifyCode: '',
@@ -89,7 +90,7 @@ function SignUp() {
     gender: null,
   };
 
-  //validate form trước submit với yup
+  // validate form trước submit với yup
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .trim()
@@ -136,17 +137,17 @@ function SignUp() {
       .max(100, '* Tối đa 100 ký tự'),
   });
 
-  //return...
+  // return...
   return (
     <div className="SignUp container">
       {/*// Note: chuyển đến trang login khi đăng ký thành công */}
       {isRedirectLogin && (
-        <Delay wait={constants.TIME_DELAY}>
-          <Redirect to="/login" />
+        <Delay wait={constants.DELAY_TIME}>
+          <Redirect to={constants.ROUTES.LOGIN} />
         </Delay>
       )}
 
-      <h1 className="SignUp-title m-b-20 m-t-20">
+      <h1 className="SignUp-title underline-title m-b-20 m-t-20">
         <b>Đăng ký tài khoản</b>
       </h1>
       <Formik
@@ -162,7 +163,7 @@ function SignUp() {
                 className="input-border"
                 gutter={[64, 32]}
                 style={{ margin: 0 }}>
-                {/* Form thông tin đăng nhập */}
+                {/* Form thông tin đăng ký */}
                 <Col className="p-b-0" span={24} md={12}>
                   <Row gutter={[0, 16]}>
                     <h2>Thông tin tài khoản</h2>
@@ -328,7 +329,7 @@ function SignUp() {
                   />
                   <div className="m-t-10 font-weight-500">
                     Bạn đã có tài khoản ?
-                    <Link to="/login">&nbsp;Đăng nhập</Link>
+                    <Link to={constants.ROUTES.LOGIN}>&nbsp;Đăng nhập</Link>
                   </div>
                 </Col>
               </Row>

@@ -1,7 +1,7 @@
 // main.js
 const nodemailer = require('nodemailer');
 
-//configure option
+// configure option
 const option = {
   service: 'gmail',
   auth: {
@@ -12,7 +12,7 @@ const option = {
 
 const transporter = nodemailer.createTransport(option);
 
-//send email
+// send email
 const sendEmail = async ({ to, subject, text, html, ...rest }) => {
   try {
     const res = await transporter.verify();
@@ -54,7 +54,7 @@ const footerHtmlVerifyMail = `<h3 style="color: red">
     </h3>
     <h1>Cảm ơn.</h1>`;
 
-//constant html send when reset password
+// gửi mã xác nhận
 const htmlSignupAccount = (token) => {
   return `<div>
     ${headerHtmlMail}
@@ -70,7 +70,7 @@ const htmlSignupAccount = (token) => {
   </div>`;
 };
 
-//constant html send when reset password
+// gửi mã đổi mật khẩu
 const htmlResetPassword = (token) => {
   return `<div>
     ${headerHtmlMail}
@@ -86,7 +86,7 @@ const htmlResetPassword = (token) => {
   </div>`;
 };
 
-//constant html send when exceed number of wrong login attempts
+// gửi thông báo đăng nhập sai quá nhiều
 const htmlWarningLogin = () => {
   return `<div>
    ${headerHtmlMail}

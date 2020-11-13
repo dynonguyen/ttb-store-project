@@ -18,7 +18,7 @@ CheckboxField.propTypes = {
   form: PropTypes.object.isRequired,
   className: PropTypes.string,
   checked: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.any,
 };
 
 export default CheckboxField;

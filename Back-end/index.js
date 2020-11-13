@@ -14,6 +14,7 @@ const swaggerDocument = require('./swagger.json');
 const corsConfig = require('./src/configs/cors.config');
 const constants = require('./src/constants');
 const accountApi = require('./src/apis/account.api');
+const loginApi = require('./src/apis/login.api');
 
 // ! ================== set port ================== //
 const app = express();
@@ -61,6 +62,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // api liên quan đến account
 app.use('/accounts', accountApi);
+
+// api liên quan đến login
+app.use('/login', loginApi);
 
 // Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
 app.get('*', (req, res) => {

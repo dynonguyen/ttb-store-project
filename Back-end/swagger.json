@@ -14,6 +14,10 @@
     {
       "name": "accounts",
       "description": "Liên quan đến tài khoản người dùng"
+    },
+    {
+      "name": "login",
+      "description": "Liên quan đến đăng nhập người dùng"
     }
   ],
   "paths": {
@@ -102,7 +106,48 @@
             "description": "{ message: 'success' }"
           },
           "400": {
-            "description": "{message: 'Account Creation Failed.', error}"
+            "description": "{ message: 'Account Creation Failed.', error }"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["login"],
+        "summary": "Đăng nhập local",
+        "description": "đăng nhập với tài khoản đã đăng ký",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keepLogin",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ refreshToken, message: 'success' }"
+          },
+          "401": {
+            "description": "{ failedLoginTimes, message: 'Mật khẩu không đúng !' | errors }"
+          },
+          "406":{
+            "description": "{ message: Tài khoản không tồn tại }"
           }
         }
       }

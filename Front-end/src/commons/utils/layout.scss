@@ -113,27 +113,3 @@
     margin: 0 auto !important;
   }
 }
-
-// -------- hoặc -------
-.or-option {
-  position: relative;
-  margin: 5px auto;
-  &::before {
-    position: absolute;
-    content: "";
-    width: 35%;
-    left: 0;
-    top: 50%;
-    height: 1px;
-    background-color: #bcbcbc;
-  }
-  &::after {
-    position: absolute;
-    content: "";
-    width: 35%;
-    right: 0;
-    top: 50%;
-    height: 1px;
-    background-color: #bcbcbc;
-  }
-}
