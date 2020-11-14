@@ -7,10 +7,14 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 // ! import local file
 const corsConfig = require('./src/configs/cors.config');
 const constants = require('./src/constants');
+const accountApi = require('./src/apis/account.api');
+const loginApi = require('./src/apis/login.api');
 
 // ! ================== set port ================== //
 const app = express();
@@ -53,6 +57,14 @@ app.listen(PORT, () => {
 });
 
 // ! ================== Routes - Api ================== //
+// api documentations
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// api liên quan đến account
+app.use('/accounts', accountApi);
+
+// api liên quan đến login
+app.use('/login', loginApi);
 
 // Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
 app.get('*', (req, res) => {

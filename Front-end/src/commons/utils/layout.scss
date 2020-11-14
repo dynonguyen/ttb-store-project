@@ -1,0 +1,115 @@
+@import "../variables/color.scss";
+
+// transform
+.trans {
+  &-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// display
+.d {
+  &-none {
+    display: none;
+  }
+  &-block {
+    display: block !important;
+  }
+  &-flex {
+    display: flex;
+  }
+}
+
+// display-flex
+.flex {
+  &-direction-column {
+    flex-direction: column;
+  }
+  &-direction-reverse {
+    flex-direction: row-reverse;
+  }
+  &-grow-1 {
+    flex-grow: 1;
+  }
+}
+
+.justify {
+  &-content {
+    &-around {
+      justify-content: space-around;
+    }
+    &-between {
+      justify-content: space-between;
+    }
+  }
+}
+
+.align {
+  &-items {
+    &-center {
+      align-items: center;
+    }
+  }
+}
+
+//width, height 10-100% (w-1 -> w-100)
+@for $i from 0 to 11 {
+  .w {
+    &-#{$i*10} {
+      width: #{$i * 10%} !important;
+    }
+  }
+  .h {
+    &-#{$i*10} {
+      height: #{$i * 10%} !important;
+    }
+  }
+}
+
+//spacing 0-50 px
+@for $i from 0 to 51 {
+  .m {
+    &-#{$i} {
+      margin: #{$i}px !important;
+    }
+    &-t-#{$i} {
+      margin-top: #{$i}px !important;
+    }
+    &-b-#{$i} {
+      margin-bottom: #{$i}px !important;
+    }
+    &-l-#{$i} {
+      margin-left: #{$i}px !important;
+    }
+    &-r-#{$i} {
+      margin-right: #{$i}px !important;
+    }
+  }
+  .p {
+    &-#{$i} {
+      padding: #{$i}px !important;
+    }
+    &-t-#{$i} {
+      padding-top: #{$i}px !important;
+    }
+    &-b-#{$i} {
+      padding-bottom: #{$i}px !important;
+    }
+    &-l-#{$i} {
+      padding-left: #{$i}px !important;
+    }
+    &-r-#{$i} {
+      padding-right: #{$i}px !important;
+    }
+  }
+}
+
+// margin
+.m {
+  &-0-auto {
+    margin: 0 auto !important;
+  }
+}

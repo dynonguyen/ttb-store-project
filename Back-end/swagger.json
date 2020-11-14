@@ -1,0 +1,218 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API dành cho trang web TTB Store",
+    "version": "1.0.0",
+    "title": "TTB Store API",
+    "contact": {
+      "email": "tuannguyentn2504@gmail.com"
+    }
+  },
+  "basePath": "/",
+  "schemes": ["http", "https"],
+  "tags": [
+    {
+      "name": "accounts",
+      "description": "Liên quan đến tài khoản người dùng"
+    },
+    {
+      "name": "login",
+      "description": "Liên quan đến đăng nhập người dùng"
+    }
+  ],
+  "paths": {
+    "/accounts/verify": {
+      "post": {
+        "tags": ["accounts"],
+        "summary": "Tạo mã xác nhận và gửi mail cho người dùng",
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ message: 'success' }"
+          },
+          "400": {
+            "description": "{message: 'Account Creation Failed.', error}"
+          }
+        }
+      }
+    },
+    "/accounts/signup": {
+      "post": {
+        "tags": ["accounts"],
+        "summary": "Đăng ký tài khoản mới",
+        "description": "Chức năng đăng ký",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "verifyCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fullName",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "birthday",
+            "in": "path",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "name": "address",
+            "in": "path",
+            "description": "",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ message: 'success' }"
+          },
+          "400": {
+            "description": "{ message: 'Account Creation Failed.', error }"
+          }
+        }
+      }
+    },
+    "/accounts/verify/forgot": {
+      "post": {
+        "tags": ["accounts"],
+        "summary": "Gửi mã xác nhận reset mật khẩu",
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ message: 'success' }"
+          },
+          "406": {
+            "description": "{ message: 'Tài khoản không tồn tại.', error }"
+          }
+        }
+      }
+    },
+    "/accounts/reset-pw": {
+      "post": {
+        "tags": ["accounts"],
+        "summary": "Reset lại mật khẩu",
+        "description": "Chức năng quên mật khẩu",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "description": "mật khẩu mới",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "verifyCode",
+            "in": "path",
+            "description": "Mã xác nhận",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ message: 'success' }"
+          },
+          "409": {
+            "description": "{ message: 'Thay đổi mật khẩu thất bại.', error }"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["login"],
+        "summary": "Đăng nhập local",
+        "description": "Chức năng đăng nhập với tài khoản đã đăng ký",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keepLogin",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{ refreshToken, message: 'success' }"
+          },
+          "401": {
+            "description": "{ failedLoginTimes, message: 'Mật khẩu không đúng !' | errors }"
+          },
+          "406":{
+            "description": "{ message: Tài khoản không tồn tại }"
+          }
+        }
+      }
+    }
+  }
+}

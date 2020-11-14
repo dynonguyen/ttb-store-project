@@ -1,0 +1,55 @@
+@import "../variables/color.scss";
+
+.t {
+  &-center {
+    text-align: center;
+  }
+  &-left {
+    text-align: left;
+  }
+  &-right {
+    text-align: right;
+  }
+  &-end {
+    text-align: end;
+  }
+  &-justify {
+    text-align: justify;
+  }
+  &-link {
+    color: #20bcfa;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+  &-color {
+    &-primary {
+      color: $text-color-primary;
+    }
+  }
+}
+
+//font-size 10-100px (0.5->5rem)
+@for $i from 10 to 100 {
+  .font-size {
+    &-#{$i}px {
+      font-size: #{$i}px !important;
+    }
+    &-#{$i*0.05}rem {
+      font-size: #{$i * 0.05}rem !important;
+    }
+    &-#{$i*0.05}em {
+      font-size: #{$i * 0.05}em !important;
+    }
+  }
+}
+
+// .font-weight 100-900
+@for $i from 1 to 10 {
+  .font-weight {
+    &-#{$i * 100} {
+      font-weight: #{$i * 100} !important;
+    }
+  }
+}

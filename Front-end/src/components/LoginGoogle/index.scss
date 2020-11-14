@@ -1,0 +1,31 @@
+.login-with.gg {
+  background-color: #ce4231;
+  &:hover,
+  &:active,
+  &:focus {
+    -webkit-filter: brightness(120%);
+    filter: brightness(120%);
+    transition: all 0.35s;
+  }
+}
+
+.login-input {
+  height: 40px;
+}
+
+.login-with {
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.35) -2px 2px 5px 0px;
+  &__icon {
+    height: 100%;
+  }
+  &__title {
+    color: #fff;
+    text-align: center;
+    flex-grow: 1;
+    margin-left: -40px;
+  }
+}
