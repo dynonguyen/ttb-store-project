@@ -9,13 +9,14 @@ import 'configs/message.config';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import routesConfig from 'configs/routesConfig';
+import GlobalLoading from 'components/Loading/Global';
 
 function App() {
   const { renderRoutes, routes } = routesConfig;
   //rendering...
   return (
     <BrowserRouter>
-      <Suspense fallback={<h1>Loading ...</h1>}>
+      <Suspense fallback={<GlobalLoading />}>
         <div className="App">
           <Switch>
             {renderRoutes(routes)}
