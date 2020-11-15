@@ -9,6 +9,7 @@ InputField.defaultProps = {
   suffix: null,
   autocomplete: 'on',
   autofocus: false,
+  maxLength: 1000,
 };
 
 function InputField(props) {
@@ -23,6 +24,7 @@ function InputField(props) {
     autocomplete,
     autofocus,
     ref,
+    maxLength,
   } = props;
   const { name } = field;
   const { errors, touched } = form;
@@ -40,6 +42,7 @@ function InputField(props) {
         size={size}
         suffix={suffix}
         autoComplete={autocomplete}
+        maxLength={maxLength}
         autoFocus={autofocus}
       />
       {showError && <div className="show-error-input">{errors[name]}</div>}
@@ -58,6 +61,7 @@ InputField.propTypes = {
   autocomplete: PropTypes.string,
   autofocus: PropTypes.bool,
   ref: PropTypes.any,
+  maxLength: PropTypes.number,
 };
 
 export default InputField;

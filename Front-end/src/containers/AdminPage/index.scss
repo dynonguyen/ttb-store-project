@@ -1,0 +1,60 @@
+$color-secondary: #41a62a;
+
+.Admin-Page {
+  .option-title,
+  a:hover,
+  a:active,
+  .menu-item:hover {
+    color: $color-secondary;
+  }
+  .menu {
+    .ant-menu-item-selected,
+    .ant-menu-item-active {
+      background: none !important;
+      & > * {
+        color: $color-secondary !important;
+      }
+    }
+  }
+  .nav-menu {
+    .ant-menu-item-selected,
+    .ant-menu-item-active {
+      background-color: $color-secondary !important;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .Admin-Page {
+    .main-title > span,
+    .menu-item-title,
+    .user-admin-title,
+    .open-web-title {
+      display: none;
+    }
+
+    .logo {
+      flex-basis: 84px !important;
+      img {
+        margin-left: 16px !important;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .main-title {
+      padding-left: 0 !important;
+    }
+
+    .user-admin {
+      padding-right: 0 !important;
+    }
+
+    .menu {
+      li > span {
+        font-size: 150%;
+      }
+      flex-basis: 30px !important;
+    }
+  }
+}

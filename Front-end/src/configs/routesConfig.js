@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import constants from 'constants/index.js';
+import AdminPage from 'containers/AdminPage';
 
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
@@ -13,7 +14,7 @@ const routes = [
   {
     path: '/',
     exact: true,
-    main: () => <h1>Home Website</h1>,
+    main: () => <AdminPage />,
   },
   {
     path: constants.ROUTES.SIGNUP,
