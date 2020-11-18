@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configStore from 'configs/configureStore';
 import App from 'containers/App';
+import ProductView from './components/ProductView/index';
 const store = configStore();
 
 ReactDOM.render(
@@ -13,3 +14,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
+
