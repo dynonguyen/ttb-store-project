@@ -1,8 +1,5 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Col, Row, Tooltip } from 'antd';
-import InputField from 'components/Custom/Field/InputField';
-import SelectField from 'components/Custom/Field/SelectField';
-import { FastField } from 'formik';
+import { Col, Form, Input, InputNumber, Row, Select, Tooltip } from 'antd';
 import React from 'react';
 const suffixColor = '#aaa';
 const CPU_SERIES = [
@@ -20,166 +17,177 @@ const CPU_SERIES = [
 function Laptop() {
   return (
     <Row gutter={[16, 16]}>
-      {/* thương hiệu của chip */}
+      {/*thương hiệu chip*/}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="chipBrand"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Nhãn hiệu của chip *"
-          size="large"
-          suffix={
-            <Tooltip title="Intel">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Nhãn hiệu của chip cpu *"
+            suffix={
+              <Tooltip title="Intel">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
-      {/* số lượng core */}
+      {/* Số lương core */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="processorCount"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Số lượng core *"
-          size="large"
-          suffix={
-            <Tooltip title="8">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc' }]}>
+          <InputNumber
+            style={{ width: '100%' }}
+            step={2}
+            size="large"
+            min={0}
+            max={32}
+            placeholder="Số Lượng core *"
+          />
+        </Form.Item>
       </Col>
-      {/* series cpu */}
+      {/* series CPU */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="series"
-          component={SelectField}
-          options={CPU_SERIES}
-          className="input-form-common"
-          placeholder="Chọn series chip *"
-          size="large"
-        />
+          rules={[{ required: true, message: 'Bắt buộc' }]}>
+          <Select size="large" placeholder="Chọn series chip *">
+            {CPU_SERIES.map((item, index) => (
+              <Select.Option value={item.type} key={index}>
+                {item.label}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
       </Col>
-      {/* chi tiết của chip */}
+      {/* chi tiết chip cpu */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="details"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Chi tiết chip cpu *"
-          size="large"
-          suffix={
-            <Tooltip title="9750H up to 4.5 GHz">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Chi tiết của cpu *"
+            suffix={
+              <Tooltip title="9750H up to 4.5 GHz">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
       {/* kích thước màn hình */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="displaySize"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Kích thước màn hình *"
-          size="large"
-          suffix={
-            <Tooltip title={`15.6" (1920 x 1080), 60Hz`}>
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Kích thước màn hình *"
+            suffix={
+              <Tooltip title={`15.6" (1920 x 1080), 60Hz`}>
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
-      {/* card màn hình */}
+      {/* Card màn hình */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="display"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Card màn hình *"
-          size="large"
-          suffix={
-            <Tooltip title="NVIDIA GeForce RTX 2080 Super 8GB GDDR6">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Card màn hình *"
+            suffix={
+              <Tooltip title="NVIDIA GeForce RTX 2080 Super 8GB GDDR6">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
-      {/* hệ điều hành */}
+      {/* Hệ điều hành */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="operating"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Hệ điều hành *"
-          size="large"
-          suffix={
-            <Tooltip title="Windows 10 Pro 64-bit">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Hệ điều hành *"
+            suffix={
+              <Tooltip title="Windows 10 Pro 64-bit">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
-      {/* ổ cứng */}
+      {/* Ổ cứng */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="disk"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Ổ cứng *"
-          size="large"
-          suffix={
-            <Tooltip title="1TB SSD M.2 NVMe">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Ổ cứng *"
+            suffix={
+              <Tooltip title="1TB SSD M.2 NVMe">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
       {/* RAM */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="ram"
-          component={InputField}
-          className="input-form-common"
-          placeholder="RAM *"
-          size="large"
-          suffix={
-            <Tooltip title="2 x 16GB DDR4 2933MHz">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="RAM *"
+            suffix={
+              <Tooltip title="2 x 16GB DDR4 2933MHz">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
-      {/* pin */}
+      {/* Pin */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="pin"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Dung lượng pin *"
-          size="large"
-          suffix={
-            <Tooltip title="4 cell 84 Wh Pin liền">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
+          <Input
+            size="large"
+            placeholder="Dung lượng pin *"
+            suffix={
+              <Tooltip title="4 cell 84 Wh Pin liền">
+                <InfoCircleOutlined style={{ color: suffixColor }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
       </Col>
-      {/* khối lượng */}
+      {/* Khối lượng */}
       <Col span={12} md={8} xl={6} xxl={4}>
-        <FastField
+        <Form.Item
           name="weight"
-          component={InputField}
-          className="input-form-common"
-          placeholder="Khối lượng *"
-          size="large"
-          suffix={
-            <Tooltip title="2.3">
-              <InfoCircleOutlined style={{ color: suffixColor }} />
-            </Tooltip>
-          }
-        />
+          rules={[{ required: true, message: 'Bắt buộc' }]}>
+          <InputNumber
+            style={{ width: '100%' }}
+            step={1}
+            size="large"
+            min={0}
+            max={10}
+            placeholder="Khối lượng *"
+          />
+        </Form.Item>
       </Col>
     </Row>
   );

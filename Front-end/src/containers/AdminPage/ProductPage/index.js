@@ -3,79 +3,28 @@ import {
   PlusOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import { Button, Col, Menu, Row, Select, Tooltip, Upload } from 'antd';
-import InputField from 'components/Custom/Field/InputField';
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Menu,
+  Row,
+  Select,
+  Tooltip,
+  Upload,
+} from 'antd';
 import constants from 'constants/index';
-import { FastField, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import * as Yup from 'yup';
+import Disk from './Disk';
 import Laptop from './Laptop';
 import './index.scss';
 
-// Note: Constant local
 const suffixColor = '#aaa';
-const initialValue = {
-  code: '',
-  name: '',
-  price: null,
-  stock: null,
-  brand: '',
-};
-// validate form
-const validationSchema = Yup.object().shape({
-  code: Yup.string()
-    .trim()
-    .required('Bắt buộc nhập !')
-    .max(30, 'Tối đa 30 ký tự'),
-  name: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  price: Yup.number()
-    .required('Bắt buộc')
-    .min(0)
-    .max(1000000000, 'số quá lớn'),
-  stock: Yup.number()
-    .required('Bắt buộc')
-    .min(0)
-    .max(100000, 'số quá lớn'),
-  brand: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  warranty: Yup.number().required('Bắt buộc'),
-
-  // Note: laptop
-  chipBrand: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  processorCount: Yup.number().required('Bắt buộc'),
-  series: Yup.number().required('Bắt buộc'),
-  details: Yup.string().trim(),
-  displaySize: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  display: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  operating: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  disk: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  ram: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  pin: Yup.string()
-    .trim()
-    .required('Bắt buộc'),
-  weight: Yup.number()
-    .required('Bắt buộc')
-    .min(0, 'Số âm')
-    .max(100, 'Số quá lớn'),
-});
 
 function ProductPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isTypeSelected, setIsTypeSelected] = useState(true);
   const [typeSelected, setTypeSelected] = useState(0);
   const [fileList, setFileList] = useState([]);
 
@@ -97,19 +46,31 @@ function ProductPage() {
 
   // fn: xử lý khi chọn loại sản phẩm
   const onProductTypeChange = (value) => {
+    if (!isTypeSelected) setIsTypeSelected(true);
     setTypeSelected(value);
   };
 
-  // fn: handle submit
-  const onAddProduct = async (product) => {
+  // fn: xử lý submit form
+  const onSubmitForm = async (data) => {
     try {
-      console.log('DEBUG: ', product);
+      console.log(data);
+      return null;
     } catch (error) {
       throw error;
     }
   };
 
-  //returning...
+  // fn: Xử lý khi form sai
+  const onSubmitFormFailed = async (data) => {
+    try {
+      console.log('%cERROR: ', 'color: red; font-size: 24px', data);
+      return null;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  // returning...
   return (
     <div className="Admin-Product-Page">
       {/* menu */}
@@ -133,7 +94,7 @@ function ProductPage() {
         size="large"
         style={{ width: 250 }}
         onChange={onProductTypeChange}
-        placeholder="Loại sản phẩm">
+        placeholder="Chọn loại sản phẩm *">
         {constants.PRODUCT_TYPES.map((item, index) => (
           <Select.Option value={item.type} key={index}>
             {item.label}
@@ -141,184 +102,173 @@ function ProductPage() {
         ))}
       </Select>
 
-      {/* các thông số cơ bản */}
-      {typeSelected >= 0 && (
+      {/* form thông tin sản phẩm */}
+      {isTypeSelected && (
         <div className="p-20">
-          <Formik
-            initialValues={initialValue}
-            validationSchema={validationSchema}
-            onSubmit={onAddProduct}>
-            {(formikProps) => {
-              return (
-                <Form>
-                  <Row gutter={[16, 16]}>
-                    <Col span={24}>
-                      <h2>Thông tin cơ bản sản phẩm</h2>
-                    </Col>
-                    {/* // Note: thông tin cơ bản của 1 sản phẩm */}
-                    {/* mã sản phẩm */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <FastField
-                        name="code"
-                        component={InputField}
-                        className="input-form-common"
-                        placeholder="Mã sản phẩm *"
-                        size="large"
-                        suffix={
-                          <Tooltip title="SKU200500854">
-                            <InfoCircleOutlined
-                              style={{ color: suffixColor }}
-                            />
-                          </Tooltip>
-                        }
-                      />
-                    </Col>
-                    {/* tên sản phẩm */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <FastField
-                        name="name"
-                        component={InputField}
-                        className="input-form-common"
-                        placeholder="Tên sản phẩm *"
-                        size="large"
-                        suffix={
-                          <Tooltip title="Laptop APPLE MacBook Pro 2020">
-                            <InfoCircleOutlined
-                              style={{ color: suffixColor }}
-                            />
-                          </Tooltip>
-                        }
-                      />
-                    </Col>
-                    {/* giá sản phẩm */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <FastField
-                        name="price"
-                        component={InputField}
-                        className="input-form-common"
-                        placeholder="Giá *"
-                        size="large"
-                        suffix={
-                          <Tooltip title="28500000">
-                            <InfoCircleOutlined
-                              style={{ color: suffixColor }}
-                            />
-                          </Tooltip>
-                        }
-                      />
-                    </Col>
-                    {/* số hàng tồn kho */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <FastField
-                        name="stock"
-                        component={InputField}
-                        className="input-form-common"
-                        placeholder="Số lượng hàng tồn kho *"
-                        size="large"
-                        suffix={
-                          <Tooltip title="20">
-                            <InfoCircleOutlined
-                              style={{ color: suffixColor }}
-                            />
-                          </Tooltip>
-                        }
-                      />
-                    </Col>
-                    {/* thương hiệu */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <FastField
-                        name="brand"
-                        component={InputField}
-                        className="input-form-common"
-                        placeholder="Thương hiệu *"
-                        size="large"
-                        suffix={
-                          <Tooltip title="Apple">
-                            <InfoCircleOutlined
-                              style={{ color: suffixColor }}
-                            />
-                          </Tooltip>
-                        }
-                      />
-                    </Col>
-                    {/* bảo hành */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <FastField
-                        name="warranty"
-                        component={InputField}
-                        className="input-form-common"
-                        placeholder="Thời gian bảo hành *"
-                        size="large"
-                        suffix={
-                          <Tooltip title="12 (theo tháng)">
-                            <InfoCircleOutlined
-                              style={{ color: suffixColor }}
-                            />
-                          </Tooltip>
-                        }
-                      />
-                    </Col>
-                    {/* avatar */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <Upload>
-                        <Button
-                          className="w-100 h-100"
-                          icon={<UploadOutlined />}>
-                          Upload Avatar
-                        </Button>
-                      </Upload>
-                    </Col>
-                    {/* mô tả */}
-                    <Col span={12} md={8} xl={6} xxl={4}>
-                      <Button
-                        className="w-100"
-                        size="large"
-                        icon={<PlusOutlined />}
-                        type="dashed">
-                        Thêm mô tả chi tiết
-                      </Button>
-                    </Col>
+          <Form
+            name="laptop-form"
+            onFinish={onSubmitForm}
+            onFinishFailed={onSubmitFormFailed}>
+            {/* các thông số cơ bản */}
+            <Row gutter={[16, 16]}>
+              {/* // Note: tổng quan một sản phẩm */}
+              <Col span={24}>
+                <h2>Thông tin cơ bản sản phẩm</h2>
+              </Col>
+              {/* mã sản phẩm */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="code"
+                  rules={[
+                    { required: true, message: 'Bắt buộc', whitespace: true },
+                  ]}>
+                  <Input
+                    size="large"
+                    placeholder="Mã sản phẩm *"
+                    suffix={
+                      <Tooltip title="SKU200500854">
+                        <InfoCircleOutlined style={{ color: suffixColor }} />
+                      </Tooltip>
+                    }
+                  />
+                </Form.Item>
+              </Col>
+              {/* tên sản phẩm */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="name"
+                  rules={[
+                    { required: true, message: 'Bắt buộc', whitespace: true },
+                  ]}>
+                  <Input
+                    size="large"
+                    placeholder="Tên sản phẩm *"
+                    suffix={
+                      <Tooltip title="Laptop Apple MacBook Air 13 2019 MVFM2SA/A (Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)">
+                        <InfoCircleOutlined style={{ color: suffixColor }} />
+                      </Tooltip>
+                    }
+                  />
+                </Form.Item>
+              </Col>
+              {/* giá sản phẩm */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="price"
+                  rules={[{ required: true, message: 'Bắt buộc' }]}>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    step={10000}
+                    size="large"
+                    placeholder="Giá *"
+                    min={0}
+                    max={1000000000}
+                  />
+                </Form.Item>
+              </Col>
+              {/* số hang tồn kho */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="stock"
+                  rules={[{ required: true, message: 'Bắt buộc' }]}>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    step={5}
+                    size="large"
+                    min={0}
+                    max={100000}
+                    placeholder="Số lượng hàng tồn kho *"
+                  />
+                </Form.Item>
+              </Col>
+              {/* thương hiệu */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="brand"
+                  rules={[
+                    { required: true, message: 'Bắt buộc', whitespace: true },
+                  ]}>
+                  <Input
+                    size="large"
+                    placeholder="Thương hiệu *"
+                    suffix={
+                      <Tooltip title="Apple">
+                        <InfoCircleOutlined style={{ color: suffixColor }} />
+                      </Tooltip>
+                    }
+                  />
+                </Form.Item>
+              </Col>
+              {/*Thời gian bảo hành*/}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="warranty"
+                  rules={[{ required: true, message: 'Bắt buộc' }]}>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    step={6}
+                    size="large"
+                    min={0}
+                    max={240}
+                    placeholder="Tg bảo hành (Theo tháng) *"
+                  />
+                </Form.Item>
+              </Col>
+              {/* avatar */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Upload>
+                  <Button className="w-100 h-100" icon={<UploadOutlined />}>
+                    Upload Avatar
+                  </Button>
+                </Upload>
+              </Col>
+              {/* mô tả chi tiết */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Button
+                  className="w-100"
+                  size="large"
+                  icon={<PlusOutlined />}
+                  type="dashed">
+                  Thêm mô tả chi tiết
+                </Button>
+              </Col>
 
-                    {/* // Note: chi tiết một sản phẩm */}
-                    <Col span={24}>
-                      <h2>
-                        Thông tin chi tiết cho&nbsp;
-                        <b>{constants.PRODUCT_TYPES[typeSelected].label}</b>
-                      </h2>
-                    </Col>
-                    <Col span={24}>
-                      <Laptop />
-                    </Col>
+              {/* // Note: chi tiết một sản phẩm */}
+              {isTypeSelected && (
+                <Col span={24}>
+                  <h2 className="m-b-10">
+                    Thông tin chi tiết cho&nbsp;
+                    <b>{constants.PRODUCT_TYPES[typeSelected].label}</b>
+                  </h2>
+                  <Disk />
+                </Col>
+              )}
 
-                    {/* // Note: hình ảnh sản phẩm */}
-                    <Col span={24}>
-                      <h2>Hình ảnh của sản phẩm</h2>
-                      <Upload
-                        listType="picture-card"
-                        multiple={true}
-                        fileList={fileList}
-                        onChange={({ fileList: newFileList }) => {
-                          setFileList(newFileList);
-                        }}
-                        onPreview={onPreview}>
-                        {fileList.length < 10 && '+ Thêm ảnh'}
-                      </Upload>
-                    </Col>
-                    {/* Button submit */}
-                    <Col span={24}>
-                      <Button
-                        htmlType="submit"
-                        size="large"
-                        type="primary"
-                        loading={isSubmitting}>
-                        Thêm sản phẩm
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-              );
-            }}
-          </Formik>
+              {/* // Note: hình ảnh sản phẩm */}
+              <Col span={24}>
+                <h2 className="m-b-10">Hình ảnh của sản phẩm</h2>
+                <Upload
+                  listType="picture-card"
+                  multiple={true}
+                  fileList={fileList}
+                  onChange={({ fileList: newFileList }) => {
+                    setFileList(newFileList);
+                  }}
+                  onPreview={onPreview}>
+                  {fileList.length < 10 && '+ Thêm ảnh'}
+                </Upload>
+              </Col>
+
+              {/* submit button */}
+              <Col span={24}>
+                <Form.Item>
+                  <Button type="primary" htmlType="submit">
+                    Thêm sản phẩm
+                  </Button>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
         </div>
       )}
     </div>
