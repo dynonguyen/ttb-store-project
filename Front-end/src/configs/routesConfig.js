@@ -1,6 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { Layout } from 'antd';
 import constants from 'constants/index.js';
+import HeaderView from 'components/HeaderView/index';
+
+const { Header } = Layout;
 
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
@@ -13,7 +17,11 @@ const routes = [
   {
     path: '/',
     exact: true,
-    main: () => <h1>Home Website</h1>,
+    main: () => (
+      <Layout>
+        <HeaderView />
+      </Layout>
+    ),
   },
   {
     path: constants.ROUTES.SIGNUP,
