@@ -19,7 +19,17 @@ import constants from 'constants/index';
 import React, { useState } from 'react';
 import Disk from './Disk';
 import Laptop from './Laptop';
+import Display from './Display';
+import MainBoard from './MainBoard';
+import Ram from './Ram';
+import Mobile from './Mobile';
+import BackupCharger from './BackupCharger';
+import Camera from './Camera';
+import Webcam from './Webcam';
+import Headphone from './Headphone';
+import Keyboard from './Keyboard';
 import './index.scss';
+import Monitor from './Monitor';
 
 const suffixColor = '#aaa';
 
@@ -240,7 +250,7 @@ function ProductPage() {
                     Thông tin chi tiết cho&nbsp;
                     <b>{constants.PRODUCT_TYPES[typeSelected].label}</b>
                   </h2>
-                  <Disk />
+                  <Monitor />
                 </Col>
               )}
 
