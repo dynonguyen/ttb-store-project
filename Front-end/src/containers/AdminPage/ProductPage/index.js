@@ -30,6 +30,9 @@ import Headphone from './Headphone';
 import Keyboard from './Keyboard';
 import './index.scss';
 import Monitor from './Monitor';
+import Mouse from './Mouse';
+import Router from './Router';
+import Speaker from './Speaker';
 
 const suffixColor = '#aaa';
 
@@ -250,7 +253,7 @@ function ProductPage() {
                     Thông tin chi tiết cho&nbsp;
                     <b>{constants.PRODUCT_TYPES[typeSelected].label}</b>
                   </h2>
-                  <Monitor />
+                  <Speaker />
                 </Col>
               )}
 
