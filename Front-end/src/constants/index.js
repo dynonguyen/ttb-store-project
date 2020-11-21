@@ -41,4 +41,8 @@ export default {
   ROUTES,
   REFRESH_TOKEN: 'refresh_token',
   PRODUCT_TYPES,
+
+  // tỉ lệ nén ảnh, và nén png 2MB
+  COMPRESSION_RADIO: 0.6,
+  COMPRESSION_RADIO_PNG: 2000000,
 };
