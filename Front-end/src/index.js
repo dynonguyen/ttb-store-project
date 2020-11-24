@@ -10,7 +10,9 @@ const store = configStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    {/* <App /> */}
+    <ProductView  item={{name:'Màn hình máy tính LG UltraWide™ 29inch IPS 75Hz AMD FreeSync™ HDR 29WN600-W'
+    ,price:200000,initialPrice:300000,remaining:'Còn 1 sản phẩm'}}/>
   </Provider>,
   document.getElementById('root'),
 );
