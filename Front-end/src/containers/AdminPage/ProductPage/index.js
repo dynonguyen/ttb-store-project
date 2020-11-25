@@ -2,6 +2,7 @@ import { Menu } from 'antd';
 import React from 'react';
 import ProductAddForm from './ProductAddForm';
 import './index.scss';
+import ProductDetail from './ProductAddForm/ProductDetailModal';
 
 function ProductPage() {
   // returning...

@@ -1,8 +1,4 @@
-import {
-  InfoCircleOutlined,
-  PlusOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { InfoCircleOutlined, UploadOutlined } from '@ant-design/icons';
 import {
   Button,
   Col,
@@ -29,6 +25,7 @@ import MainBoard from './MainBoard';
 import Mobile from './Mobile';
 import Monitor from './Monitor';
 import Mouse from './Mouse';
+import ProductDetail from './ProductDetailModal';
 import Ram from './Ram';
 import Router from './Router';
 import Speaker from './Speaker';
@@ -113,6 +110,12 @@ function ProductAddForm() {
         message.error('Lỗi: ', err);
       },
     });
+  };
+
+  // fn: lấy bài viết mô tả sp
+  const onGetDetailDesc = (data) => {
+    console.log(data);
+    return null;
   };
 
   // fn: Reset form
@@ -283,7 +286,10 @@ function ProductAddForm() {
                   onChange={({ fileList }) => {
                     if (avtFileList.length < 1) setAvtFileList(fileList);
                   }}
-                  onRemove={() => setAvatar(null)}
+                  onRemove={() => {
+                    setAvatar(null);
+                    setAvtFileList([]);
+                  }}
                   beforeUpload={(file) => {
                     onCompressFile(file, 0);
                     return false;
@@ -297,15 +303,7 @@ function ProductAddForm() {
                 </Upload>
               </Col>
               {/* mô tả chi tiết */}
-              <Col span={12} md={8} xl={6} xxl={4}>
-                <Button
-                  className="w-100"
-                  size="large"
-                  icon={<PlusOutlined />}
-                  type="dashed">
-                  Thêm mô tả chi tiết
-                </Button>
-              </Col>
+              <ProductDetail onGetDetailDes={onGetDetailDesc} />
 
               {/* // Note: chi tiết một sản phẩm */}
               {isTypeSelected && (
@@ -344,16 +342,16 @@ function ProductAddForm() {
 
               {/* submit button */}
               <Col span={24} className="d-flex justify-content-end">
-                <Button size="large" type="primary" htmlType="submit">
-                  Thêm sản phẩm
-                </Button>
                 <Button
-                  className="m-l-20"
+                  className="m-r-20"
                   size="large"
                   danger
                   type="primary"
                   onClick={onResetForm}>
                   Reset Form
+                </Button>
+                <Button size="large" type="primary" htmlType="submit">
+                  Thêm sản phẩm
                 </Button>
               </Col>
             </Row>
