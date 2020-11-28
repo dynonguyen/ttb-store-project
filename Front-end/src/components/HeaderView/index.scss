@@ -26,6 +26,9 @@
   .ant-menu-item a {
     color: $icon-color-primary;
   }
+  .ant-menu-submenu {
+    color: $color-secondary;
+  }
   .search-icon {
     display: none;
     transform: translateY(2px);
@@ -33,27 +36,57 @@
   }
   .search-bar {
     transform: translateY(35px);
+    margin-right: 20px !important;
   }
   .search-bar-responsive {
     display: none;
+  }
+  .anticon-unordered-list {
+    font-size: 28px;
+    transform: translateY(7px);
   }
 }
 
 // ---------- RESPONSIVE ----------
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
   .Header-View {
     &-text {
       display: none;
     }
+    .ant-menu {
+      margin-left: 12px;
+    }
+    .logo-TTB {
+      margin-left: 20px;
+    }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .Header-View {
+    &-text {
+      display: inherit;
+    }
+    .logo-TTB {
+      margin: auto;
+    }
+  }
+}
+
+// @media only screen and (max-width: 576px) {
+//   .Header-View {
+//     .ant-menu {
+//       margin-right: 20px;
+//     }
+//   }
+// }
 
 @media only screen and (max-width: 480px) {
   .Header-View {
     .search-icon {
       display: inline-block;
-      margin: 0 50%
+      margin: 0 45%;
     }
     .search-bar {
       display: none;

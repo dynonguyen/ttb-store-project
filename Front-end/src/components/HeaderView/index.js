@@ -1,4 +1,14 @@
-import { Layout, Menu, Input, Badge, Row, Col, Dropdown } from 'antd';
+import {
+  Layout,
+  Menu,
+  Input,
+  Badge,
+  Row,
+  Col,
+  Dropdown,
+  Card,
+  Avatar,
+} from 'antd';
 import {
   ReconciliationOutlined,
   SearchOutlined,
@@ -13,12 +23,32 @@ import { Link } from 'react-router-dom';
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
 const onSearch = (value) => console.log(value);
+const { Meta } = Card;
 
 const menu = (
-  <Menu>
-    <h1>Sản phẩm</h1>
-    <h2>Thông tin sản phẩm</h2>
-  </Menu>
+  <div style={{ backgroundColor: '#fff' }}>
+    <Card style={{ width: 300, marginTop: 16 }}>
+      <Meta
+        avatar={
+          <Avatar src="https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg" />
+        }
+        title="Laptop Apple MacBook Pro 16 2019 (MVVK2SA/A) (Core i9/16GB/1TB SSD/AMD Radeon Pro 5500M/macOS/2kg)"
+        description="This is the description"
+      />
+    </Card>
+
+    <div className="additional">
+      <h3 className="price">
+        Tổng tiền: <span className="price">60M</span>
+      </h3>
+      <h3>
+        Phí vận chuyển: <span className="ship-cost">100K</span>
+      </h3>
+      <Link to="/login">
+        <span className="font-weight-500 m-r-5">Đến giỏ hàng</span>
+      </Link>
+    </div>
+  </div>
 );
 
 function HeaderView() {
@@ -26,7 +56,7 @@ function HeaderView() {
     <Header className="container-fluid Header-View">
       <div className="container-lg justify-content-between">
         <Row>
-          <Col xs={2} sm={2} md={2} lg={2} xl={2}>
+          <Col xs={4} sm={3} md={4} lg={2} xl={2}>
             <div className="col- logo-TTB p-r-20">
               <img
                 src="https://previews.123rf.com/images/putracetol/putracetol1805/putracetol180502182/101179920-science-computer-logo-icon-design.jpg"
@@ -35,7 +65,7 @@ function HeaderView() {
               />
             </div>
           </Col>
-          <Col xs={18} sm={8} md={8} lg={8} xl={13}>
+          <Col xs={16} sm={18} md={13} lg={11} xl={13}>
             <div className="Header-View-icon search-icon">
               <SearchOutlined />
             </div>
@@ -48,7 +78,7 @@ function HeaderView() {
               />
             </div>
           </Col>
-          <Col xs={4} sm={14} md={14} lg={14} xl={9}>
+          <Col xs={4} sm={3} md={7} lg={11} xl={9}>
             <div>
               <Menu
                 theme="light"
