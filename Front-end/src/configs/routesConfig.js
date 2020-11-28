@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import constants from 'constants/index.js';
 import AdminPage from 'containers/AdminPage';
-
+import ProductView from 'components/ProductView';
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
 const Login = React.lazy(() => import('containers/Login'));
@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/',
     exact: true,
-    main: () => <AdminPage />,
+    main: () => <h1>Home Page</h1>
   },
   {
     path: constants.ROUTES.SIGNUP,
@@ -30,6 +30,11 @@ const routes = [
     path: constants.ROUTES.FORGOT_PASSWORD,
     exact: true,
     main: () => <ForgotPassword />,
+  },
+   {
+    path: '/admin',
+    exact: true,
+    main: () => <AdminPage />,
   },
 ];
 
