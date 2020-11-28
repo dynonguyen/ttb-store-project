@@ -9,7 +9,9 @@ $color-secondary: #41a62a;
   }
   .menu {
     .ant-menu-item-selected,
-    .ant-menu-item-active {
+    .ant-menu-item-active,
+    .ant-menu-submenu-active,
+    .ant-menu-submenu-selected {
       background: none !important;
       & > * {
         color: $color-secondary !important;
@@ -20,6 +22,14 @@ $color-secondary: #41a62a;
     .ant-menu-item-selected,
     .ant-menu-item-active {
       background-color: $color-secondary !important;
+    }
+  }
+  .ant-menu-submenu-selected {
+    .ant-menu-submenu-arrow {
+      &::before,
+      &::after {
+        background-color: $color-secondary !important;
+      }
     }
   }
 }

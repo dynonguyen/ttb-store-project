@@ -19,4 +19,23 @@ module.exports = {
 
   // thời hạn hiệu lực cho refresh token
   JWT_REFRESH_EXPIRES_TIME: 6 * 30 * 24 * 3600, //6 months
+
+  // Loại sản phẩm
+  PRODUCT_TYPES: {
+    LAPTOP: 0,
+    DISK: 1,
+    DISPLAY: 2,
+    MAIN_BOARD: 3,
+    RAM: 4,
+    MOBILE: 5,
+    BACKUP_CHARGER: 6,
+    HEADPHONE: 7,
+    KEYBOARD: 8,
+    MONITOR: 9,
+    MOUSE: 10,
+    ROUTER: 11,
+    SPEAKER: 12,
+    CAMERA: 13,
+    WEBCAM: 14,
+  },
 };

@@ -18,6 +18,6 @@ const mobileSchema = new Schema({
   details: Schema.Types.ObjectId,
 });
 
-const MobileSchema = mongoose.model('mobile', mobileSchema, 'mobiles');
+const MobileModel = mongoose.model('mobile', mobileSchema, 'mobiles');
 
-module.exports = MobileSchema;
+module.exports = MobileModel;

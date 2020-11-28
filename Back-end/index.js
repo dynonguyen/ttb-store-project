@@ -14,6 +14,7 @@ const swaggerDocument = require('./swagger.json');
 const corsConfig = require('./src/configs/cors.config');
 const constants = require('./src/constants');
 const accountApi = require('./src/apis/account.api');
+const adminApi = require('./src/apis/admin.api');
 const loginApi = require('./src/apis/login.api');
 
 // ! ================== set port ================== //
@@ -59,6 +60,9 @@ app.listen(PORT, () => {
 // ! ================== Routes - Api ================== //
 // api documentations
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// api trang admin
+app.use('/admin', adminApi);
 
 // api liên quan đến account
 app.use('/accounts', accountApi);

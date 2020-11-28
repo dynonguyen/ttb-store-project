@@ -1,4 +1,8 @@
-import { InfoCircleOutlined, UploadOutlined } from '@ant-design/icons';
+import {
+  ExclamationCircleOutlined,
+  InfoCircleOutlined,
+  UploadOutlined,
+} from '@ant-design/icons';
 import {
   Button,
   Col,
@@ -6,14 +10,17 @@ import {
   Input,
   InputNumber,
   message,
+  Modal,
   Row,
   Select,
   Tooltip,
   Upload,
 } from 'antd';
+import adminApi from 'apis/adminApi';
 import Compressor from 'compressorjs';
 import constants from 'constants/index';
 import React, { useRef, useState } from 'react';
+import '../index.scss';
 import BackupCharger from './BackupCharger';
 import Camera from './Camera';
 import Disk from './Disk';
@@ -32,10 +39,12 @@ import Speaker from './Speaker';
 import Webcam from './Webcam';
 const suffixColor = '#aaa';
 
-function ProductAddForm() {
+function AddProduct() {
   const [form] = Form.useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTypeSelected, setIsTypeSelected] = useState(false);
   const [typeSelected, setTypeSelected] = useState(-1);
+  const productDecs = useRef(null);
   // avt file chưa nén
   const [avtFileList, setAvtFileList] = useState([]);
   // avt đã nén
@@ -114,8 +123,7 @@ function ProductAddForm() {
 
   // fn: lấy bài viết mô tả sp
   const onGetDetailDesc = (data) => {
-    console.log(data);
-    return null;
+    productDecs.current = data;
   };
 
   // fn: Reset form
@@ -127,30 +135,91 @@ function ProductAddForm() {
     setFileList([]);
   };
 
-  // fn: xử lý submit form
-  const onSubmitForm = async (data) => {
+  // fn: kiểm tra hình ảnh, bài viết trước submit form
+  const onValBeforeSubmit = async (data) => {
     try {
       if (!avatar) {
         message.error('Thêm avatar !', 2);
         return;
       }
-      console.log({
-        ...data,
-        avatar,
-        productPicList: fileCompressedList.current,
-      });
+      // cảnh báo khi không có bài viết mô tả
+      if (productDecs.current === null)
+        Modal.confirm({
+          title: 'Bạn có chắc muốn submit ?',
+          content: 'Chưa có BÀI VIẾT MÔ TẢ cho sản phẩm này !',
+          icon: <ExclamationCircleOutlined />,
+          okButtonProps: true,
+          onCancel() {
+            return;
+          },
+          onOk() {
+            onSubmit(data);
+          },
+        });
+      else if (fileCompressedList.current.length === 0)
+        Modal.confirm({
+          title: 'Bạn có chắc muốn submit ?',
+          content: 'Chưa có HÌNH ẢNH MÔ TẢ cho sản phẩm này !',
+          icon: <ExclamationCircleOutlined />,
+          okButtonProps: true,
+          onCancel() {
+            return;
+          },
+          onOk() {
+            onSubmit(data);
+          },
+        });
+      else onSubmit(data);
     } catch (error) {
-      throw error;
+      message.error('Có lỗi. Thử lại !');
+    }
+  };
+
+  // fn: Xử lý submit form
+  const onSubmit = async (data) => {
+    try {
+      setIsSubmitting(true);
+      const { code, name, price, stock, brand, ...rest } = data;
+      // các thuộc tính chung của sản phẩm
+      const product = {
+        type: typeSelected,
+        code,
+        name,
+        price,
+        brand,
+        stock,
+        avatar,
+      };
+      // thuộc tính chi tiết của từng loại sp
+      const catalogs = fileCompressedList.current.map((item) => item.data);
+      const details = {
+        ...rest,
+        catalogs,
+      };
+
+      // data được gửi đi
+      const dataSend = { product, details, desc: productDecs.current };
+      const response = await adminApi.postAddProduct(dataSend);
+      if (response.status === 200) {
+        setIsSubmitting(false);
+        message.success('Thêm sản phẩm thành công');
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      if (error.response) {
+        message.error(error.response.data.message);
+      } else {
+        message.error('Thêm sản phẩm thất bại. Thử lại');
+      }
     }
   };
 
   // returning...
   return (
-    <div className="Product-Add-Form">
-      <h1 className="t-center">
+    <div className="Admin-Product-Page">
+      <h1 className="t-center p-t-20">
         <b>Thêm sản phẩm</b>
       </h1>
-
       {/* chọn loại sản phẩm */}
       <Select
         className="m-l-20"
@@ -164,14 +233,13 @@ function ProductAddForm() {
           </Select.Option>
         ))}
       </Select>
-
       {/* form thông tin sản phẩm */}
       {isTypeSelected && (
         <div className="p-20">
           <Form
             name="form"
             form={form}
-            onFinish={onSubmitForm}
+            onFinish={onValBeforeSubmit}
             onFinishFailed={() => message.error('Lỗi. Kiểm tra lại form')}>
             {/* các thông số cơ bản */}
             <Row gutter={[16, 16]}>
@@ -350,7 +418,11 @@ function ProductAddForm() {
                   onClick={onResetForm}>
                   Reset Form
                 </Button>
-                <Button size="large" type="primary" htmlType="submit">
+                <Button
+                  loading={isSubmitting}
+                  size="large"
+                  type="primary"
+                  htmlType="submit">
                   Thêm sản phẩm
                 </Button>
               </Col>
@@ -362,4 +434,4 @@ function ProductAddForm() {
   );
 }
 
-export default ProductAddForm;
+export default AddProduct;

@@ -1,59 +1,126 @@
 import {
   BarChartOutlined,
   DashboardOutlined,
+  EyeOutlined,
   HomeOutlined,
   IdcardOutlined,
   NotificationOutlined,
+  PlusCircleOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Col, Menu, Row } from 'antd';
+import { Menu } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
+import SubMenu from 'antd/lib/menu/SubMenu';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductPage from './ProductPage';
 import './index.scss';
+import AddProduct from './ProductPage/ProductAddForm';
 
 const mainColor = '#000';
 const menuList = [
   {
-    key: 0,
+    key: 'd',
     title: 'Dashboard',
     icon: <DashboardOutlined />,
+    children: [],
   },
   {
-    key: 1,
+    key: 'p',
     title: 'Products',
     icon: <ShoppingCartOutlined />,
+    children: [
+      { key: 'p0', title: 'See', icon: <EyeOutlined /> },
+      { key: 'p1', title: 'Add', icon: <PlusCircleOutlined /> },
+    ],
   },
   {
-    key: 2,
+    key: 'c',
     title: 'Customers',
     icon: <UserOutlined />,
+    children: [],
   },
   {
-    key: 3,
+    key: 'a',
     title: 'Amin Users',
     icon: <IdcardOutlined />,
+    children: [],
   },
   {
-    key: 4,
+    key: 's',
     title: 'Statistic',
     icon: <BarChartOutlined />,
+    children: [],
   },
   {
-    key: 5,
+    key: 'm',
     title: 'Marketing',
     icon: <NotificationOutlined />,
+    children: [],
   },
 ];
 
 function AdminPage() {
-  const [optionSelected, setOptionSelected] = useState(0);
+  const [keyMenu, setKeyMenu] = useState('p1');
 
+  // fn: Xử lý khi chọn item
   const handleSelected = (e) => {
     const { key } = e;
-    setOptionSelected(key);
+    setKeyMenu(key);
+  };
+
+  // fn: Show Title Selected
+  const showTitleSelected = (key) => {
+    let result = 'Dashboard';
+    menuList.forEach((item) => {
+      if (item.key === key) result = item.title;
+      item.children.forEach((child) => {
+        if (child.key === key) result = `${item.title} > ${child.title}`;
+      });
+    });
+    return result;
+  };
+
+  // fn: render menu
+  const renderMenuItem = () => {
+    // return MenuItem if children = null
+    return menuList.map((item, index) => {
+      const { key, title, icon, children } = item;
+      if (children.length === 0)
+        return (
+          <Menu.Item className="menu-item" key={key} icon={icon}>
+            <span className="menu-item-title">{title}</span>
+          </Menu.Item>
+        );
+      // else render SubMenu
+      return (
+        <SubMenu className="menu-item" key={key} icon={icon} title={title}>
+          {children.map((child, index) => (
+            <Menu.Item className="menu-item" key={child.key} icon={child.icon}>
+              <span className="menu-item-title">{child.title}</span>
+            </Menu.Item>
+          ))}
+        </SubMenu>
+      );
+    });
+  };
+
+  // fn: render component tương ứng
+  const renderMenuComponent = (key) => {
+    switch (key) {
+      case 'd':
+        break;
+      case 'p0':
+        break;
+      case 'p1':
+        return <AddProduct />;
+      case 'a':
+        break;
+      case 'm':
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -73,9 +140,7 @@ function AdminPage() {
         <div className="flex-grow-1 d-flex align-i-center">
           <h2 className="t-color-primary flex-grow-1 p-l-44 main-title">
             <span>Admin Page &gt; </span>
-            <span className="option-title">
-              {menuList[optionSelected].title}
-            </span>
+            <span className="option-title">{showTitleSelected(keyMenu)}</span>
           </h2>
           <Link
             to="/"
@@ -111,19 +176,13 @@ function AdminPage() {
             backgroundColor: mainColor,
             flexBasis: '150px',
           }}
-          selectedKeys={optionSelected}
+          defaultSelectedKeys={keyMenu}
           mode="inline">
-          {menuList.map((item) => (
-            <Menu.Item className="menu-item" key={item.key} icon={item.icon}>
-              <span className="menu-item-title">{item.title}</span>
-            </Menu.Item>
-          ))}
+          {renderMenuItem()}
         </Menu>
 
         {/* main contents */}
-        <div className="flex-grow-1">
-          <ProductPage />
-        </div>
+        <div className="flex-grow-1">{renderMenuComponent(keyMenu)}</div>
       </div>
     </div>
   );

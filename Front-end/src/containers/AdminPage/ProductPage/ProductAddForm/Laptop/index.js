@@ -65,7 +65,7 @@ function Laptop() {
       {/* chi tiết chip cpu */}
       <Col span={12} md={8} xl={6} xxl={4}>
         <Form.Item
-          name="details"
+          name="detail"
           rules={[{ required: true, message: 'Bắt buộc', whitespace: true }]}>
           <Input
             size="large"
