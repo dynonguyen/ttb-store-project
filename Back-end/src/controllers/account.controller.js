@@ -5,6 +5,7 @@ const mailConfig = require('../configs/mail.config');
 const helper = require('../helpers');
 const constants = require('../constants');
 const bcrypt = require('bcryptjs');
+
 //fn: Gửi mã xác thực để đăng ký
 const postSendVerifyCode = async (req, res) => {
   try {

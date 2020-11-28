@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //===== Redux =====//
 import { Provider } from 'react-redux';
-
 const store = configStore();
 
 ReactDOM.render(

@@ -41,6 +41,9 @@ const laptopSchema = new Schema({
   // các hình ảnh sản phẩm
   catalogs: [String],
 
+  // thời gian bảo hành tính theo tháng
+  warranty: { type: Number, default: 0 },
+
   // bài viết chi tiết về sản phẩm
   details: Schema.Types.ObjectId,
 });

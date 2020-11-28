@@ -6,11 +6,11 @@ import './index.scss';
 
 // rendering ...
 function ProductView(props) {
-  const { name, price, avtUrl, discount, stock } = props;
+  const { name, price, avtUrl, discount, stock, action, style } = props;
   return (
     <Card
       className="Product-View p-b-18"
-      style={{ maxWidth: 280 }}
+      style={style}
       loading={false}
       hoverable
       cover={<img src={avtUrl} alt="Product Photo" />}>
@@ -47,6 +47,11 @@ function ProductView(props) {
           chỉ còn {stock} sản phẩm
         </div>
       )}
+
+      {/* Các nút bấm thêm nếu có */}
+      <div className="d-flex m-t-10 justify-content-end">
+        {action.length > 0 && action.map((Item) => Item)}
+      </div>
     </Card>
   );
 }
@@ -55,6 +60,8 @@ function ProductView(props) {
 ProductView.defaultProps = {
   price: 0,
   stock: 1,
+  action: [],
+  style: { maxWidth: 280 },
 };
 
 // check prop type
@@ -64,6 +71,8 @@ ProductView.propTypes = {
   avtUrl: PropTypes.string,
   discount: PropTypes.number,
   stock: PropTypes.number,
+  action: PropTypes.any,
+  style: PropTypes.object,
 };
 
 export default ProductView;

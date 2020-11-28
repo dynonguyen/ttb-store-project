@@ -10,14 +10,14 @@ const mobileSchema = new Schema({
   },
   color: { type: String, trim: true },
   displaySize: { type: String, trim: true },
-  operating: { type: String, trim: true },
-  disk: { type: String, trim: true },
-  ram: { type: String, trim: true },
+  operating: { type: Number, enum: [0, 1], required: true, default: 0 },
+  rom: { type: Number, required: true },
+  ram: { type: Number, required: true },
   pin: { type: String, trim: true },
   catalogs: [String],
   details: Schema.Types.ObjectId,
 });
 
-const MobileSchema = mongoose.model('mobile', mobileSchema, 'mobiles');
+const MobileModel = mongoose.model('mobile', mobileSchema, 'mobiles');
 
-module.exports = MobileSchema;
+module.exports = MobileModel;
