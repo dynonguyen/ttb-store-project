@@ -16,6 +16,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
 import AddProduct from './ProductPage/ProductAddForm';
+import ProductViewPage from './ProductPage/ProductViewPage';
 
 const mainColor = '#000';
 const menuList = [
@@ -61,7 +62,7 @@ const menuList = [
 ];
 
 function AdminPage() {
-  const [keyMenu, setKeyMenu] = useState('p1');
+  const [keyMenu, setKeyMenu] = useState('p0');
 
   // fn: Xử lý khi chọn item
   const handleSelected = (e) => {
@@ -111,7 +112,7 @@ function AdminPage() {
       case 'd':
         break;
       case 'p0':
-        break;
+        return <ProductViewPage />;
       case 'p1':
         return <AddProduct />;
       case 'a':
@@ -171,8 +172,8 @@ function AdminPage() {
           theme="dark"
           onClick={handleSelected}
           style={{
-            width: '100%',
-            height: '100vh',
+            height: 'inherit',
+            minHeight: '100vh',
             backgroundColor: mainColor,
             flexBasis: '150px',
           }}

@@ -16,6 +16,7 @@ const constants = require('./src/constants');
 const accountApi = require('./src/apis/account.api');
 const adminApi = require('./src/apis/admin.api');
 const loginApi = require('./src/apis/login.api');
+const productApi = require('./src/apis/product.api');
 
 // ! ================== set port ================== //
 const app = express();
@@ -69,6 +70,9 @@ app.use('/accounts', accountApi);
 
 // api liên quan đến login
 app.use('/login', loginApi);
+
+// api liên quan đến product
+app.use('/products', productApi);
 
 // Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
 app.get('*', (req, res) => {

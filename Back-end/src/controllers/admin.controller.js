@@ -178,7 +178,7 @@ const addProduct = async (req, res, next) => {
       }
     }
   } catch (error) {
-    return res.status(409).json({ message: 'Lỗi server, thử lại' });
+    return res.status(409).json({ message: 'Lỗi đường truyền, thử lại' });
   }
 };
 
