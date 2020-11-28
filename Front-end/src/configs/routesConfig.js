@@ -6,6 +6,8 @@ import HeaderView from 'components/HeaderView/index';
 
 const { Header } = Layout;
 
+import AdminPage from 'containers/AdminPage';
+import ProductView from 'components/ProductView';
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
 const Login = React.lazy(() => import('containers/Login'));
@@ -37,6 +39,11 @@ const routes = [
     path: constants.ROUTES.FORGOT_PASSWORD,
     exact: true,
     main: () => <ForgotPassword />,
+  },
+  {
+    path: '/admin',
+    exact: true,
+    main: () => <AdminPage />,
   },
 ];
 

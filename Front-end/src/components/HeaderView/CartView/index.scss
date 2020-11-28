@@ -1,0 +1,21 @@
+.cart-view {
+  ::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  transform: translateY(16px);
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.05);
+  .cart-items {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cart-view {
+    display: none;
+  }
+}

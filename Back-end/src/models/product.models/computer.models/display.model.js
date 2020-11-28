@@ -6,7 +6,7 @@ const displaySchema = new Schema({
   idProduct: { type: Schema.Types.ObjectId, required: true },
 
   // dung lượng tính theo GB
-  capacity: { type: Number, required: true, default: 250 },
+  capacity: { type: Number, required: true, default: 1 },
 
   // thời gian bảo hành tính theo tháng
   warranty: { type: Number, default: 0 },

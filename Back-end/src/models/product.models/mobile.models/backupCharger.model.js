@@ -12,7 +12,7 @@ const backupChargerSchema = new Schema({
   weight: { type: Number, default: 0 },
 
   // số cổng sạc
-  numberOfPort: { type: Number, default: 1, max: 4 },
+  numberOfPort: { type: Number, default: 1, max: 8 },
 
   // màu của sạc
   color: { type: String, trim: true },
