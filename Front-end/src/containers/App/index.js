@@ -10,6 +10,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import routesConfig from 'configs/routesConfig';
 import GlobalLoading from 'components/Loading/Global';
+import ProductView from 'components/ProductView';
 
 function App() {
   const { renderRoutes, routes } = routesConfig;
