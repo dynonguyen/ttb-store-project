@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import constants from 'constants/index.js';
+import ProductView from 'components/ProductView';
 
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
@@ -13,7 +14,15 @@ const routes = [
   {
     path: '/',
     exact: true,
-    main: () => <h1>Home Website</h1>,
+    main: () => (
+      <ProductView
+        name={`Laptop Acer Swift 3 SF314-58-39BZ (NX.HPMSV.007) (14" FHD/i3-10110U/8GB/512GB SSD/Intel UHD/Win10/1.5kg)`}
+        avtUrl="https://lh3.googleusercontent.com/r1H1yzDXggB-8xGThOHFOVbNFN4bjBtYSA-YlnjlW3rYE-zoJUbFVe-EPvNd8CMJaE04XH2QBjXN96y-y98=w500-rw"
+        price={7900000}
+        discount={10}
+        stock={3}
+      />
+    ),
   },
   {
     path: constants.ROUTES.SIGNUP,

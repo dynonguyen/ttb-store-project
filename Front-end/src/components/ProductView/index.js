@@ -1,52 +1,69 @@
-
-
+import { Card } from 'antd';
+import helpers from 'helpers';
+import PropTypes from 'prop-types';
 import React from 'react';
 import './index.scss';
 
+// rendering ...
+function ProductView(props) {
+  const { name, price, avtUrl, discount, stock } = props;
+  return (
+    <Card
+      className="Product-View p-b-18"
+      style={{ maxWidth: 280 }}
+      loading={false}
+      hoverable
+      cover={<img src={avtUrl} alt="Product Photo" />}>
+      {/* Tên sản phẩm */}
+      <div className="font-size-16px m-b-10">
+        {helpers.reduceProductName(name)}
+      </div>
 
+      {/* Giá sản phẩm */}
+      <div className="Product-View-price m-b-10">
+        {!price && <span className="Product-View-price--contact">Liên hệ</span>}
+        {price > 0 && (
+          <>
+            <span className="Product-View-price--main font-size-20px font-weight-b">
+              {helpers.formatProductPrice(price)}
+            </span>
+            {discount && (
+              <div>
+                <span className="Product-View-price--cancel font-weight-500">
+                  {helpers.formatProductPrice(price + (discount * price) / 100)}
+                </span>
+                <span className="m-l-8 Product-View-price--discount">
+                  {discount}%
+                </span>
+              </div>
+            )}
+          </>
+        )}
+      </div>
 
-function format2(n) {
-  var fi =   n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-  return fi.slice(0,fi.length-3);
-}
-
-function ProductView(props){
-return (
-        <div className="product-view">
-          <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" alt="product image" 
-            className="image-no" style={{
-              width: 294,
-              height:200
-          }}></img>
-      
-          <div className="content" style={{
-            'padding-left': 10,
-          }}>
-            <div className="name" style={{
-               height: 100,
-               fontSize: 20,
-               textOverflow:'ellipsis',
-               overflow: 'hidden',
-               wordBreak:'keep-all',
-            }}><strong>{props.item.name}</strong></div>
-            <div className="initial-price" style={{
-              'text-decoration': 'line-through',
-              color:'#999',
-              'font-size': 18,
-            }}>{format2(props.item.initialPrice)}đ</div>
-            <div className="price" style={{
-              height: 20,
-              'font-size': 18,
-              'font-weight': 500
-            }}>{format2(props.item.price)}đ</div>
-            <div className="remaining" style={{
-                'padding-top':10,
-                color: 'red',
-                'padding-bottom':10,
-            }}>{props.item.remaining}</div>
-           
-          </div>
+      {/* Số lượng hàng còn, chỉ hiển thị khi còn ít hơn 5 */}
+      {stock <= 5 && (
+        <div className="Product-View-stock font-size-14px">
+          chỉ còn {stock} sản phẩm
         </div>
-);
+      )}
+    </Card>
+  );
 }
+
+// default props
+ProductView.defaultProps = {
+  price: 0,
+  stock: 1,
+};
+
+// check prop type
+ProductView.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.number,
+  avtUrl: PropTypes.string,
+  discount: PropTypes.number,
+  stock: PropTypes.number,
+};
+
 export default ProductView;
