@@ -99,6 +99,14 @@
     &-r-#{$i} {
       margin-right: #{$i}px !important;
     }
+    &-lr-#{$i} {
+      margin-left: #{$i}px !important;
+      margin-right: #{$i}px !important;
+    }
+    &-tb-#{$i} {
+      margin-top: #{$i}px !important;
+      margin-bottom: #{$i}px !important;
+    }
   }
   .p {
     &-#{$i} {
@@ -115,6 +123,14 @@
     }
     &-r-#{$i} {
       padding-right: #{$i}px !important;
+    }
+    &-lr-#{$i} {
+      padding-left: #{$i}px !important;
+      padding-right: #{$i}px !important;
+    }
+    &-tb-#{$i} {
+      padding-top: #{$i}px !important;
+      padding-bottom: #{$i}px !important;
     }
   }
 }

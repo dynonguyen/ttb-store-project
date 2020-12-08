@@ -28,12 +28,12 @@
   &::after {
     content: "";
     width: 12%;
-    height: 3px;
+    height: 4px;
     background-color: #000;
     position: absolute;
     bottom: -3px;
     left: 0;
-    transition: 1s;
+    transition: 1.5s;
   }
 
   &:hover::after {
@@ -52,4 +52,19 @@
     -webkit-filter: brightness(1.2);
     filter: brightness(1.2);
   }
+}
+
+// màu background hay dùng
+.bg {
+  &-white {
+    background-color: #fff;
+  }
+  &-gray {
+    background-color: #f1f1f1;
+  }
+}
+
+// all transition
+.ease-trans {
+  transition: all ease-in-out 0.35s;
 }
