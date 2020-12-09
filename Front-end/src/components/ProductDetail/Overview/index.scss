@@ -61,7 +61,7 @@ $text-color-special: #3555c5;
   .btn-group {
     &-item {
       border-radius: 4px;
-      color: #fff;
+      color: #fff !important;
       font-weight: 500;
       height: 48px;
       border: none;
@@ -71,6 +71,10 @@ $text-color-special: #3555c5;
         filter: brightness(1.1);
       }
     }
+  }
+
+  .ant-image-img {
+    max-height: 268px;
   }
 }
 

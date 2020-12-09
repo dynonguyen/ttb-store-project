@@ -30,10 +30,7 @@ const productSchema = new Schema({
     required: true,
     default: 0,
   },
-  brand: {
-    type: { type: Number, require: true },
-    name: { type: String, require: true, trim: true },
-  },
+  brand: { type: String, require: true, trim: true },
   avt: {
     type: String,
     required: true,
@@ -45,6 +42,8 @@ const productSchema = new Schema({
     required: true,
     default: 0,
   },
+  // mức độ khuyến mãi
+  discount: { type: Number, default: 0 },
   // đánh giá 1 - 5 sao, tương ứng với index element từ 0 - 4
   rate: {
     type: [Number],

@@ -8,6 +8,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  &-margin {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 // display

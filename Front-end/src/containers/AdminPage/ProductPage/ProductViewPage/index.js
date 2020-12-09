@@ -1,8 +1,8 @@
 import { Col, message, Pagination, Row, Select } from 'antd';
+import adminApi from 'apis/adminApi';
 import constants from 'constants/index';
-import ProductItem from './ProductItem';
 import React, { useRef, useState } from 'react';
-import productApi from 'apis/productApi';
+import ProductItem from './ProductItem';
 
 const perPage = 8;
 
@@ -16,11 +16,7 @@ function ProductViewPage() {
   const getProductList = async (type, page) => {
     try {
       typeSelected.current = type;
-      const response = await productApi.getProductListByType(
-        type,
-        page,
-        perPage,
-      );
+      const response = await adminApi.getProductListByType(type, page, perPage);
       if (response) {
         const { count, data } = response.data;
         setPageCurrent(page);
@@ -43,7 +39,7 @@ function ProductViewPage() {
           name={product.name}
           price={product.price}
           stock={product.stock}
-          discount={Math.round(Math.random() * 20) + 1}
+          discount={product.discount}
           onDelete={onDeleteProduct}
         />
       </Col>

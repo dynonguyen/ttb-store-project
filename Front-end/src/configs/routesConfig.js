@@ -17,8 +17,7 @@ const routes = [
     main: () => <h1>Home Page</h1>,
   },
   {
-    path: '/products',
-    exact: true,
+    path: '/product/:productId',
     main: () => <ProductDetailPage />,
   },
   {
@@ -40,6 +39,11 @@ const routes = [
     path: '/admin',
     exact: true,
     main: () => <AdminPage />,
+  },
+  {
+    path: '/not-found',
+    exact: true,
+    main: () => <h1>Not Found</h1>,
   },
 ];
 

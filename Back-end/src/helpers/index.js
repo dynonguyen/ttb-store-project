@@ -1,5 +1,20 @@
 const VerifyModel = require('../models/account.models/verify.model');
 const constants = require('../constants/index');
+const LaptopModel = require('../models/product.models/computer.models/laptop.model');
+const DisplayModel = require('../models/product.models/computer.models/display.model');
+const DiskModel = require('../models/product.models/computer.models/disk.model');
+const MainboardModel = require('../models/product.models/computer.models/mainboard.model');
+const MobileModel = require('../models/product.models/mobile.models/mobile.model');
+const BackupChargerModel = require('../models/product.models/mobile.models/backupCharger.model');
+const HeadphoneModel = require('../models/product.models/peripherals.models/headphone.model');
+const RamModel = require('../models/product.models/computer.models/ram.model');
+const KeyboardModel = require('../models/product.models/peripherals.models/keyboard.model');
+const MonitorModel = require('../models/product.models/peripherals.models/monitor.model');
+const MouseModel = require('../models/product.models/peripherals.models/mouse.model');
+const RouterModel = require('../models/product.models/peripherals.models/router.model');
+const SpeakerModel = require('../models/product.models/peripherals.models/speaker.model');
+const CameraModel = require('../models/product.models/camera.models/camera.model');
+const WebcamModel = require('../models/product.models/camera.models/webcam.model');
 
 //fn: tạo mã xác thực
 const generateVerifyCode = (numberOfDigits) => {
@@ -34,7 +49,46 @@ const isVerifyEmail = async (email, verifyCode) => {
   }
 };
 
+//fn: chuyển loại sản phẩm từ số thành Model
+const convertProductType = (type = 0) => {
+  switch (type) {
+    case 0:
+      return LaptopModel;
+    case 1:
+      return DiskModel;
+    case 2:
+      return DisplayModel;
+    case 3:
+      return MainboardModel;
+    case 4:
+      return RamModel;
+    case 5:
+      return MobileModel;
+    case 6:
+      return BackupChargerModel;
+    case 7:
+      return HeadphoneModel;
+    case 8:
+      return KeyboardModel;
+    case 9:
+      return MonitorModel;
+    case 10:
+      return MouseModel;
+    case 11:
+      return RouterModel;
+    case 12:
+      return SpeakerModel;
+    case 13:
+      return CameraModel;
+    case 14:
+      return WebcamModel;
+    default:
+      return LaptopModel;
+  }
+};
+
 module.exports = {
   generateVerifyCode,
   isVerifyEmail,
+  convertProductType,
 };
