@@ -45,4 +45,7 @@ export default {
   // tỉ lệ nén ảnh, và nén png 2MB
   COMPRESSION_RADIO: 0.6,
   COMPRESSION_RADIO_PNG: 2000000,
+
+  // số lượng sản phẩm liên quan tối đa cần lấy
+  MAX_RELATED_PRODUCTS: 12,
 };

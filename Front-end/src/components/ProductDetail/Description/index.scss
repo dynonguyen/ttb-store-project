@@ -1,14 +1,6 @@
 .Product-Desc {
   border-radius: 8px;
-  .underline-title {
-    &::after {
-      width: 48px;
-    }
 
-    &:hover::after {
-      width: 95%;
-    }
-  }
   .desc-detail {
     white-space: pre-wrap;
   }

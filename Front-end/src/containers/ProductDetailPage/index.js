@@ -1,4 +1,3 @@
-import { message } from 'antd';
 import productApi from 'apis/productApi';
 import GlobalLoading from 'components/Loading/Global';
 import ProductDetail from 'components/ProductDetail';
@@ -25,7 +24,7 @@ function ProductDetailPage() {
   // lấy sản phẩm
   useEffect(() => {
     getProduct(productId);
-  }, []);
+  }, [productId]);
 
   return (
     <>

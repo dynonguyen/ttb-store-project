@@ -13,4 +13,14 @@
   .policy {
     border-radius: 8px;
   }
+
+  .underline-title {
+    &::after {
+      width: 48px;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
 }

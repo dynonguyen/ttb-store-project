@@ -5,7 +5,7 @@ const ProductModel = require('../models/product.models/product.model');
 // api: Lấy 1 sản phẩm theo id
 const getProduct = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { id } = req.query;
 
     // Lấy tổng quan sản phẩm
     const product = await ProductModel.findById(id);
@@ -30,6 +30,24 @@ const getProduct = async (req, res, next) => {
   }
 };
 
+// api: Lấy danh sách sản phẩm liên quan loại hoặc nhãn hiệu
+const getProductList = async (req, res, next) => {
+  try {
+    const { type, brand, limit, id } = req.query;
+    let query = {};
+    if (type !== -1) query = { type };
+    if (brand !== '') query = { $or: [{ ...query }, { brand }] };
+    console.log(query);
+    const list = await ProductModel.find({ ...query, _id: { $ne: id } }).limit(
+      parseInt(limit),
+    );
+    return res.status(200).json({ data: list });
+  } catch (error) {
+    return res.status(400).json({ message: 'Không thể lấy dữ liệu' });
+  }
+};
+
 module.exports = {
   getProduct,
+  getProductList,
 };

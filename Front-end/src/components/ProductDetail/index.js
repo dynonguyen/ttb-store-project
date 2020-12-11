@@ -1,18 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Col, Row } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
-import './index.scss';
+import { Col, Row } from 'antd';
+import RelatedProduct from 'containers/ProductDetailPage/RelatedProduct';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Description from './Description';
+import './index.scss';
 import ProductOverview from './Overview';
 import ProductPolicy from './Policy';
-import Description from './Description';
 
 function ProductDetail(props) {
   const { products } = props;
   const { productDetail, productDesc } = products;
   const { catalogs, ...restDetail } = productDetail;
-  const { name, brand } = products.product;
+  const { name, brand, type, _id } = products.product;
   // rendering...
   return (
     <div className="Product-Detail-View container m-t-20">
@@ -42,6 +43,11 @@ function ProductDetail(props) {
             specification={{ brand, ...restDetail }}
             desc={productDesc}
           />
+        </Col>
+
+        {/* danh sách sản phẩm tương tự */}
+        <Col span={24}>
+          <RelatedProduct type={type} brand={brand} id={_id} />
         </Col>
       </Row>
     </div>

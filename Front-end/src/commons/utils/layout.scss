@@ -85,6 +85,16 @@
   }
 }
 
+//max-width, max-height
+.max {
+  &-w-100 {
+    max-width: 100%;
+  }
+  &-h-100 {
+    max-height: 100%;
+  }
+}
+
 //spacing 0-50 px
 @for $i from 0 to 51 {
   .m {
