@@ -30,6 +30,7 @@ const ROUTES = {
 };
 
 export default {
+  REFRESH_TOKEN_KEY: 'refresh_token',
   MAX_VERIFY_CODE: 6,
   GENDER_OPTIONS,
   // tuổi nhỏ nhất sử dụng app
@@ -48,4 +49,14 @@ export default {
 
   // số lượng sản phẩm liên quan tối đa cần lấy
   MAX_RELATED_PRODUCTS: 12,
+
+  // Avatar mặc định của user
+  DEFAULT_USER_AVT:
+    'https://res.cloudinary.com/tuan-cloudinary/image/upload/c_scale,q_60,w_80/v1607750466/defaults/default-avatar_amkff5.jpg',
+
+  // Số comment sản phẩm trên trang
+  COMMENT_PER_PAGE: 5,
+
+  // độ dài tối đa của cmt
+  MAX_LEN_COMMENT: 1000,
 };

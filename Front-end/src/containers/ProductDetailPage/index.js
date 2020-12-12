@@ -1,7 +1,7 @@
 import productApi from 'apis/productApi';
 import GlobalLoading from 'components/Loading/Global';
 import ProductDetail from 'components/ProductDetail';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 function ProductDetailPage() {
@@ -24,13 +24,17 @@ function ProductDetailPage() {
   // lấy sản phẩm
   useEffect(() => {
     getProduct(productId);
+    setProduct(null);
   }, [productId]);
 
   return (
     <>
+      {product ? (
+        <ProductDetail products={product} />
+      ) : (
+        <GlobalLoading content="Đang tải sản phẩm ..." />
+      )}
       {isNotFoundProduct && <Redirect to="/not-found" />}
-      {product && <ProductDetail products={product} />}
-      {product === null && <GlobalLoading content="Đang tải sản phẩm ..." />}
     </>
   );
 }

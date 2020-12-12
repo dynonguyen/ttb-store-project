@@ -23,6 +23,7 @@ function ProductOverview(props) {
   const imgList = [avt, ...catalogs];
   const rateTotal = rate.reduce((a, b) => a + b, 0);
   const priceBefore = price + (price * discount) / 100;
+  const rateAvg = helpers.calStar(rate);
 
   const numOfProduct = useRef(1);
   const [avtIndex, setAvtIndex] = useState(0);
@@ -62,7 +63,9 @@ function ProductOverview(props) {
     <Row className="Product-Overview bg-white p-16">
       {/* Hình ảnh và thông số cơ bản sản phẩm */}
       <Col span={24} md={8}>
-        <div style={{ height: 268 }} className="d-flex align-i-center">
+        <div
+          style={{ height: 268 }}
+          className="d-flex align-i-center justify-content-center ">
           <Image
             style={{ maxHeight: '100%' }}
             fallback={ImgLoadFailed}
@@ -86,8 +89,10 @@ function ProductOverview(props) {
 
         {/* Đánh giá sản phẩm */}
         <div className="p-tb-8">
-          <Rate disabled defaultValue={helpers.calStar(rate)} />
-          <span className="m-l-8">(Có {rateTotal} đánh giá)</span>
+          <Rate disabled defaultValue={rateAvg} allowHalf />
+          <a href="#evaluation" className="m-l-8">
+            (Có {rateTotal} đánh giá)
+          </a>
         </div>
 
         {/* Mã, thương hiệu */}

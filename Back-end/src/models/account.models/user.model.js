@@ -11,6 +11,7 @@ const userSchema = new Schema({
   gender: { type: Boolean, required: true, default: true },
   address: { type: String, trim: true, default: null },
   historyPays: [Object],
+  avt: { type: String, default: '' },
   discount: [Object],
 });
 

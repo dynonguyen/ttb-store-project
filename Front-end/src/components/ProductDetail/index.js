@@ -1,5 +1,6 @@
 import { HomeOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
+import Evaluation from 'containers/ProductDetailPage/Evaluation';
 import RelatedProduct from 'containers/ProductDetailPage/RelatedProduct';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,7 +14,7 @@ function ProductDetail(props) {
   const { products } = props;
   const { productDetail, productDesc } = products;
   const { catalogs, ...restDetail } = productDetail;
-  const { name, brand, type, _id } = products.product;
+  const { name, brand, type, _id, rate } = products.product;
   // rendering...
   return (
     <div className="Product-Detail-View container m-t-20">
@@ -43,6 +44,11 @@ function ProductDetail(props) {
             specification={{ brand, ...restDetail }}
             desc={productDesc}
           />
+        </Col>
+
+        {/* Nhận xét của khách hàng */}
+        <Col span={24} id="evaluation">
+          <Evaluation rates={rate} productId={_id} />
         </Col>
 
         {/* danh sách sản phẩm tương tự */}

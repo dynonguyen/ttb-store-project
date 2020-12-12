@@ -63,14 +63,6 @@
   }
 }
 
-.align {
-  &-items {
-    &-center {
-      align-items: center;
-    }
-  }
-}
-
 //width, height 10-100% (w-1 -> w-100)
 @for $i from 0 to 11 {
   .w {

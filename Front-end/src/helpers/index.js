@@ -134,10 +134,40 @@ const convertWidthScreen = (size = 576) => {
   return 'xxl';
 };
 
+// fn: Hàm chuyển rate thành text
+const convertRateToText = (rate = 0) => {
+  switch (rate) {
+    case 0:
+      return 'Sản phẩm quá tệ';
+    case 1:
+      return 'Sản phẩm không tốt';
+    case 2:
+      return 'Sản phẩm bình thường';
+    case 3:
+      return 'Sản phẩm tốt';
+    case 4:
+      return 'Cực kỳ hài lòng';
+    default:
+      return 'Sản phẩm bình thường';
+  }
+};
+
+// fn: format thời gian
+const formatDate = (date = new Date().getTime()) => {
+  const d = new Date(date);
+  const y = d.getFullYear(),
+    m = d.getMonth(),
+    day = d.getDate();
+
+  return `${day} tháng ${m + 1}, ${y}`;
+};
+
 export default {
   reduceProductName,
   formatProductPrice,
   calStar,
   convertProductKey,
   convertWidthScreen,
+  convertRateToText,
+  formatDate,
 };

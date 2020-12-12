@@ -3,16 +3,28 @@ import axiosClient from './axiosClient';
 const LOGIN_API_ENDPOINT = '/login';
 
 const loginApi = {
-  // fn: đăng nhập
+  // api: đăng nhập
   postLogin: (account) => {
     const url = LOGIN_API_ENDPOINT;
     return axiosClient.post(url, account);
   },
 
-  // fn: đăng nhập với google
+  // api: đăng nhập với google
   postLoginWithGoogle: (accessToken) => {
     const url = LOGIN_API_ENDPOINT + '/gg';
     return axiosClient.post(url, accessToken);
+  },
+
+  // api: authentication
+  getAuth: () => {
+    const url = LOGIN_API_ENDPOINT + '/auth';
+    return axiosClient.get(url);
+  },
+
+  // api: refresh token
+  postRefreshToken: (refreshToken) => {
+    const url = LOGIN_API_ENDPOINT + '/refresh_token';
+    return axiosClient.post(url, refreshToken);
   },
 };
 

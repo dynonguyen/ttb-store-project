@@ -116,7 +116,7 @@ function ForgotPassword() {
           emailRef.current = formikProps.values.email;
           const suffixColor = 'rgba(0, 0, 0, 0.25)';
           return (
-            <Form>
+            <Form className="bg-form">
               <Row
                 className="input-border p-l-20 p-r-20"
                 gutter={[0, 24]}

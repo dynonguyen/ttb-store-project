@@ -37,7 +37,6 @@ const getProductList = async (req, res, next) => {
     let query = {};
     if (type !== -1) query = { type };
     if (brand !== '') query = { $or: [{ ...query }, { brand }] };
-    console.log(query);
     const list = await ProductModel.find({ ...query, _id: { $ne: id } }).limit(
       parseInt(limit),
     );
