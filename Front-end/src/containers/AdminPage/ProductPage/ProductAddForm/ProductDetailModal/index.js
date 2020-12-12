@@ -19,6 +19,7 @@ import {
 import constants from 'constants';
 import React, { useRef, useState } from 'react';
 import Compressor from 'compressorjs';
+
 import PropTypes from 'prop-types';
 
 function ProductDetail(props) {

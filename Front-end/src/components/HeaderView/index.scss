@@ -1,0 +1,99 @@
+@import 'commons/variables/color.scss';
+
+.Header-View {
+  &.ant-layout-header {
+    background-color: $color-primary;
+  }
+  .ant-menu-light {
+    background-color: $color-primary;
+    color: $text-color-primary;
+    height: 64.8px;
+  }
+  .ant-btn-primary {
+    background-color: $color-secondary;
+    border: none;
+    &:hover, &:active {
+      filter: brightness(1.2);
+    }
+  }
+  .ant-menu-item {
+    margin: 0px 8px !important;
+  }
+  &-icon {
+    font-size: 34px !important;
+    transform: translateY(8px);
+  }
+  .ant-menu-item a {
+    color: $icon-color-primary;
+  }
+  .ant-menu-submenu {
+    color: $color-secondary;
+  }
+  .search-icon {
+    display: none;
+    transform: translateY(2px);
+    color: $color-secondary;
+  }
+  .search-bar {
+    transform: translateY(35px);
+    margin-right: 20px !important;
+  }
+  .search-bar-responsive {
+    display: none;
+  }
+  .anticon-menu {
+    color: #9b9b9b;
+    &:hover {
+      color: #1890ff;
+    }
+  }
+}
+
+// ---------- RESPONSIVE ----------
+
+@media only screen and (max-width: 992px) {
+  .Header-View {
+    &-text {
+      display: none;
+    }
+    .ant-menu {
+      margin-left: 12px;
+    }
+    .logo-TTB {
+      margin-left: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Header-View {
+    &-text {
+      display: inherit;
+    }
+    .logo-TTB {
+      margin: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Header-View {
+    .search-icon {
+      display: inline-block;
+      margin: 0 45%;
+    }
+    .search-bar {
+      display: none;
+    }
+    .search-bar-responsive {
+      display: block;
+      height: 48px;
+    }
+    &.ant-layout-header {
+      height: 112px;
+    }
+    &-text {
+      display: inline-block;
+    }
+  }
+}
