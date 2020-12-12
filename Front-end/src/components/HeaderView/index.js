@@ -2,7 +2,7 @@ import {
   ReconciliationOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
-  UnorderedListOutlined,
+  MenuOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Badge, Card, Col, Dropdown, Input, Layout, Menu, Row } from 'antd';
@@ -48,7 +48,14 @@ function HeaderView() {
               <Menu
                 theme="light"
                 mode="horizontal"
-                overflowedIndicator={<UnorderedListOutlined />}>
+                overflowedIndicator={
+                  <MenuOutlined
+                    style={{
+                      fontSize: 28,
+                      transform: 'translateY(7px)',
+                    }}
+                  />
+                }>
                 <Menu.Item key="0">
                   <Link to="/">
                     <span className="font-weight-500 m-r-5 Header-View-text">
@@ -66,7 +73,12 @@ function HeaderView() {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <Dropdown overlay={CartView} placement="bottomLeft" arrow>
+                  <Dropdown
+                    overlay={
+                      <CartView list={[{ name: 'sp1', price: 2, amount: 3 }]} />
+                    }
+                    placement="bottomLeft"
+                    arrow>
                     <Link to="/login">
                       <span className="font-weight-500 m-r-5 Header-View-text">
                         Giỏ hàng

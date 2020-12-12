@@ -12,6 +12,14 @@
     max-height: 300px;
     overflow-y: scroll;
   }
+  .product-price {
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+  }
+  .ant-card-body {
+    padding: 14px;
+  }
 }
 
 @media only screen and (max-width: 768px) {

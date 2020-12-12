@@ -41,15 +41,17 @@
   .search-bar-responsive {
     display: none;
   }
-  .anticon-unordered-list {
-    font-size: 28px;
-    transform: translateY(7px);
+  .anticon-menu {
+    color: #9b9b9b;
+    &:hover {
+      color: #1890ff;
+    }
   }
 }
 
 // ---------- RESPONSIVE ----------
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 992px) {
   .Header-View {
     &-text {
       display: none;
