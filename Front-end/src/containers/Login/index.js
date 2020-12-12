@@ -106,7 +106,7 @@ function Login() {
         {(formikProps) => {
           const suffixColor = 'rgba(0, 0, 0, 0.25)';
           return (
-            <Form>
+            <Form className="bg-form">
               <Row
                 className="input-border"
                 gutter={[40, 24]}

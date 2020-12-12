@@ -346,6 +346,21 @@ function AddProduct() {
                   />
                 </Form.Item>
               </Col>
+              {/*Thời gian bảo hành*/}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.Item
+                  name="discount"
+                  rules={[{ required: true, message: 'Bắt buộc' }]}>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    step={10}
+                    size="large"
+                    min={0}
+                    max={50}
+                    placeholder="phần trăm khuyến mãi (5%) *"
+                  />
+                </Form.Item>
+              </Col>
               {/* avatar */}
               <Col span={12} md={8} xl={6} xxl={4}>
                 <Upload

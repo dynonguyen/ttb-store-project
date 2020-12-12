@@ -5,7 +5,7 @@ import constants from 'constants/index.js';
 import HeaderView from 'components/HeaderView/index';
 const { Header } = Layout;
 import AdminPage from 'containers/AdminPage';
-import ProductView from 'components/ProductView';
+import ProductDetailPage from 'containers/ProductDetailPage';
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
 const Login = React.lazy(() => import('containers/Login'));
@@ -17,11 +17,11 @@ const routes = [
   {
     path: '/',
     exact: true,
-    main: () => (
-      <Layout>
-        <HeaderView />
-      </Layout>
-    ),
+    main: () => <h1>Home Page</h1>,
+  },
+  {
+    path: '/product/:productId',
+    main: () => <ProductDetailPage />,
   },
   {
     path: constants.ROUTES.SIGNUP,
@@ -38,9 +38,15 @@ const routes = [
     exact: true,
     main: () => <ForgotPassword />,
   },
+  {
     path: '/admin',
     exact: true,
     main: () => <AdminPage />,
+  },
+  {
+    path: '/not-found',
+    exact: true,
+    main: () => <h1>Not Found</h1>,
   },
 ];
 

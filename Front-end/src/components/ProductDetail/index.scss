@@ -1,0 +1,26 @@
+.Product-Detail-View {
+  .page-position {
+    .icon-home {
+      border-radius: 50%;
+    }
+    .r-arrow {
+      line-height: 40px;
+    }
+    .pro-name {
+      border-radius: 18px;
+    }
+  }
+  .policy {
+    border-radius: 8px;
+  }
+
+  .underline-title {
+    &::after {
+      width: 48px;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}

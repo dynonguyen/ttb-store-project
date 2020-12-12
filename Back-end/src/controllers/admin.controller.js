@@ -17,7 +17,7 @@ const RouterModel = require('../models/product.models/peripherals.models/router.
 const SpeakerModel = require('../models/product.models/peripherals.models/speaker.model');
 const CameraModel = require('../models/product.models/camera.models/camera.model');
 const WebcamModel = require('../models/product.models/camera.models/webcam.model');
-
+const helpers = require('../helpers');
 // fn: upload product avatar to cloudinary
 const uploadProductAvt = async (avtFile, productCode) => {
   try {
@@ -126,6 +126,7 @@ const createProductDetail = async (type, product) => {
 const addProduct = async (req, res, next) => {
   try {
     const { product, details, desc } = req.body;
+
     const { type, avatar, code, ...productRest } = product;
     const { warranty, catalogs, ...detailRest } = details;
     // kiểm tra sản phẩm đã tồn tại hay chưa
@@ -182,6 +183,41 @@ const addProduct = async (req, res, next) => {
   }
 };
 
+// api: Lấy danh sách sản phẩm theo loại và trang
+const getProductListByType = async (req, res, next) => {
+  try {
+    const { type, page, perPage } = req.query;
+    const nSkip = (parseInt(page) - 1) * perPage;
+    const numOfProduct = await ProductModel.countDocuments({ type });
+    const result = await ProductModel.find({ type })
+      .skip(nSkip)
+      .limit(parseInt(perPage));
+    return res.status(200).json({ count: numOfProduct, data: result });
+  } catch (error) {
+    throw error;
+  }
+};
+
+// api: Xoá một sản phẩm
+const removeProduct = async (req, res, next) => {
+  try {
+    const { id } = req.query;
+    const response = await ProductModel.findById(id).select('type');
+    if (response) {
+      await ProductModel.deleteOne({ _id: id });
+      await ProductDescModel.deleteOne({ idProduct: id });
+      const { type } = response;
+      const Model = helpers.convertProductType(type);
+      await Model.deleteOne({ idProduct: id });
+    }
+    return res.status(200).json({ message: 'success' });
+  } catch (error) {
+    return res.status(409).json({ message: 'Xoá sản phẩm thất bại' });
+  }
+};
+
 module.exports = {
   addProduct,
+  getProductListByType,
+  removeProduct,
 };

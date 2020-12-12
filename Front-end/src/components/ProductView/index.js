@@ -1,19 +1,44 @@
 import { Card } from 'antd';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.scss';
 
 // rendering ...
 function ProductView(props) {
-  const { name, price, avtUrl, discount, stock, action, style } = props;
+  const {
+    name,
+    price,
+    avtUrl,
+    discount,
+    stock,
+    action,
+    height,
+    maxWidth,
+  } = props;
+
+  // set height cho các avt của sản phẩm
+  useEffect(() => {
+    document
+      .querySelectorAll('.ant-card-cover')
+      .forEach((item) => (item.style.height = `${height / 2}px`));
+  }, []);
+
+  // rendering ...
   return (
     <Card
       className="Product-View p-b-18"
-      style={style}
+      id="card-item"
+      style={{ height, maxWidth }}
       loading={false}
-      hoverable
-      cover={<img src={avtUrl} alt="Product Photo" />}>
+      cover={
+        <img
+          className="trans-center max-w-100 max-h-100"
+          src={avtUrl}
+          alt="Product Photo"
+        />
+      }
+      hoverable>
       {/* Tên sản phẩm */}
       <div className="font-size-16px m-b-10">
         {helpers.reduceProductName(name)}
@@ -61,7 +86,8 @@ ProductView.defaultProps = {
   price: 0,
   stock: 1,
   action: [],
-  style: { maxWidth: 280 },
+  maxWidth: 280,
+  height: 480,
 };
 
 // check prop type
@@ -73,6 +99,8 @@ ProductView.propTypes = {
   stock: PropTypes.number,
   action: PropTypes.any,
   style: PropTypes.object,
+  height: PropTypes.number,
+  maxWidth: PropTypes.number,
 };
 
 export default ProductView;

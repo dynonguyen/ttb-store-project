@@ -129,7 +129,48 @@ const postLoginWithGoogle = async (req, res, next) => {
   }
 };
 
+//check authenticate with jwt -> return isAuth
+const getAuth = (req, res, next) => {
+  if (res.locals.isAuth) return res.json({ isAuth: res.locals.isAuth });
+  return res.json({ isAuth: false });
+};
+
+//refresh jwt token
+const postRefreshToken = async (req, res, next) => {
+  try {
+    const refreshToken = req.body.refresh_token;
+    const account = await AccountModel.findOne({ refreshToken });
+    if (!account) {
+      return res.status(403).json({ message: 'Invalid Token' });
+    }
+    //verify token
+    const decoded = await jwt.verify(
+      refreshToken,
+      process.env.JWT_SECRET_REFRESH_KEY,
+    );
+    const { userID, keepLogin } = decoded.sub;
+    //create new access_token -> set cookie
+    const newAccessToken = await jwtConfig.encodedToken(
+      process.env.JWT_SECRET_KEY,
+      { userID },
+    );
+    //cookies expires if no keep Login then 0
+    const expiresIn = keepLogin
+      ? new Date(Date.now() + constants.COOKIE_EXPIRES_TIME)
+      : 0;
+    res.cookie('access_token', newAccessToken, {
+      httpOnly: true,
+      expires: expiresIn,
+    });
+    res.status(200).json({ refreshToken, success: true });
+  } catch (error) {
+    return res.status(401).json({ message: 'Unauthorized', error });
+  }
+};
+
 module.exports = {
   postLogin,
   postLoginWithGoogle,
+  postRefreshToken,
+  getAuth,
 };

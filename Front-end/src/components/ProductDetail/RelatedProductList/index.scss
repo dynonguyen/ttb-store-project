@@ -1,0 +1,22 @@
+.Related-Products {
+  .arrow {
+    position: absolute;
+    font-size: 48px;
+    color: #d5d5d5;
+    top: 50%;
+    transform: translateY(-24px);
+    &-left {
+      left: 0;
+    }
+    &-right {
+      right: 0;
+    }
+    &:hover {
+      font-size: 52px;
+      transition: all ease 0.2s;
+    }
+    &.disabled {
+      display: none;
+    }
+  }
+}
