@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { Layout } from 'antd';
 import constants from 'constants/index.js';
+import HeaderView from 'components/HeaderView/index';
+const { Header } = Layout;
 import AdminPage from 'containers/AdminPage';
 import ProductDetailPage from 'containers/ProductDetailPage';
 // lazy loading
