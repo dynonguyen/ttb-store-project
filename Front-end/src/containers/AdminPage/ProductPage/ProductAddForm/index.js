@@ -17,7 +17,7 @@ import {
   Upload,
 } from 'antd';
 import adminApi from 'apis/adminApi';
-// import Compressor from 'compressorjs';
+import Compressor from 'compressorjs';
 import constants from 'constants/index';
 import React, { useRef, useState } from 'react';
 import '../index.scss';

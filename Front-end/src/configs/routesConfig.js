@@ -3,9 +3,7 @@ import { Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import constants from 'constants/index.js';
 import HeaderView from 'components/HeaderView/index';
-
 const { Header } = Layout;
-
 import AdminPage from 'containers/AdminPage';
 import ProductView from 'components/ProductView';
 // lazy loading
@@ -40,7 +38,6 @@ const routes = [
     exact: true,
     main: () => <ForgotPassword />,
   },
-  {
     path: '/admin',
     exact: true,
     main: () => <AdminPage />,

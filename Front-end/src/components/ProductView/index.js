@@ -2,7 +2,7 @@ import { Card } from 'antd';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import './index.scss';
+import './index.scss';
 
 // rendering ...
 function ProductView(props) {
