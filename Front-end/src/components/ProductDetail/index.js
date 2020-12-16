@@ -53,7 +53,12 @@ function ProductDetail(props) {
 
         {/* danh sách sản phẩm tương tự */}
         <Col span={24}>
-          <RelatedProduct type={type} brand={brand} id={_id} />
+          <RelatedProduct
+            title="Sản phẩm tương tự"
+            type={type}
+            brand={brand}
+            id={_id}
+          />
         </Col>
       </Row>
     </div>

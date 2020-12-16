@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 function RelatedProduct(props) {
-  const { id, type, brand, title } = props;
+  const { id, type, brand, title, span } = props;
   const [productList, setProductList] = useState([]);
 
   // Lấy ds sản phẩm
@@ -32,7 +32,7 @@ function RelatedProduct(props) {
   return (
     <>
       {productList.length > 0 && (
-        <RelatedProductList list={productList} title={title} />
+        <RelatedProductList span={span} list={productList} title={title} />
       )}
     </>
   );
@@ -42,7 +42,8 @@ RelatedProduct.defaultProps = {
   id: '',
   type: 0,
   brand: '',
-  title: 'Sản phẩm liên quan',
+  title: '',
+  span: { span: 24, xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 4 },
 };
 
 RelatedProduct.propTypes = {
@@ -51,6 +52,7 @@ RelatedProduct.propTypes = {
   type: PropTypes.number,
   brand: PropTypes.string,
   title: PropTypes.string,
+  span: PropTypes.object,
 };
 
 export default RelatedProduct;

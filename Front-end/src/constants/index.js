@@ -24,9 +24,13 @@ const PRODUCT_TYPES = [
 ];
 
 const ROUTES = {
+  HOME: '/',
   SIGNUP: '/signup',
   LOGIN: '/login',
   FORGOT_PASSWORD: '/login/forgot-pw',
+  PRODUCT: '/product/:productId',
+  NOT_FOUND: '/not-found',
+  ADMIN: '/admin',
 };
 
 export default {

@@ -9,8 +9,7 @@ import './index.scss';
 
 // rendering ...
 function RelatedProductList(props) {
-  const { list, title } = props;
-  const span = { span: 24, xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 4 };
+  const { list, title, span } = props;
 
   const perPage = useRef(1);
   const [page, setPage] = useState(1);
@@ -59,10 +58,12 @@ function RelatedProductList(props) {
       className="Related-Products bg-white p-16"
       gutter={[16, 8]}
       style={{ borderRadius: 8 }}>
-      <Col span={24} className="p-8">
-        <h2 className="font-weight-700">{title}</h2>
-        <div className="underline-title"></div>
-      </Col>
+      {title !== '' && (
+        <Col span={24} className="p-8">
+          <h2 className="font-weight-700">{title}</h2>
+          <div className="underline-title"></div>
+        </Col>
+      )}
       <Col span={24}>
         <Row gutter={[16, 16]} className="m-t-16">
           {showProductList(list, span)}
@@ -86,12 +87,14 @@ function RelatedProductList(props) {
 
 RelatedProductList.defaultProps = {
   list: [],
-  title: 'Sản phẩm liên quan',
+  title: '',
+  span: { span: 24, xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 4 },
 };
 
 RelatedProductList.propTypes = {
   list: PropTypes.array,
   title: PropTypes.string,
+  span: PropTypes.object,
 };
 
 export default RelatedProductList;
