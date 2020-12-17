@@ -7,7 +7,6 @@ import SaleOff from './SaleOff';
 function HomePage() {
   return (
     <>
-      <HeaderView />
       {/* Carousel cho sale off */}
       <SaleOff />
       {/* Danh sách sản phẩm khuyến mãi */}

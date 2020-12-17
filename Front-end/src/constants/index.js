@@ -63,4 +63,7 @@ export default {
 
   // độ dài tối đa của cmt
   MAX_LEN_COMMENT: 1000,
+
+  // key danh sách giỏ hàng
+  CARTS: 'carts',
 };

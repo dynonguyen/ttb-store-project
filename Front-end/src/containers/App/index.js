@@ -1,6 +1,7 @@
 //commons css
 import 'antd/dist/antd.css';
 import 'commons/utils/index.scss';
+import HeaderView from 'components/HeaderView';
 import GlobalLoading from 'components/Loading/Global';
 //configuration
 import 'configs/message.config';
@@ -34,6 +35,7 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<GlobalLoading />}>
         <div className="App">
+          <HeaderView />
           <Switch>
             {renderRoutes(routes)}
             <Route>
