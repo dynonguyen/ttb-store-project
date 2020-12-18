@@ -1,0 +1,14 @@
+.Scroll-To {
+  position: fixed;
+  bottom: 150px;
+  right: 50px;
+  z-index: 999;
+  &-arrow {
+    font-size: 40px;
+    &:hover,
+    &:active {
+      transform: scale(1.2);
+      transition: all 0.5s;
+    }
+  }
+}

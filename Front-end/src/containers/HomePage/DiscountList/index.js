@@ -56,7 +56,7 @@ function DiscountList() {
 
   return (
     <div
-      className={`Discount-List d-flex flex-direction-column bg-${indexHeader}`}>
+      className={`Discount-List box-sha-home d-flex flex-direction-column bg-${indexHeader}`}>
       {/* menu header */}
       <div className="d-flex justify-content-between header">
         {list.map((item, index) => {

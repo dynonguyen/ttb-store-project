@@ -32,7 +32,7 @@ function HeaderView() {
     <Menu className="m-t-24" style={{ width: 244 }}>
       <Menu.Item>
         <Button size="large" className="w-100" type="primary" danger={isAuth}>
-          {isAuth ? 'Đăng xuất' : 'Đăng nhập'}
+          {isAuth ? 'Đăng xuất' : <Link to="/login">Đăng nhập</Link>}
         </Button>
       </Menu.Item>
       <Menu.Item>
@@ -107,7 +107,7 @@ function HeaderView() {
             </Menu.Item>
             <Menu.Item key="1">
               <Dropdown overlay={userActionMenu} placement="bottomRight">
-                <Link to="/login">
+                <Link to={isAuth ? '/account' : '/login'}>
                   {!isAuth ? (
                     <>
                       <span className="font-weight-500 m-r-5 Header-View-text">
@@ -120,7 +120,7 @@ function HeaderView() {
                       <span className="font-weight-500 m-r-5 Header-View-text">
                         {helpers.reduceProductName(user.fullName, 10)}
                       </span>
-                      <Avatar src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t1.0-9/113736806_2750904441808448_2237668902459956508_o.jpg?_nc_cat=106&ccb=2&_nc_sid=09cbfe&_nc_ohc=ZuBShxwrAMcAX928rvR&_nc_ht=scontent.fsgn2-3.fna&oh=d46756a159415608bbcdee5af7ae769a&oe=5FFF4AFA" />
+                      <Avatar src={user.avt} />
                     </>
                   )}
                 </Link>
@@ -131,7 +131,7 @@ function HeaderView() {
                 overlay={<CartView list={carts} />}
                 placement="bottomLeft"
                 arrow>
-                <Link to="/login">
+                <Link to="/cart">
                   <span className="font-weight-500 m-r-5 Header-View-text">
                     Giỏ hàng
                   </span>

@@ -1,6 +1,10 @@
 @import "commons/variables/color.scss";
 
 .Header-View {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
   &.ant-layout-header {
     background-color: $color-primary;
   }
@@ -51,6 +55,11 @@
   }
   .search-bar-wrapper {
     flex-basis: 576px;
+  }
+  .ant-menu {
+    .anticon {
+      margin: 0 !important;
+    }
   }
 }
 

@@ -45,7 +45,25 @@ const getProductList = async (req, res, next) => {
   }
 };
 
+// api: Lấy tất cả sản phẩm và phân trang
+const getAllProducts = async (req, res, next) => {
+  try {
+    let { page, perPage } = req.query;
+    if (!page) page = 1;
+    if (!perPage) perPage = 8;
+    const nSkip = (parseInt(page) - 1) * perPage;
+    const numOfProduct = await ProductModel.countDocuments({});
+    const result = await ProductModel.find({})
+      .skip(nSkip)
+      .limit(parseInt(perPage));
+    return res.status(200).json({ count: numOfProduct, data: result });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getProduct,
   getProductList,
+  getAllProducts,
 };

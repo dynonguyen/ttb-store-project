@@ -1,0 +1,12 @@
+.Contact-Icon {
+  width: 40px;
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  z-index: 999;
+  &:hover,
+  &:active {
+    transform: scale(1.2);
+    transition: all 0.5s;
+  }
+}

@@ -14,6 +14,12 @@ const productApi = {
     const url = PRODUCT_API_URL + '/list/related';
     return axiosClient.get(url, { params: { type, brand, limit, id } });
   },
+
+  // api: Lấy danh sách sản phẩm và phân trang
+  getAllProducts: (page = 1, perPage = 8) => {
+    const url = PRODUCT_API_URL + '/all';
+    return axiosClient.get(url, { params: { page, perPage } });
+  },
 };
 
 export default productApi;
