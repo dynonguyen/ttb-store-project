@@ -1,11 +1,10 @@
+import constants from 'constants/index.js';
+import AdminPage from 'containers/AdminPage';
+import HomePage from 'containers/HomePage';
+import ProductDetailPage from 'containers/ProductDetailPage';
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Layout } from 'antd';
-import constants from 'constants/index.js';
-import HeaderView from 'components/HeaderView/index';
-const { Header } = Layout;
-import AdminPage from 'containers/AdminPage';
-import ProductDetailPage from 'containers/ProductDetailPage';
+
 // lazy loading
 const SignUp = React.lazy(() => import('containers/SignUp'));
 const Login = React.lazy(() => import('containers/Login'));
@@ -15,12 +14,12 @@ const ForgotPassword = React.lazy(() =>
 
 const routes = [
   {
-    path: '/',
+    path: constants.ROUTES.HOME,
     exact: true,
-    main: () => <h1>Home Page</h1>,
+    main: () => <HomePage />,
   },
   {
-    path: '/product/:productId',
+    path: constants.ROUTES.PRODUCT,
     main: () => <ProductDetailPage />,
   },
   {
@@ -39,12 +38,12 @@ const routes = [
     main: () => <ForgotPassword />,
   },
   {
-    path: '/admin',
+    path: constants.ROUTES.ADMIN,
     exact: true,
     main: () => <AdminPage />,
   },
   {
-    path: '/not-found',
+    path: constants.ROUTES.NOT_FOUND,
     exact: true,
     main: () => <h1>Not Found</h1>,
   },

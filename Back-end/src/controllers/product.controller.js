@@ -37,16 +37,33 @@ const getProductList = async (req, res, next) => {
     let query = {};
     if (type !== -1) query = { type };
     if (brand !== '') query = { $or: [{ ...query }, { brand }] };
-    const list = await ProductModel.find({ ...query, _id: { $ne: id } }).limit(
-      parseInt(limit),
-    );
+    if (id !== '') query = { ...query, _id: { $ne: id } };
+    const list = await ProductModel.find(query).limit(parseInt(limit));
     return res.status(200).json({ data: list });
   } catch (error) {
     return res.status(400).json({ message: 'Không thể lấy dữ liệu' });
   }
 };
 
+// api: Lấy tất cả sản phẩm và phân trang
+const getAllProducts = async (req, res, next) => {
+  try {
+    let { page, perPage } = req.query;
+    if (!page) page = 1;
+    if (!perPage) perPage = 8;
+    const nSkip = (parseInt(page) - 1) * perPage;
+    const numOfProduct = await ProductModel.countDocuments({});
+    const result = await ProductModel.find({})
+      .skip(nSkip)
+      .limit(parseInt(perPage));
+    return res.status(200).json({ count: numOfProduct, data: result });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getProduct,
   getProductList,
+  getAllProducts,
 };

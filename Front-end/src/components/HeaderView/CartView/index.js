@@ -29,12 +29,14 @@ function CartView(props) {
             <Card style={{ width: 300 }}>
               <Meta
                 avatar={
-                  <Avatar style={{ width: 80, height: 50 }} src={item.avtUrl} />
+                  <Avatar style={{ width: 80, height: 50 }} src={item.avt} />
                 }
                 title={item.name}
-                description={item.amount}
+                description={`Số lượng: ${item.amount}`}
               />
-              <p className="product-price">{item.price}</p>
+              <p className="product-price">
+                {helpers.formatProductPrice(item.price)}
+              </p>
             </Card>
           )}
         />

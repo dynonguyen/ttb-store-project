@@ -24,9 +24,13 @@ const PRODUCT_TYPES = [
 ];
 
 const ROUTES = {
+  HOME: '/',
   SIGNUP: '/signup',
   LOGIN: '/login',
   FORGOT_PASSWORD: '/login/forgot-pw',
+  PRODUCT: '/product/:productId',
+  NOT_FOUND: '/not-found',
+  ADMIN: '/admin',
 };
 
 export default {
@@ -59,4 +63,7 @@ export default {
 
   // độ dài tối đa của cmt
   MAX_LEN_COMMENT: 1000,
+
+  // key danh sách giỏ hàng
+  CARTS: 'carts',
 };

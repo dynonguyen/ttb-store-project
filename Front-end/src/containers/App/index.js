@@ -1,7 +1,10 @@
 //commons css
 import 'antd/dist/antd.css';
 import 'commons/utils/index.scss';
+import ContactIcon from 'components/ContactIcon';
+import HeaderView from 'components/HeaderView';
 import GlobalLoading from 'components/Loading/Global';
+import ScrollTo from 'components/ScrollTo';
 //configuration
 import 'configs/message.config';
 import routesConfig from 'configs/routesConfig';
@@ -33,7 +36,10 @@ function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={<GlobalLoading />}>
-        <div className="App">
+        <div className="App" id="app">
+          <HeaderView />
+          <ScrollTo />
+          <ContactIcon />
           <Switch>
             {renderRoutes(routes)}
             <Route>

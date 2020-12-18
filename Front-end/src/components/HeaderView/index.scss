@@ -1,18 +1,24 @@
-@import 'commons/variables/color.scss';
+@import "commons/variables/color.scss";
 
 .Header-View {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
   &.ant-layout-header {
     background-color: $color-primary;
   }
   .ant-menu-light {
     background-color: $color-primary;
     color: $text-color-primary;
-    height: 64.8px;
+    height: 64px;
   }
   .ant-btn-primary {
     background-color: $color-secondary;
     border: none;
-    &:hover, &:active {
+    &:hover,
+    &:active {
+      -webkit-filter: brightness(1.2);
       filter: brightness(1.2);
     }
   }
@@ -45,6 +51,14 @@
     color: #9b9b9b;
     &:hover {
       color: #1890ff;
+    }
+  }
+  .search-bar-wrapper {
+    flex-basis: 576px;
+  }
+  .ant-menu {
+    .anticon {
+      margin: 0 !important;
     }
   }
 }
@@ -80,7 +94,11 @@
   .Header-View {
     .search-icon {
       display: inline-block;
-      margin: 0 45%;
+      color: #9b9b9b;
+      &:hover,
+      &:active {
+        color: #19c2ff;
+      }
     }
     .search-bar {
       display: none;

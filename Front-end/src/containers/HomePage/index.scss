@@ -1,0 +1,26 @@
+.Home {
+  .adv {
+    overflow: hidden;
+    &-img {
+      max-width: 100%;
+      max-height: 200px;
+      &:hover,
+      &:active {
+        transform: scale(1.05);
+        transition: all ease 0.6s;
+      }
+    }
+  }
+  .hot-products {
+    h2 {
+      color: #f1f1f1;
+    }
+    .underline-title::after {
+      background-color: #f1f1f1;
+    }
+    & > div {
+      background: rgb(63, 94, 251);
+      background: linear-gradient(336deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    }
+  }
+}

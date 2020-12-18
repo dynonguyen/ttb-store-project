@@ -1,10 +1,23 @@
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Col, Image, Input, InputNumber, Radio, Rate, Row } from 'antd';
-import ImgLoadFailed from 'assets/imgs/loading-img-failed.png';
-import './index.scss';
 import { CheckOutlined } from '@ant-design/icons';
+import { Button, Col, Image, InputNumber, Rate, Row } from 'antd';
+import ImgLoadFailed from 'assets/imgs/loading-img-failed.png';
 import helpers from 'helpers';
+import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import cartActions from 'reducers/carts';
+import './index.scss';
+
+// Hàm đếm số sản phẩm đó trong giỏ hàng
+function countItemInCart(productCode, carts) {
+  let count = 0;
+  if (carts) {
+    carts.forEach((item) => {
+      if (item.code === productCode) count += item.amount;
+    });
+  }
+  return count;
+}
 
 function ProductOverview(props) {
   const { products } = props;
@@ -27,6 +40,10 @@ function ProductOverview(props) {
 
   const numOfProduct = useRef(1);
   const [avtIndex, setAvtIndex] = useState(0);
+  const carts = useSelector((state) => state.carts);
+  const currentStock = stock - countItemInCart(code, carts);
+
+  const dispatch = useDispatch();
 
   // fn: hiên thị danh sách hình ảnh sp
   const showCatalogs = (catalog) => {
@@ -56,6 +73,12 @@ function ProductOverview(props) {
       }
     }
     return result;
+  };
+
+  // fn: Thêm vào giỏ hàng
+  const addCart = () => {
+    let product = { code, name, price, amount: numOfProduct.current, avt };
+    dispatch(cartActions.addToCart(product));
   };
 
   // rendering ...
@@ -126,7 +149,7 @@ function ProductOverview(props) {
 
         {/* Chọn số lượng */}
         <div className="p-t-12 option">
-          {stock === 0 ? (
+          {currentStock === 0 ? (
             <h3 className="m-r-8 m-t-8 font-size-18px" style={{ color: 'red' }}>
               <i>Sản phẩm hiện đang hết hàng !</i>
             </h3>
@@ -138,7 +161,7 @@ function ProductOverview(props) {
                 size="middle"
                 defaultValue={1}
                 min={1}
-                max={stock}
+                max={currentStock}
                 onChange={(value) => (numOfProduct.current = value)}
               />
             </>
@@ -148,6 +171,7 @@ function ProductOverview(props) {
         {/* Button*/}
         <div className="btn-group p-tb-16 d-flex justify-content-around">
           <Button
+            onClick={addCart}
             disabled={stock ? false : true}
             size="large"
             className="m-r-16 w-100 btn-group-item"
