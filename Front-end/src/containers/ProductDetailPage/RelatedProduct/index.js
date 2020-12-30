@@ -10,6 +10,7 @@ function RelatedProduct(props) {
 
   // Lấy ds sản phẩm
   useEffect(() => {
+    let isSubscribe = true;
     async function getRelatedProducts() {
       try {
         const response = await productApi.getProductList(
@@ -18,7 +19,7 @@ function RelatedProduct(props) {
           constants.MAX_RELATED_PRODUCTS,
           id,
         );
-        if (response) {
+        if (response && isSubscribe) {
           setProductList(response.data.data);
         }
       } catch (error) {
@@ -26,6 +27,7 @@ function RelatedProduct(props) {
       }
     }
     getRelatedProducts();
+    return () => (isSubscribe = false);
   }, [id, type, brand]);
 
   // rendering...

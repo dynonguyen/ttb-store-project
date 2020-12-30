@@ -12,11 +12,12 @@ function AllProduct() {
 
   // lấy sản phẩm
   useEffect(() => {
+    let isSubscribe = true;
     setIsLoading(true);
     async function getAllProducts() {
       try {
         const response = await productApi.getAllProducts(page, 24);
-        if (response) {
+        if (response && isSubscribe) {
           const { data, count } = response.data;
           setList(data);
           setTotal(count);
@@ -28,6 +29,8 @@ function AllProduct() {
     }
 
     getAllProducts();
+
+    return () => (isSubscribe = false);
   }, [page]);
 
   // fn: Hiển thị sản phẩm

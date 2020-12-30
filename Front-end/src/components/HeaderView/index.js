@@ -74,7 +74,7 @@ function HeaderView() {
         </div>
 
         {/* thanh tìm kiếm */}
-        <div className="t-right search-bar-wrapper">
+        <div className="flex-grow-1 t-right search-bar-wrapper">
           <div className="Header-View-icon search-icon">
             <SearchOutlined />
           </div>
@@ -148,7 +148,7 @@ function HeaderView() {
                     size="small"
                     count={totalItemCarts(carts)}
                     overflowCount={9}
-                    offset={[-15, -22]}
+                    offset={[-10, -20]}
                   />
                 </Link>
               </Dropdown>

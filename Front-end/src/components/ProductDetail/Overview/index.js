@@ -38,7 +38,7 @@ function ProductOverview(props) {
   const priceBefore = price + (price * discount) / 100;
   const rateAvg = helpers.calStar(rate);
 
-  const numOfProduct = useRef(1);
+  const [numOfProduct, setNumberOfProduct] = useState(1);
   const [avtIndex, setAvtIndex] = useState(0);
   const carts = useSelector((state) => state.carts);
   const currentStock = stock - countItemInCart(code, carts);
@@ -77,7 +77,8 @@ function ProductOverview(props) {
 
   // fn: Thêm vào giỏ hàng
   const addCart = () => {
-    let product = { code, name, price, amount: numOfProduct.current, avt };
+    let product = { code, name, price, amount: numOfProduct, avt };
+    setNumberOfProduct(1);
     dispatch(cartActions.addToCart(product));
   };
 
@@ -159,10 +160,10 @@ function ProductOverview(props) {
               <InputNumber
                 name="numOfProduct"
                 size="middle"
-                defaultValue={1}
+                value={numOfProduct}
                 min={1}
                 max={currentStock}
-                onChange={(value) => (numOfProduct.current = value)}
+                onChange={(value) => setNumberOfProduct(value)}
               />
             </>
           )}

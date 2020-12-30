@@ -9,22 +9,24 @@ function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [isNotFoundProduct, setIsNotFoundProduct] = useState(false);
 
-  const getProduct = async (id) => {
-    try {
-      const result = await productApi.getProduct(id);
-      if (result) {
-        const { data } = result;
-        setProduct(data);
-      }
-    } catch (error) {
-      setIsNotFoundProduct(true);
-    }
-  };
-
   // lấy sản phẩm
   useEffect(() => {
+    let isSubscribe = true;
+    const getProduct = async (id) => {
+      try {
+        const result = await productApi.getProduct(id);
+        if (result && isSubscribe) {
+          const { data } = result;
+          setProduct(data);
+        }
+      } catch (error) {
+        if (isSubscribe) setIsNotFoundProduct(true);
+      }
+    };
     getProduct(productId);
-    setProduct(null);
+    if (isSubscribe) setProduct(null);
+
+    return () => (isSubscribe = false);
   }, [productId]);
 
   return (

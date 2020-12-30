@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function NotFound() {
   return (
     <Result
+      style={{ minHeight: '85vh' }}
       status="404"
       title="404 - Không tìm thấy trang"
       subTitle="Xin lỗi, trang bạn truy cập không tồn tại."

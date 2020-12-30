@@ -8,15 +8,18 @@ function Evaluation(props) {
   const [cmtList, setCmtList] = useState([]);
 
   useEffect(() => {
+    let isSubscribe = true;
     async function getCommentList() {
       try {
         const response = await commentApi.getCommentList(productId);
-        if (response) {
+        if (response && isSubscribe) {
           setCmtList(response.data);
         }
       } catch (error) {}
     }
     getCommentList();
+
+    return () => (isSubscribe = false);
   }, [props]);
 
   // rendering...

@@ -14,7 +14,7 @@
     height: 64px;
   }
   .ant-btn-primary {
-    background-color: $color-secondary;
+    background-color: #3a5dd9;
     border: none;
     &:hover,
     &:active {
@@ -52,9 +52,6 @@
     &:hover {
       color: #1890ff;
     }
-  }
-  .search-bar-wrapper {
-    flex-basis: 576px;
   }
   .ant-menu {
     .anticon {
