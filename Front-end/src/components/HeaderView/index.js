@@ -5,8 +5,9 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Badge, Button, Dropdown, Input, Layout, Menu } from 'antd';
-import Avatar from 'antd/lib/avatar/avatar';
+import { Avatar, Badge, Button, Dropdown, Input, Layout, Menu } from 'antd';
+import defaultAvt from 'assets/imgs/default-avt.png';
+import constants from 'constants/index';
 import helpers from 'helpers';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -32,11 +33,15 @@ function HeaderView() {
     <Menu className="m-t-24" style={{ width: 244 }}>
       <Menu.Item>
         <Button size="large" className="w-100" type="primary" danger={isAuth}>
-          {isAuth ? 'Đăng xuất' : <Link to="/login">Đăng nhập</Link>}
+          {isAuth ? (
+            'Đăng xuất'
+          ) : (
+            <Link to={constants.ROUTES.LOGIN}>Đăng nhập</Link>
+          )}
         </Button>
       </Menu.Item>
       <Menu.Item>
-        <Link to="/signup">
+        <Link to={constants.ROUTES.SIGNUP}>
           <Button size="large" className="w-100" type="primary">
             Đăng ký
           </Button>
@@ -107,7 +112,10 @@ function HeaderView() {
             </Menu.Item>
             <Menu.Item key="1">
               <Dropdown overlay={userActionMenu} placement="bottomRight">
-                <Link to={isAuth ? '/account' : '/login'}>
+                <Link
+                  to={
+                    isAuth ? constants.ROUTES.ACCOUNT : constants.ROUTES.LOGIN
+                  }>
                   {!isAuth ? (
                     <>
                       <span className="font-weight-500 m-r-5 Header-View-text">
@@ -120,7 +128,7 @@ function HeaderView() {
                       <span className="font-weight-500 m-r-5 Header-View-text">
                         {helpers.reduceProductName(user.fullName, 10)}
                       </span>
-                      <Avatar src={user.avt} />
+                      <Avatar src={user.avt ? user.avt : defaultAvt} />
                     </>
                   )}
                 </Link>
@@ -131,7 +139,7 @@ function HeaderView() {
                 overlay={<CartView list={carts} />}
                 placement="bottomLeft"
                 arrow>
-                <Link to="/cart">
+                <Link to={constants.ROUTES.CART}>
                   <span className="font-weight-500 m-r-5 Header-View-text">
                     Giỏ hàng
                   </span>

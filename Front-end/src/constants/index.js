@@ -31,6 +31,8 @@ const ROUTES = {
   PRODUCT: '/product/:productId',
   NOT_FOUND: '/not-found',
   ADMIN: '/admin',
+  ACCOUNT: '/account',
+  CART: '/cart',
 };
 
 export default {

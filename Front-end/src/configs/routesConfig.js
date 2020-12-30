@@ -11,6 +11,7 @@ const Login = React.lazy(() => import('containers/Login'));
 const ForgotPassword = React.lazy(() =>
   import('containers/Login/ForgotPassword'),
 );
+const NotFound = React.lazy(() => import('components/NotFound'));
 
 const routes = [
   {
@@ -45,7 +46,7 @@ const routes = [
   {
     path: constants.ROUTES.NOT_FOUND,
     exact: true,
-    main: () => <h1>Not Found</h1>,
+    main: () => <NotFound />,
   },
 ];
 

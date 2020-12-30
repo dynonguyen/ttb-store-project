@@ -4,6 +4,7 @@ import 'commons/utils/index.scss';
 import ContactIcon from 'components/ContactIcon';
 import HeaderView from 'components/HeaderView';
 import GlobalLoading from 'components/Loading/Global';
+import NotFound from 'components/NotFound';
 import ScrollTo from 'components/ScrollTo';
 //configuration
 import 'configs/message.config';
@@ -43,7 +44,7 @@ function App() {
           <Switch>
             {renderRoutes(routes)}
             <Route>
-              <h1>Not found</h1>
+              <NotFound />
             </Route>
           </Switch>
         </div>

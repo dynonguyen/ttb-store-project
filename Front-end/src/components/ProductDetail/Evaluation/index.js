@@ -166,7 +166,7 @@ function EvaluationView(props) {
           </>
         ) : (
           <Button type="link" size="large">
-            <Link to="/login">Đăng nhập để nhận xét</Link>
+            <Link to={constants.ROUTES.LOGIN}>Đăng nhập để nhận xét</Link>
           </Button>
         )}
       </Col>

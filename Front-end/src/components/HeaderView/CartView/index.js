@@ -1,8 +1,9 @@
-import { Card, Avatar, Button, List } from 'antd';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Avatar, Button, Card, List } from 'antd';
+import constants from 'constants/index';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 const { Meta } = Card;
@@ -44,7 +45,7 @@ function CartView(props) {
 
       <div className="cart-additional p-8">
         <h3>Tổng tiền: {helpers.formatProductPrice(totalPrice(list))}</h3>
-        <Link to="/login">
+        <Link to={constants.ROUTES.CART}>
           <Button
             className="m-tb-8 d-block m-lr-auto w-100"
             type="primary"
