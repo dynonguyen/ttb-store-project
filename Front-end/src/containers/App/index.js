@@ -2,6 +2,7 @@
 import 'antd/dist/antd.css';
 import 'commons/utils/index.scss';
 import ContactIcon from 'components/ContactIcon';
+import FooterView from 'components/FooterView';
 import HeaderView from 'components/HeaderView';
 import GlobalLoading from 'components/Loading/Global';
 import NotFound from 'components/NotFound';
@@ -47,6 +48,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
+          <FooterView />
         </div>
       </Suspense>
     </BrowserRouter>

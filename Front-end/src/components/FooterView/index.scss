@@ -1,0 +1,41 @@
+.footer {
+  &-contact {
+    background-color: #3a5dd8;
+    * {
+      color: #fff;
+    }
+  }
+  .phone-icon {
+    font-size: 48px;
+  }
+  .social-item {
+    &:hover,
+    &:active {
+      transform: scale(1.5);
+      transition: all 0.35s;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .footer {
+    &-contact {
+      &-item {
+        font-size: medium;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .footer {
+    &-contact {
+      &-item {
+        font-size: small;
+      }
+    }
+    .phone-icon {
+      font-size: 32px;
+    }
+  }
+}
