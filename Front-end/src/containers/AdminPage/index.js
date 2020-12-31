@@ -16,9 +16,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
 import AddProduct from './ProductPage/ProductAddForm';
-import ProductViewPage from './ProductPage/ProductViewPage';
+import SeeProduct from './ProductPage/SeeProduct';
+import defaultAvt from 'assets/imgs/default-avt.png';
 
-const mainColor = '#000';
+const mainColor = '#141428';
 const menuList = [
   {
     key: 'd',
@@ -112,7 +113,7 @@ function AdminPage() {
       case 'd':
         break;
       case 'p0':
-        return <ProductViewPage />;
+        return <SeeProduct />;
       case 'p1':
         return <AddProduct />;
       case 'a':
@@ -130,7 +131,7 @@ function AdminPage() {
       <div
         className="d-flex align-i-center"
         style={{ height: '72px', backgroundColor: mainColor }}>
-        <div className="logo" style={{ flexBasis: '180px' }}>
+        <div className="logo" style={{ flexBasis: '200px' }}>
           <img
             className="m-t-5 m-l-50"
             width="44x"
@@ -143,23 +144,17 @@ function AdminPage() {
             <span>Admin Page &gt; </span>
             <span className="option-title">{showTitleSelected(keyMenu)}</span>
           </h2>
-          <Link
-            to="/"
-            className="p-r-24 t-color-primary font-weight-500 p-b-10">
+          <a href="/" className="p-r-24 t-color-primary font-weight-500 p-b-10">
             <HomeOutlined
               className="font-size-28px t-color-primary m-r-10"
               style={{ transform: 'translateY(3px)' }}
             />
             <span className="open-web-title">Open the website</span>
-          </Link>
+          </a>
           <Link
             to="/"
             className="user-admin p-r-44 t-color-primary font-weight-500">
-            <Avatar
-              size={36}
-              className="m-r-10"
-              src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.0-9/113736806_2750904441808448_2237668902459956508_o.jpg?_nc_cat=106&ccb=2&_nc_sid=09cbfe&_nc_ohc=7jA_Oa30G0QAX848MyJ&_nc_ht=scontent.fsgn2-5.fna&oh=f4269f202a1622280a45c184a73bbb32&oe=5FD3C97A"
-            />
+            <Avatar size={36} className="m-r-10" src={defaultAvt} />
             <span className="user-admin-title">Tuấn Nguyễn</span>
           </Link>
         </div>
@@ -175,7 +170,7 @@ function AdminPage() {
             height: 'inherit',
             minHeight: '100vh',
             backgroundColor: mainColor,
-            flexBasis: '150px',
+            flexBasis: '200px',
           }}
           defaultSelectedKeys={keyMenu}
           mode="inline">
