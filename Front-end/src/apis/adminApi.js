@@ -28,6 +28,12 @@ const adminApi = {
     const url = ADMIN_API_ENDPOINT + '/products/update';
     return axiosClient.put(url, product);
   },
+
+  // fn: đăng nhập với quyền admin
+  postLogin: (account) => {
+    const url = ADMIN_API_ENDPOINT + '/login';
+    return axiosClient.post(url, account);
+  },
 };
 
 export default adminApi;

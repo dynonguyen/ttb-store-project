@@ -13,4 +13,7 @@ adminApi.post('/products/add', adminController.addProduct);
 // api: cập nhật 1 sản phẩm
 adminApi.put('/products/update', adminController.updateProduct);
 
+// api: đăng nhập với admin
+adminApi.post('/login', adminController.postLogin);
+
 module.exports = adminApi;

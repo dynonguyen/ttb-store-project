@@ -18,6 +18,7 @@ const SpeakerModel = require('../models/product.models/peripherals.models/speake
 const CameraModel = require('../models/product.models/camera.models/camera.model');
 const WebcamModel = require('../models/product.models/camera.models/webcam.model');
 const helpers = require('../helpers');
+const AdminModel = require('../models/account.models/admin.model');
 // fn: upload product avatar to cloudinary
 const uploadProductAvt = async (avtFile, productCode) => {
   try {
@@ -237,9 +238,25 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
+// api: đăng nhập với admin
+const postLogin = async (req, res, next) => {
+  try {
+    const { userName, password } = req.body;
+    const adminUser = await AdminModel.findOne({ userName, password });
+    if (adminUser) {
+      return res.status(200).json({ name: adminUser.fullName });
+    } else {
+      return res.status(400).json({ message: 'failed' });
+    }
+  } catch (error) {
+    return res.status(400).json({ message: 'failed' });
+  }
+};
+
 module.exports = {
   addProduct,
   getProductListByType,
   removeProduct,
   updateProduct,
+  postLogin,
 };
