@@ -204,9 +204,12 @@ const removeProduct = async (req, res, next) => {
     const { id } = req.query;
     const response = await ProductModel.findById(id).select('type');
     if (response) {
+      // xoá sản phẩm
       await ProductModel.deleteOne({ _id: id });
+      // xoá bài mô tả sản phẩm
       await ProductDescModel.deleteOne({ idProduct: id });
       const { type } = response;
+      // xoá chi tiết sản phẩm
       const Model = helpers.convertProductType(type);
       await Model.deleteOne({ idProduct: id });
     }
@@ -216,8 +219,27 @@ const removeProduct = async (req, res, next) => {
   }
 };
 
+// api: Cập nhật sản phẩm
+const updateProduct = async (req, res, next) => {
+  try {
+    const product = req.body;
+    const { _id, ...rest } = product;
+    const result = await ProductModel.updateOne(
+      { _id: product._id },
+      { ...rest },
+    );
+    if (result && result.ok === 1) {
+      return res.status(200).json({ message: 'success' });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(409).json({ message: 'failed' });
+  }
+};
+
 module.exports = {
   addProduct,
   getProductListByType,
   removeProduct,
+  updateProduct,
 };

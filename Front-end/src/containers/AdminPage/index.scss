@@ -45,6 +45,12 @@ $color-secondary: #41a62a;
   }
 }
 
+.edit-product-modal {
+  .ant-form-item {
+    margin-bottom: 0 !important;
+  }
+}
+
 @media screen and (max-width: 576px) {
   .Admin-Page {
     .main-title > span,
