@@ -15,6 +15,7 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import defaultAvt from 'assets/imgs/default-avt.png';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AdminUser from './AdminUser';
 import './index.scss';
 import Login from './Login';
 import AddProduct from './ProductPage/ProductAddForm';
@@ -125,7 +126,7 @@ function AdminPage() {
       case 'p1':
         return <AddProduct />;
       case 'a':
-        break;
+        return <AdminUser />;
       case 'm':
         break;
       default:

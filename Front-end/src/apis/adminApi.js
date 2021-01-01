@@ -34,6 +34,12 @@ const adminApi = {
     const url = ADMIN_API_ENDPOINT + '/login';
     return axiosClient.post(url, account);
   },
+
+  // fn: lấy danh sách admin user
+  getUserAdminList: () => {
+    const url = ADMIN_API_ENDPOINT + '/users';
+    return axiosClient.get(url);
+  },
 };
 
 export default adminApi;

@@ -16,4 +16,7 @@ adminApi.put('/products/update', adminController.updateProduct);
 // api: đăng nhập với admin
 adminApi.post('/login', adminController.postLogin);
 
+// api: lấy danh sách user admin
+adminApi.get('/users', adminController.getUserAdminList);
+
 module.exports = adminApi;

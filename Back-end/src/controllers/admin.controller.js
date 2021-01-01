@@ -253,10 +253,24 @@ const postLogin = async (req, res, next) => {
   }
 };
 
+// api: lấy danh sách user admin
+const getUserAdminList = async (req, res, next) => {
+  try {
+    const list = await AdminModel.find({}).select('-password');
+    if (list) {
+      return res.status(200).json({ list });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: 'failed' });
+  }
+};
+
 module.exports = {
   addProduct,
   getProductListByType,
   removeProduct,
   updateProduct,
   postLogin,
+  getUserAdminList,
 };
