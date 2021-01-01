@@ -1,5 +1,4 @@
 import constants from 'constants/index.js';
-import AdminPage from 'containers/AdminPage';
 import HomePage from 'containers/HomePage';
 import ProductDetailPage from 'containers/ProductDetailPage';
 import React from 'react';
@@ -12,6 +11,7 @@ const ForgotPassword = React.lazy(() =>
   import('containers/Login/ForgotPassword'),
 );
 const NotFound = React.lazy(() => import('components/NotFound'));
+const AdminPage = React.lazy(() => import('containers/AdminPage'));
 
 const routes = [
   {

@@ -162,6 +162,44 @@ const formatDate = (date = new Date().getTime()) => {
   return `${day} tháng ${m + 1}, ${y}`;
 };
 
+//fn: chuyển loại sản phẩm từ số thành Model
+const convertProductType = (type = 0) => {
+  switch (type) {
+    case 0:
+      return 'Laptop';
+    case 1:
+      return 'Ổ cứng';
+    case 2:
+      return 'Card màn hình';
+    case 3:
+      return 'Mainboard';
+    case 4:
+      return 'RAM';
+    case 5:
+      return 'Điện thoại';
+    case 6:
+      return 'Sạc dự phòng';
+    case 7:
+      return 'Tai nghe';
+    case 8:
+      return 'Bàn phím';
+    case 9:
+      return 'Màn hình';
+    case 10:
+      return 'Chuột';
+    case 11:
+      return 'Router Wifi';
+    case 12:
+      return 'Loa';
+    case 13:
+      return 'Camera';
+    case 14:
+      return 'Webcam';
+    default:
+      return 'Khác';
+  }
+};
+
 export default {
   reduceProductName,
   formatProductPrice,
@@ -169,5 +207,6 @@ export default {
   convertProductKey,
   convertWidthScreen,
   convertRateToText,
+  convertProductType,
   formatDate,
 };

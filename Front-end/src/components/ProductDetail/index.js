@@ -14,7 +14,7 @@ function ProductDetail(props) {
   const { products } = props;
   const { productDetail, productDesc } = products;
   const { catalogs, ...restDetail } = productDetail;
-  const { name, brand, type, _id, rate } = products.product;
+  const { name, brand, type, _id, rate, otherInfo } = products.product;
   // rendering...
   return (
     <div className="Product-Detail-View container m-t-20">
@@ -41,7 +41,7 @@ function ProductDetail(props) {
         {/* Mô tả chi tiết sản phẩm */}
         <Col span={24}>
           <Description
-            specification={{ brand, ...restDetail }}
+            specification={{ brand, otherInfo, ...restDetail }}
             desc={productDesc}
           />
         </Col>

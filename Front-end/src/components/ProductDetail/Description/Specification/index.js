@@ -37,8 +37,8 @@ function showSpecification(list) {
 // rendering ...
 function Specification(props) {
   const { data } = props;
-  const { brand, warranty, ...rest } = data;
-  const list = listSpecification(rest);
+  const { brand, warranty, otherInfo, ...rest } = data;
+  const list = [...listSpecification(rest), ...otherInfo];
   return (
     <div className="Specification p-t-16">
       <div className="Specification-item d-flex p-12">
