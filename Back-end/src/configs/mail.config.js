@@ -3,7 +3,9 @@ const nodemailer = require('nodemailer');
 
 // configure option
 const option = {
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.NODE_MAILER_USER,
     pass: process.env.NODE_MAILER_PASSWORD,
@@ -39,6 +41,7 @@ const sendEmail = async ({ to, subject, text, html, ...rest }) => {
       }
     }
   } catch (err) {
+    console.log('ERROR MAILER: ', err);
     return false;
   }
 };

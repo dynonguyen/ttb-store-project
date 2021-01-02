@@ -35,11 +35,12 @@ function AllProduct() {
 
   // fn: Hiển thị sản phẩm
   const showProducts = (list) => {
+    list = list ? list : [];
     return list.map((product, index) => {
       const { avt, name, price, discount, stock, _id } = product;
       return (
         <Col key={index} span={24} sm={12} lg={8} xl={6}>
-          <Link to={`/products/${_id}`}>
+          <Link to={`/product/${_id}`}>
             <ProductView
               name={name}
               price={price}

@@ -107,7 +107,7 @@ const postLoginWithGoogle = async (req, res, next) => {
     // tạo refresh token
     const refreshToken = await jwtConfig.encodedToken(
       process.env.JWT_SECRET_REFRESH_KEY,
-      { userID: user._id, keepLogin: true },
+      { accountId: user._id, keepLogin: true },
       constants.JWT_REFRESH_EXPIRES_TIME,
     );
     //save refresh token into database
@@ -115,7 +115,7 @@ const postLoginWithGoogle = async (req, res, next) => {
 
     //create JWToken -> set header -> send client
     const token = await jwtConfig.encodedToken(process.env.JWT_SECRET_KEY, {
-      userID: user._id,
+      accountId: user._id,
     });
     const expiresIn = new Date(Date.now() + constants.COOKIE_EXPIRES_TIME);
     //set cookie for web browser

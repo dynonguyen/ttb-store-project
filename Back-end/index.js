@@ -65,22 +65,22 @@ app.listen(PORT, () => {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // api trang admin
-app.use('/admin', adminApi);
+app.use('/apis/admin', adminApi);
 
 // api liên quan đến account
-app.use('/accounts', accountApi);
+app.use('/apis/accounts', accountApi);
 
 // api liên quan user
-app.use('/user', userApi);
+app.use('/apis/user', userApi);
 
 // api liên quan đến login
-app.use('/login', loginApi);
+app.use('/apis/login', loginApi);
 
 // api liên quan đến product
-app.use('/products', productApi);
+app.use('/apis/products', productApi);
 
 // api liên quan comment
-app.use('/comments', commentApi);
+app.use('/apis/comments', commentApi);
 
 // Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
 app.get('*', (req, res) => {

@@ -33,7 +33,7 @@ function RelatedProduct(props) {
   // rendering...
   return (
     <>
-      {productList.length > 0 && (
+      {productList && productList.length > 0 && (
         <RelatedProductList span={span} list={productList} title={title} />
       )}
     </>
