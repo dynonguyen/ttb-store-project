@@ -200,6 +200,32 @@ const convertProductType = (type = 0) => {
   }
 };
 
+// fn: Chuyển series laptop sang chữ
+const convertSeriesChipCpu = (series = 0) => {
+  switch (series) {
+    case 0:
+      return 'Core i3';
+    case 1:
+      return 'Core i5';
+    case 2:
+      return 'Core i7';
+    case 3:
+      return 'Core i9';
+    case 4:
+      return 'Ryzen 3';
+    case 5:
+      return 'Ryzen 5';
+    case 6:
+      return 'Ryzen 7';
+    case 7:
+      return 'Pentium';
+    case 8:
+      return 'Celeron';
+    default:
+      return 'Core i3';
+  }
+};
+
 export default {
   reduceProductName,
   formatProductPrice,
@@ -209,4 +235,5 @@ export default {
   convertRateToText,
   convertProductType,
   formatDate,
+  convertSeriesChipCpu,
 };
