@@ -1,4 +1,5 @@
 import { Col, Row } from 'antd';
+import Filter from 'components/Filter';
 import RelatedProduct from 'containers/ProductDetailPage/RelatedProduct';
 import React from 'react';
 import AllProduct from './AllProduct';
@@ -11,7 +12,12 @@ function HomePage() {
   return (
     <div className="Home">
       {/* Carousel cho sale off */}
-      <SaleOff />
+      <div className="pos-relative">
+        <SaleOff />
+        <div className="filter-wrapper trans-center container w-100 h-80">
+          <Filter />
+        </div>
+      </div>
 
       <Row className="container">
         {/* Danh sách sản phẩm khuyến mãi */}

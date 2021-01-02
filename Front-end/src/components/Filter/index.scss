@@ -1,0 +1,35 @@
+.Filter {
+  &-menu {
+    &-item {
+      &:hover,
+      &:active {
+        background-color: #f1f1f1;
+        transition: all 0.25s;
+      }
+      .title {
+        color: #444;
+        font-weight: 500;
+      }
+      .icon {
+        color: #aaa;
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Filter {
+    &-menu {
+      &-item {
+        a {
+          justify-content: center;
+        }
+        .title {
+          display: none;
+        }
+      }
+    }
+  }
+}
