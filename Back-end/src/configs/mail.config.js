@@ -41,7 +41,7 @@ const sendEmail = async ({ to, subject, text, html, ...rest }) => {
       }
     }
   } catch (err) {
-    console.log('ERROR MAILER: ', err);
+    console.error('ERROR MAILER: ', err);
     return false;
   }
 };

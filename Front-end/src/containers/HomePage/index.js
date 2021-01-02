@@ -20,10 +20,12 @@ function HomePage() {
         </Col>
 
         <Col span={24} className="adv box-sha-home bor-rad-8 m-b-32">
-          <img
-            className="adv-img w-100 bor-rad-8"
-            src="https://res.cloudinary.com/tuan-cloudinary/image/upload/v1608268459/others/1_iorzsj.webp"
-          />
+          <a href="https://www.apple.com/watch/" target="blank">
+            <img
+              className="adv-img w-100 bor-rad-8"
+              src="https://res.cloudinary.com/tuan-cloudinary/image/upload/v1608268459/others/1_iorzsj.webp"
+            />
+          </a>
         </Col>
 
         {/* Thương hiệu nổi bật */}
@@ -37,10 +39,12 @@ function HomePage() {
         </Col>
 
         <Col span={24} className="adv box-sha-home bor-rad-8 m-b-32">
-          <img
-            className="adv-img w-100 bor-rad-8"
-            src="https://res.cloudinary.com/tuan-cloudinary/image/upload/v1608268459/others/2_wapowv.webp"
-          />
+          <a href="https://www.panasonic.com/vn/" target="blank">
+            <img
+              className="adv-img w-100 bor-rad-8"
+              src="https://res.cloudinary.com/tuan-cloudinary/image/upload/v1608268459/others/2_wapowv.webp"
+            />
+          </a>
         </Col>
 
         {/* Tổng hợp sản phẩm */}

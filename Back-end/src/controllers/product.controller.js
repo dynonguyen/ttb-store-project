@@ -25,7 +25,7 @@ const getProduct = async (req, res, next) => {
     // Trả về
     return res.status(200).json({ product, productDetail, productDesc });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(400).json({ message: 'Không thể lấy dữ liệu' });
   }
 };
@@ -58,7 +58,7 @@ const getAllProducts = async (req, res, next) => {
       .limit(parseInt(perPage));
     return res.status(200).json({ count: numOfProduct, data: result });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

@@ -5,7 +5,17 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Avatar, Badge, Button, Dropdown, Input, Layout, Menu } from 'antd';
+import {
+  Avatar,
+  Badge,
+  Button,
+  Dropdown,
+  Input,
+  Layout,
+  Menu,
+  message,
+} from 'antd';
+import loginApi from 'apis/loginApi';
 import defaultAvt from 'assets/imgs/default-avt.png';
 import constants from 'constants/index';
 import helpers from 'helpers';
@@ -28,30 +38,49 @@ function HeaderView() {
   const user = useSelector((state) => state.user);
   const carts = useSelector((state) => state.carts);
 
+  // event: log out
+  const onLogout = async () => {
+    try {
+      console.log('logout');
+      const response = await loginApi.postLogout();
+      if (response) {
+        message.success('Đăng xuất thành công', 2);
+        localStorage.removeItem(constants.REFRESH_TOKEN_KEY);
+        location.reload();
+      }
+    } catch (error) {
+      message.error('Đăng xuất thất bại', 2);
+    }
+  };
+
   // Menu for user action
   const userActionMenu = (
     <Menu className="m-t-24" style={{ width: 244 }}>
       <Menu.Item>
-        <Button size="large" className="w-100" type="primary" danger={isAuth}>
-          {isAuth ? (
-            'Đăng xuất'
-          ) : (
+        {isAuth ? (
+          <Button
+            onClick={onLogout}
+            size="large"
+            className="w-100"
+            type="primary"
+            danger={isAuth}>
+            Đăng xuất
+          </Button>
+        ) : (
+          <Button size="large" className="w-100" type="primary">
             <Link to={constants.ROUTES.LOGIN}>Đăng nhập</Link>
-          )}
-        </Button>
+          </Button>
+        )}
       </Menu.Item>
       <Menu.Item>
         <Link to={constants.ROUTES.SIGNUP}>
-          <Button size="large" className="w-100" type="primary">
+          <Button size="large" className="w-100" type="default">
             Đăng ký
           </Button>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Button
-          size="large"
-          className="w-100"
-          style={{ backgroundColor: '#D79E45', color: '#fff' }}>
+        <Button size="large" className="w-100" type="default">
           Quản lý Tài khoản
         </Button>
       </Menu.Item>

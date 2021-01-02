@@ -8,22 +8,21 @@ import { Button, Col, message, Row, Tooltip } from 'antd';
 import loginApi from 'apis/loginApi';
 import CheckboxField from 'components/Custom/Field/CheckboxField';
 import InputField from 'components/Custom/Field/InputField';
-import Delay from 'components/Delay';
 import LoginGoogle from 'components/LoginGoogle';
 import constants from 'constants/index';
 import { FastField, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
 import authReducers from 'reducers/auth';
+import * as Yup from 'yup';
 import './index.scss';
 
 function Login() {
+  const history = useHistory();
   const windowWidth = window.screen.width;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDisableLogin, setIsDisableLogin] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
   const dispatch = useDispatch();
 
   // fn: xử lý khi đăng nhập thành công
@@ -34,7 +33,9 @@ function Login() {
       // lưu refresh token vào local storage
       localStorage.setItem(constants.REFRESH_TOKEN, refreshToken);
       dispatch(authReducers.setIsAuth(true));
-      setIsLogged(true);
+      setTimeout(() => {
+        history.goBack();
+      }, constants.DELAY_TIME);
     } catch (error) {
       message.error('Lỗi đăng nhập.');
     }
@@ -89,13 +90,6 @@ function Login() {
   //return...
   return (
     <div className="Login container">
-      {/* chuyển về home khi đã login */}
-      {isLogged && (
-        <Delay wait={constants.DELAY_TIME}>
-          <Redirect to="/" />
-        </Delay>
-      )}
-
       <h1 className="Login-title m-b-20 m-t-20 underline-title">
         <b>Đăng nhập</b>
       </h1>
