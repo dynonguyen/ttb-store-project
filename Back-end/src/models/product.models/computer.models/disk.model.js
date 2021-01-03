@@ -22,7 +22,7 @@ const diskSchema = new Schema({
 
   // chuẩn kết nối
   // 0 - SATA 3, 1 - USB 3.0, 2 - M.2 SATA, 3 - M.2 NVMe
-  connectionStd: { type: Number, enum: [...Array(4).keys()], default: 0 },
+  connectionStd: { type: Number, enum: [...Array(5).keys()], default: 0 },
 
   // tốc độ của đĩa (HDD thì có rpm)
   speed: {

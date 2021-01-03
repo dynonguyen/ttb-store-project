@@ -12,6 +12,9 @@ const CONNECTION_STD = [
   { type: 0, label: '3.5mm' },
   { type: 1, label: 'bluetooth' },
   { type: 2, label: 'USB' },
+  { type: 3, label: 'bluetooth 4.0' },
+  { type: 4, label: 'bluetooth 5.0' },
+  { type: 5, label: '2.4GHz Wireless' },
 ];
 
 function Headphone() {
