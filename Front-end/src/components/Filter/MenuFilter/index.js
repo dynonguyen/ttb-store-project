@@ -8,6 +8,10 @@ import mouseIcon from 'assets/icon/products/mouse_32px.png';
 import routerIcon from 'assets/icon/products/router_32px.png';
 import speakerIcon from 'assets/icon/products/speaker_32px.png';
 import ssdIcon from 'assets/icon/products/ssd_32px.png';
+import ramIcon from 'assets/icon/products/ram_32px.png';
+import displayIcon from 'assets/icon/products/display_32px.png';
+import mainboardIcon from 'assets/icon/products/mainboard_32px.png';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -23,55 +27,67 @@ const menu = [
     key: 1,
     to: '',
     icon: ssdIcon,
-    title: 'Ổ cứng - RAM',
+    title: 'Ổ cứng',
   },
   {
     key: 2,
     to: '',
-    icon: cameraIcon,
-    title: 'Máy ảnh - Camera',
+    icon: ramIcon,
+    title: 'RAM',
   },
   {
     key: 3,
     to: '',
     icon: hdtvIcon,
-    title: 'Màn hình - Card màn hình',
+    title: 'Màn hình',
   },
   {
     key: 4,
+    to: '',
+    icon: displayIcon,
+    title: 'Card màn hình',
+  },
+  {
+    key: 5,
     to: '',
     icon: mobileIcon,
     title: 'Điện thoại - Phụ kiện',
   },
   {
-    key: 5,
+    key: 6,
     to: '',
     icon: mouseIcon,
-    title: 'Chuột máy tính',
+    title: 'Chuột - Bàn phím',
   },
   {
-    key: 6,
+    key: 7,
     to: '',
     icon: headphoneIcon,
     title: 'Tai nghe',
   },
   {
-    key: 7,
+    key: 8,
     to: '',
     icon: routerIcon,
     title: 'Router - Thiết bị mạng',
-  },
-  {
-    key: 8,
-    to: '',
-    icon: keyboardIcon,
-    title: 'Bàn phím',
   },
   {
     key: 9,
     to: '',
     icon: speakerIcon,
     title: 'Loa - Âm thanh',
+  },
+  {
+    key: 10,
+    to: '',
+    icon: cameraIcon,
+    title: 'Máy ảnh - Camera',
+  },
+  {
+    key: 11,
+    to: '',
+    icon: mainboardIcon,
+    title: 'Mainboard - Bo mạch chủ',
   },
 ];
 
@@ -86,7 +102,7 @@ function MenuFilter(props) {
           <div
             onMouseEnter={() => onShow(item.key)}
             key={index}
-            className="w-100 p-8 Filter-menu-item">
+            className="w-100 p-lr-8 p-tb-4  Filter-menu-item">
             <Link to={item.to} className="d-flex align-i-center">
               <img src={item.icon} className="icon m-lr-8" />
               <span className="title">{item.title}</span>

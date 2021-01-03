@@ -6,7 +6,7 @@ const speakerSchema = new Schema({
   idProduct: { type: Schema.Types.ObjectId, required: true },
 
   // công suất tổng tính theo W
-  wattage: { type: Number, default: 10 },
+  wattage: { type: Number, default: 3 },
 
   // loại cổng kết nối
   connectionPort: { type: String, default: '3.5 mm', trim: true },

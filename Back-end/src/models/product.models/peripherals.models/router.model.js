@@ -9,7 +9,7 @@ const routerSchema = new Schema({
   bandwidth: { type: Number, enum: [0, 1], default: 0 },
 
   // độ mạnh của ăng ten tính theo dBi
-  strong: { type: Number, default: 1.9 },
+  strong: { type: Number, default: 2 },
 
   // số cổng kết nối: '1xWAN Gigabit'
   numberOfPort: { type: String, trim: true },
