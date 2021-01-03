@@ -1,3 +1,4 @@
+import ResultSearch from 'components/ResultSearch';
 import constants from 'constants/index.js';
 import HomePage from 'containers/HomePage';
 import ProductDetailPage from 'containers/ProductDetailPage';
@@ -47,6 +48,11 @@ const routes = [
     path: constants.ROUTES.NOT_FOUND,
     exact: true,
     main: () => <NotFound />,
+  },
+  {
+    path: '/search',
+    exact: true,
+    main: () => <ResultSearch />,
   },
 ];
 

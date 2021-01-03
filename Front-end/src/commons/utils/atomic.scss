@@ -78,10 +78,13 @@
 
 // box-shadow for homepage
 .box-sha-home {
-  box-shadow: 0 0px 6px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 4px 4px rgba(0, 0, 0, 0.05);
 }
 
 // border radius
 .bor-rad-8 {
   border-radius: 8px;
+}
+.bor-rad-4 {
+  border-radius: 4px;
 }
