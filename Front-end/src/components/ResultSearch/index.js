@@ -116,81 +116,79 @@ function ResultSearch(props) {
 
   // rendering ...
   return (
-    <div className="container">
-      <Row className="Result-Search bor-rad-8 box-sha-home bg-white m-tb-32">
-        {/* header sort, search button */}
-        <Col span={24} className="sort-wrapper p-lr-16">
-          <div className="sort p-tb-10 d-flex align-i-center">
-            <h3 className="m-r-8 font-weight-700">Sắp xếp theo</h3>
-            {sortButtons.map((item) => (
-              <Button
-                className={`${
-                  item.key === sortBtnActive ? 'sort-btn-active' : ''
-                } m-4 bor-rad-4`}
-                key={item.key}
-                size="large"
-                onClick={() => onSort(item.key)}>
-                {item.title}
-              </Button>
-            ))}
-            {/* search range price */}
-            <div className="m-l-8">
-              <InputNumber
-                className="bor-rad-4"
-                size="large"
-                min={0}
-                max={1000000000}
-                style={{ width: 120 }}
-                placeholder="Giá thấp nhất"
-                step={10000}
-                onChange={(value) => setPrice({ ...price, from: value })}
-              />
-              {` - `}
-              <InputNumber
-                className="bor-rad-4"
-                size="large"
-                min={price.from}
-                max={1000000000}
-                style={{ width: 120 }}
-                placeholder="Giá cao nhất"
-                step={10000}
-                onChange={(value) => setPrice({ ...price, to: value })}
-              />
-              {price.to > 0 && (
-                <Button
-                  type="primary"
-                  size="large"
-                  className="m-l-8 price-search-btn bor-rad-4"
-                  onClick={onFilterByPrice}>
-                  Lọc
-                </Button>
-              )}
-            </div>
-          </div>
-        </Col>
-        <Col span={24} className="Result-Search-list p-16">
-          {!list || list.length === 0 ? (
-            <div className="trans-center d-flex flex-direction-column pos-relative">
-              <img
-                className="not-found-product m-0-auto"
-                src={productNotFoundUrl}
-              />
-              <span className="font-size-16px m-t-8 t-center">
-                Không sản phẩm nào được tìm thấy
-              </span>
-            </div>
-          ) : isLoading ? (
-            <Spin
-              className="trans-center"
-              tip="Đang cập nhật sản phẩm ..."
+    <Row className="Result-Search bor-rad-8 box-sha-home bg-white m-tb-32">
+      {/* header sort, search button */}
+      <Col span={24} className="sort-wrapper p-lr-16">
+        <div className="sort p-tb-10 d-flex align-i-center">
+          <h3 className="m-r-8 font-weight-700">Sắp xếp theo</h3>
+          {sortButtons.map((item) => (
+            <Button
+              className={`${
+                item.key === sortBtnActive ? 'sort-btn-active' : ''
+              } m-4 bor-rad-4`}
+              key={item.key}
               size="large"
+              onClick={() => onSort(item.key)}>
+              {item.title}
+            </Button>
+          ))}
+          {/* search range price */}
+          <div className="m-l-8">
+            <InputNumber
+              className="bor-rad-4"
+              size="large"
+              min={0}
+              max={1000000000}
+              style={{ width: 120 }}
+              placeholder="Giá thấp nhất"
+              step={10000}
+              onChange={(value) => setPrice({ ...price, from: value })}
             />
-          ) : (
-            <Row gutter={[8, 16]}>{showProducts(list)}</Row>
-          )}
-        </Col>
-      </Row>
-    </div>
+            {` - `}
+            <InputNumber
+              className="bor-rad-4"
+              size="large"
+              min={price.from}
+              max={1000000000}
+              style={{ width: 120 }}
+              placeholder="Giá cao nhất"
+              step={10000}
+              onChange={(value) => setPrice({ ...price, to: value })}
+            />
+            {price.to > 0 && (
+              <Button
+                type="primary"
+                size="large"
+                className="m-l-8 price-search-btn bor-rad-4"
+                onClick={onFilterByPrice}>
+                Lọc
+              </Button>
+            )}
+          </div>
+        </div>
+      </Col>
+      <Col span={24} className="Result-Search-list p-16">
+        {!list || list.length === 0 ? (
+          <div className="trans-center d-flex flex-direction-column pos-relative">
+            <img
+              className="not-found-product m-0-auto"
+              src={productNotFoundUrl}
+            />
+            <span className="font-size-16px m-t-8 t-center">
+              Không sản phẩm nào được tìm thấy
+            </span>
+          </div>
+        ) : isLoading ? (
+          <Spin
+            className="trans-center"
+            tip="Đang cập nhật sản phẩm ..."
+            size="large"
+          />
+        ) : (
+          <Row gutter={[8, 16]}>{showProducts(list)}</Row>
+        )}
+      </Col>
+    </Row>
   );
 }
 

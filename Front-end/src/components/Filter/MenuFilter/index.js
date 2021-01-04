@@ -94,7 +94,7 @@ const menu = [
 function MenuFilter(props) {
   const { onShow } = props;
 
-  function genderFilterMenu(list) {
+  function renderFilterMenu(list) {
     return (
       list &&
       list.map((item, index) => {
@@ -114,7 +114,7 @@ function MenuFilter(props) {
   }
 
   return (
-    <div className="bor-rad-8 Filter-menu p-tb-4">{genderFilterMenu(menu)}</div>
+    <div className="bor-rad-8 Filter-menu p-tb-4">{renderFilterMenu(menu)}</div>
   );
 }
 

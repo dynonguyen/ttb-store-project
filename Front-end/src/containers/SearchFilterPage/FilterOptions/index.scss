@@ -1,0 +1,21 @@
+.Filter-Options {
+  .list-active {
+    border-bottom: solid 1px #dadada;
+  }
+  &-item {
+    display: flex;
+    flex-wrap: wrap;
+    &--title {
+      flex-basis: 180px;
+    }
+  }
+  .filter-active-btn {
+    border: solid 1px #3a5dd8;
+    color: #fff;
+    background-color: #3a5dd8;
+    transition: all 0.25s;
+  }
+  .ant-tag-hidden {
+    display: inline;
+  }
+}

@@ -226,6 +226,14 @@ const convertSeriesChipCpu = (series = 0) => {
   }
 };
 
+// fn: random màu
+const randomColor = () => {
+  let r = Math.round(Math.random() * 254 + 1);
+  let g = Math.round(Math.random() * 254 + 1);
+  let b = Math.round(Math.random() * 254 + 1);
+  return `rgb(${r},${g},${b})`;
+};
+
 export default {
   reduceProductName,
   formatProductPrice,
@@ -236,4 +244,5 @@ export default {
   convertProductType,
   formatDate,
   convertSeriesChipCpu,
+  randomColor,
 };

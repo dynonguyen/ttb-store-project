@@ -12,7 +12,7 @@ const list = [
 
 function ProductCarousel() {
   return (
-    <Carousel className="Product-Carousel m-tb-24 p-8 bor-rad-8" autoplay>
+    <Carousel className="Product-Carousel m-tb-24 bor-rad-8" autoplay>
       {list.map((item, index) => (
         <img
           className="Product-Carousel-img bor-rad-8"
