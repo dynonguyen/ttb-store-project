@@ -1,7 +1,7 @@
-import ResultSearch from 'components/ResultSearch';
 import constants from 'constants/index.js';
 import HomePage from 'containers/HomePage';
 import ProductDetailPage from 'containers/ProductDetailPage';
+import SearchFilterPage from 'containers/SearchFilterPage';
 import React from 'react';
 import { Route } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ const routes = [
   {
     path: '/search',
     exact: true,
-    main: () => <ResultSearch />,
+    main: () => <SearchFilterPage />,
   },
 ];
 
