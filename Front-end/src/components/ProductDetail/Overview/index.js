@@ -1,4 +1,4 @@
-import { CheckOutlined } from '@ant-design/icons';
+import { CheckOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Button, Col, Image, InputNumber, Rate, Row } from 'antd';
 import ImgLoadFailed from 'assets/imgs/loading-img-failed.png';
 import helpers from 'helpers';
@@ -132,7 +132,7 @@ function ProductOverview(props) {
         <h1 className="product-price font-weight-700 p-tb-8">
           {price === 0 ? 'Liên hệ' : helpers.formatProductPrice(priceBefore)}
         </h1>
-        {discount > 0 && (
+        {discount > 0 && price > 0 && (
           <>
             <h3 className="font-weight-700" style={{ color: '#333' }}>
               Bạn có 1 mã giảm giá {discount}% cho sản phẩm này
@@ -174,23 +174,35 @@ function ProductOverview(props) {
         </div>
 
         {/* Button*/}
-        <div className="btn-group p-tb-16 d-flex justify-content-around">
+        {price > 0 ? (
+          <div className="btn-group p-tb-16 d-flex justify-content-around">
+            <Button
+              onClick={addCart}
+              disabled={stock ? false : true}
+              size="large"
+              className="m-r-16 w-100 btn-group-item"
+              style={{ backgroundColor: '#3555c5' }}>
+              THÊM GIỎ HÀNG
+            </Button>
+            <Button
+              disabled={stock ? false : true}
+              size="large"
+              className="w-100 btn-group-item"
+              style={{ backgroundColor: '#39B3D7' }}>
+              MUA NGAY LUÔN
+            </Button>
+          </div>
+        ) : (
           <Button
-            onClick={addCart}
-            disabled={stock ? false : true}
             size="large"
-            className="m-r-16 w-100 btn-group-item"
+            className="m-tb-16 w-100 btn-group-item"
             style={{ backgroundColor: '#3555c5' }}>
-            THÊM GIỎ HÀNG
+            <a href="https://fb.com/TuanNguyen250400" target="blank">
+              <PhoneOutlined style={{ fontSize: 18 }} className="m-r-8" /> LIÊN
+              HỆ
+            </a>
           </Button>
-          <Button
-            disabled={stock ? false : true}
-            size="large"
-            className="w-100 btn-group-item"
-            style={{ backgroundColor: '#39B3D7' }}>
-            MUA NGAY LUÔN
-          </Button>
-        </div>
+        )}
       </Col>
     </Row>
   );
