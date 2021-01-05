@@ -59,7 +59,7 @@ const FILTER_BRAND_LAPTOP = [
     to: '/',
   },
   {
-    title: 'lenovo',
+    title: 'Lenovo',
     to: '/',
   },
   {
@@ -199,7 +199,6 @@ const FILTER_BUS_RAM = [
     title: '1600 MHz',
     to: '/',
   },
-
   {
     title: '2400 MHz',
     to: '/',

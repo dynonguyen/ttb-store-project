@@ -10,6 +10,7 @@ function FilterOptions(props) {
   const { type } = props;
   const [tagList, setTagList] = useState([]);
   const [activeList, setActiveList] = useState([]);
+
   // event: Chọn 1 btn trong bộ lọc
   const onChecked = (sub, key) => {
     const { title } = sub;
@@ -70,7 +71,7 @@ function FilterOptions(props) {
               return (
                 <Button
                   key={key}
-                  className={`m-r-8 ${
+                  className={`bor-rad-4 m-r-8 ${
                     activeList.findIndex((value) => value === key) === -1
                       ? ''
                       : 'filter-active-btn'
@@ -92,6 +93,7 @@ function FilterOptions(props) {
       tagList &&
       tagList.map((item, index) => (
         <Tag
+          className="bor-rad-4"
           key={index}
           closable={true}
           color={item.color}
@@ -112,7 +114,11 @@ function FilterOptions(props) {
             <div className="d-flex align-i-center flex-wrap">
               {showTagList()}
             </div>
-            <Button type="dashed" danger onClick={onCloseAll}>
+            <Button
+              className="bor-rad-4"
+              type="dashed"
+              danger
+              onClick={onCloseAll}>
               <b>Xoá tất cả</b>
             </Button>
           </>

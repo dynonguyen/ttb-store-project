@@ -1,3 +1,5 @@
+import constants from 'constants/index';
+
 // fn: hàm rút gọn tên sản phẩm
 const reduceProductName = (name, length = 64) => {
   let result = name;
@@ -234,6 +236,71 @@ const randomColor = () => {
   return `rgb(${r},${g},${b})`;
 };
 
+// fn: generate autocomplete search options
+const autoSearchOptions = () => {
+  let result = [];
+  // laptop
+  result.push({ value: 'Laptop Macbook' });
+  result.push({ value: 'RAM' });
+  result.push({ value: 'Ổ cứng SSD' });
+  result.push({ value: 'Máy ảnh Sony' });
+  result.push({ value: 'Mainboard Bo mạch chủ' });
+  result.push({ value: 'Loa, thiết bị âm thanh' });
+  result.push({ value: 'Màn hình, card màn hình' });
+  result.push({ value: 'Router wifi' });
+
+  constants.FILTER_BRAND_LAPTOP.map((item) => {
+    result.push({ value: `Laptop ${item.title}` });
+  });
+  constants.FILTER_CHIP_LAPTOP.map((item) => {
+    result.push({ value: `Laptop ${item.title}` });
+  });
+  constants.FILTER_SIZE_LAPTOP.map((item) => {
+    result.push({ value: `Laptop ${item.title}` });
+  });
+  constants.FILTER_BRAND_RAM.map((item) => {
+    result.push({ value: `RAM ${item.title}` });
+  });
+  constants.FILTER_BUS_RAM.map((item) => {
+    result.push({ value: `RAM Bus ${item.title}` });
+  });
+  constants.FILTER_CAPACITY_RAM.map((item) => {
+    result.push({ value: `RAM ${item.title}` });
+  });
+  constants.FILTER_GENERATION_RAM.map((item) => {
+    result.push({ value: `RAM ${item.title}` });
+  });
+  constants.FILTER_SIZE_DISK.map((item) => {
+    result.push({ value: `Ổ cứng ${item.title}` });
+  });
+  constants.FILTER_CAPACITY_DISK.map((item) => {
+    result.push({ value: `Ổ cứng SSD ${item.title}` });
+    result.push({ value: `Ổ cứng HDD ${item.title}` });
+  });
+  constants.FILTER_BRAND_MOBILE.map((item) => {
+    result.push({ value: `Điện thoại ${item.title}` });
+  });
+  constants.FILTER_BRAND_KEYBOARD.map((item) => {
+    result.push({ value: `Bàn phím ${item.title}` });
+  });
+  constants.FILTER_TYPE_KEYBOARD.map((item) => {
+    result.push({ value: `${item.title}` });
+  });
+  constants.FILTER_BRAND_MOUSE.map((item) => {
+    result.push({ value: `Chuột ${item.title}` });
+  });
+  constants.FILTER_RESOLUTON_MONITOR.map((item) => {
+    result.push({ value: `Màn hình độ phân giải ${item.title}` });
+  });
+  constants.FILTER_SIZE_MONITOR.map((item) => {
+    result.push({ value: `Màn hình ${item.title}` });
+  });
+  constants.FILTER_MANUFACTURER_DISPLAY.map((item) => {
+    result.push({ value: `Card màn hình rời ${item.title}` });
+  });
+  return result;
+};
+
 export default {
   reduceProductName,
   formatProductPrice,
@@ -245,4 +312,5 @@ export default {
   formatDate,
   convertSeriesChipCpu,
   randomColor,
+  autoSearchOptions,
 };

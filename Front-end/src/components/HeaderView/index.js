@@ -6,6 +6,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import {
+  AutoComplete,
   Avatar,
   Badge,
   Button,
@@ -37,6 +38,7 @@ function HeaderView() {
   const { isAuth } = useSelector((state) => state.authenticate);
   const user = useSelector((state) => state.user);
   const carts = useSelector((state) => state.carts);
+  const options = helpers.autoSearchOptions();
 
   // event: log out
   const onLogout = async () => {
@@ -104,16 +106,24 @@ function HeaderView() {
 
         {/* thanh tìm kiếm */}
         <div className="flex-grow-1 t-right search-bar-wrapper">
+          <div className="search-bar pos-relative flex-grow-1 m-r-8">
+            <AutoComplete
+              className="trans-center w-100"
+              options={options}
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }>
+              <Search
+                placeholder="Tìm kiếm"
+                onSearch={onSearch}
+                maxLength={200}
+                enterButton
+              />
+            </AutoComplete>
+          </div>
           <div className="Header-View-icon search-icon">
             <SearchOutlined />
-          </div>
-          <div className="search-bar pos-relative flex-grow-1 m-r-8">
-            <Search
-              className="trans-center"
-              placeholder="Tìm kiếm"
-              onSearch={onSearch}
-              enterButton
-            />
           </div>
         </div>
 
@@ -187,7 +197,19 @@ function HeaderView() {
       </div>
 
       <div className="search-bar-responsive">
-        <Search placeholder="Tìm kiếm" onSearch={onSearch} enterButton />
+        <AutoComplete
+          className="w-100"
+          options={options}
+          filterOption={(inputValue, option) =>
+            option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+          }>
+          <Search
+            placeholder="Tìm kiếm"
+            maxLength={200}
+            onSearch={onSearch}
+            enterButton
+          />
+        </AutoComplete>
       </div>
     </Header>
   );
