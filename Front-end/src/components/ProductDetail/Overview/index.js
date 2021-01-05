@@ -132,21 +132,25 @@ function ProductOverview(props) {
         <h1 className="product-price font-weight-700 p-tb-8">
           {price === 0 ? 'Liên hệ' : helpers.formatProductPrice(priceBefore)}
         </h1>
-        <h3 className="font-weight-700" style={{ color: '#333' }}>
-          Bạn có 1 mã giảm giá {discount}% cho sản phẩm này
-        </h3>
-        <div className="d-flex flex-direction-column m-t-8 m-b-16 p-tb-8 p-lr-16 discount">
-          <span className="discount-price font-size-16px font-weight-700">
-            Giá: {helpers.formatProductPrice(price)}
-          </span>
-          <span>
-            Đã giảm thêm: {helpers.formatProductPrice(priceBefore - price)}
-            &nbsp;
-            <span className="discount-decr"></span>
-          </span>
-          <div className="discount-mark"></div>
-          <CheckOutlined className="discount-mark-icon" />
-        </div>
+        {discount > 0 && (
+          <>
+            <h3 className="font-weight-700" style={{ color: '#333' }}>
+              Bạn có 1 mã giảm giá {discount}% cho sản phẩm này
+            </h3>
+            <div className="d-flex flex-direction-column m-t-8 m-b-16 p-tb-8 p-lr-16 discount">
+              <span className="discount-price font-size-16px font-weight-700">
+                Giá: {helpers.formatProductPrice(price)}
+              </span>
+              <span>
+                Đã giảm thêm: {helpers.formatProductPrice(priceBefore - price)}
+                &nbsp;
+                <span className="discount-decr"></span>
+              </span>
+              <div className="discount-mark"></div>
+              <CheckOutlined className="discount-mark-icon" />
+            </div>
+          </>
+        )}
 
         {/* Chọn số lượng */}
         <div className="p-t-12 option">

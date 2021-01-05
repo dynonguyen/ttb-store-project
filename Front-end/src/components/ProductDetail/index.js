@@ -2,6 +2,7 @@ import { HomeOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 import Evaluation from 'containers/ProductDetailPage/Evaluation';
 import RelatedProduct from 'containers/ProductDetailPage/RelatedProduct';
+import helpers from 'helpers';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -13,8 +14,9 @@ import ProductPolicy from './Policy';
 function ProductDetail(props) {
   const { products } = props;
   const { productDetail, productDesc } = products;
-  const { catalogs, ...restDetail } = productDetail;
+  let { catalogs, ...restDetail } = productDetail;
   const { name, brand, type, _id, rate, otherInfo } = products.product;
+  restDetail = helpers.convertProductValue(type, restDetail);
   // rendering...
   return (
     <div className="Product-Detail-View container m-t-20">
