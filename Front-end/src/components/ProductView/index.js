@@ -52,7 +52,7 @@ function ProductView(props) {
             <span className="Product-View-price--main font-size-20px font-weight-b">
               {helpers.formatProductPrice(price)}
             </span>
-            {discount && (
+            {discount > 0 && (
               <div>
                 <span className="Product-View-price--cancel font-weight-500">
                   {helpers.formatProductPrice(price + (discount * price) / 100)}
