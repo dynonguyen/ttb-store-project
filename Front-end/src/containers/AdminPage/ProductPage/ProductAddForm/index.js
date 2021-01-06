@@ -182,10 +182,20 @@ function AddProduct() {
   const onSubmit = async (data) => {
     try {
       setIsSubmitting(true);
-      const { code, name, price, stock, brand, otherInfo, ...rest } = data;
+      const {
+        code,
+        name,
+        price,
+        discount,
+        stock,
+        brand,
+        otherInfo,
+        ...rest
+      } = data;
       // các thuộc tính chung của sản phẩm
       const product = {
         type: typeSelected,
+        discount,
         code,
         name,
         price,
@@ -350,7 +360,7 @@ function AddProduct() {
                   />
                 </Form.Item>
               </Col>
-              {/*Thời gian bảo hành*/}
+              {/*Mức giảm giá*/}
               <Col span={12} md={8} xl={6} xxl={4}>
                 <Form.Item
                   name="discount"
@@ -360,7 +370,7 @@ function AddProduct() {
                     step={10}
                     size="large"
                     min={0}
-                    max={50}
+                    max={30}
                     placeholder="phần trăm khuyến mãi (5%) *"
                   />
                 </Form.Item>
