@@ -1,3 +1,35 @@
+import constants from 'constants/index';
+
+// fn: query string: ?t=0&key=1 => [{ t:0 }, { key: 1 }]
+const queryString = (query = '') => {
+  if (!query || query === '') return [];
+  let result = [];
+  let q = query;
+  // xoá ký tự '?' nếu có
+  if (q[0] === '?') q = q.slice(1, q.length);
+  // tách các cụm query ['t=0', 'key=1']
+  const queryList = q.split('&');
+  result = queryList.map((str) => {
+    let res = {};
+    let temp = str.split('=');
+    if (temp.length <= 1) res[temp[0]] = '';
+    else res[temp[0]] = temp[1];
+    return res;
+  });
+
+  return result;
+};
+
+// fn: định dạng chuỗi truy vấn
+const formatQueryString = (str = '') => {
+  let result = str;
+  // xoá tất cả ký tự đặc biệt
+  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\{\}\[\]\\\/]/gi, '');
+  // thay khoảng trắng thành dấu cộng
+  result = result.replace(/[\s]/gi, '+');
+  return result;
+};
+
 // fn: hàm rút gọn tên sản phẩm
 const reduceProductName = (name, length = 64) => {
   let result = name;
@@ -224,6 +256,80 @@ const convertSeriesChipCpu = (series = 0) => {
     default:
       return 'Core i3';
   }
+};
+
+// fn: random màu
+const randomColor = () => {
+  let r = Math.round(Math.random() * 254 + 1);
+  let g = Math.round(Math.random() * 254 + 1);
+  let b = Math.round(Math.random() * 254 + 1);
+  return `rgb(${r},${g},${b})`;
+};
+
+// fn: generate autocomplete search options
+const autoSearchOptions = () => {
+  let result = [];
+  // laptop
+  result.push({ value: 'Laptop' });
+  result.push({ value: 'Macbook' });
+  result.push({ value: 'RAM' });
+  result.push({ value: 'Ổ cứng SSD' });
+  result.push({ value: 'Máy ảnh Sony' });
+  result.push({ value: 'Mainboard Bo mạch chủ' });
+  result.push({ value: 'Loa, thiết bị âm thanh' });
+  result.push({ value: 'Màn hình, card màn hình' });
+  result.push({ value: 'Router wifi' });
+
+  constants.FILTER_BRAND_LAPTOP.map((item) => {
+    result.push({ value: `Laptop ${item.title}` });
+  });
+  constants.FILTER_CHIP_LAPTOP.map((item) => {
+    result.push({ value: `Laptop ${item.title}` });
+  });
+  constants.FILTER_SIZE_LAPTOP.map((item) => {
+    result.push({ value: `Laptop ${item.title}` });
+  });
+  constants.FILTER_BRAND_RAM.map((item) => {
+    result.push({ value: `RAM ${item.title}` });
+  });
+  constants.FILTER_BUS_RAM.map((item) => {
+    result.push({ value: `RAM Bus ${item.title}` });
+  });
+  constants.FILTER_CAPACITY_RAM.map((item) => {
+    result.push({ value: `RAM ${item.title}` });
+  });
+  constants.FILTER_GENERATION_RAM.map((item) => {
+    result.push({ value: `RAM ${item.title}` });
+  });
+  constants.FILTER_SIZE_DISK.map((item) => {
+    result.push({ value: `Ổ cứng ${item.title}` });
+  });
+  constants.FILTER_CAPACITY_DISK.map((item) => {
+    result.push({ value: `Ổ cứng SSD ${item.title}` });
+    result.push({ value: `Ổ cứng HDD ${item.title}` });
+  });
+  constants.FILTER_BRAND_MOBILE.map((item) => {
+    result.push({ value: `Điện thoại ${item.title}` });
+  });
+  constants.FILTER_BRAND_KEYBOARD.map((item) => {
+    result.push({ value: `Bàn phím ${item.title}` });
+  });
+  constants.FILTER_TYPE_KEYBOARD.map((item) => {
+    result.push({ value: `${item.title}` });
+  });
+  constants.FILTER_BRAND_MOUSE.map((item) => {
+    result.push({ value: `Chuột ${item.title}` });
+  });
+  constants.FILTER_RESOLUTON_MONITOR.map((item) => {
+    result.push({ value: `Màn hình độ phân giải ${item.title}` });
+  });
+  constants.FILTER_SIZE_MONITOR.map((item) => {
+    result.push({ value: `Màn hình ${item.title}` });
+  });
+  constants.FILTER_MANUFACTURER_DISPLAY.map((item) => {
+    result.push({ value: `Card màn hình rời ${item.title}` });
+  });
+  return result;
 };
 
 // fn: chuyển đổi series chip
@@ -536,6 +642,8 @@ const convertProductValue = (type = 0, product) => {
 };
 
 export default {
+  formatQueryString,
+  queryString,
   convertProductValue,
   reduceProductName,
   formatProductPrice,
@@ -546,4 +654,6 @@ export default {
   convertProductType,
   formatDate,
   convertSeriesChipCpu,
+  randomColor,
+  autoSearchOptions,
 };

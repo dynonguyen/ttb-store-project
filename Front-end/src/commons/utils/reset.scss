@@ -59,3 +59,13 @@ li {
   text-decoration: none;
   list-style-type: none;
 }
+
+.ant-btn-primary {
+  background-color: #3a5dd9 !important;
+  &:hover,
+  &:active {
+    -webkit-filter: brightness(1.2) !important;
+    filter: brightness(1.2) !important;
+  }
+  border: none !important;
+}

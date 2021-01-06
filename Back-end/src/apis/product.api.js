@@ -10,4 +10,7 @@ productApi.get('/list/related', productController.getProductList);
 // api: lấy danh sách và phân trang
 productApi.get('/all', productController.getAllProducts);
 
+// api: tìm kiếm sản phẩm
+productApi.get('/search', productController.getSearchProducts);
+
 module.exports = productApi;

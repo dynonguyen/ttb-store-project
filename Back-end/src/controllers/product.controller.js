@@ -1,3 +1,4 @@
+const { Model } = require('mongoose');
 const helpers = require('../helpers');
 const ProductDescModel = require('../models/product.models/description.model');
 const ProductModel = require('../models/product.models/product.model');
@@ -62,8 +63,59 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
+// api: tìm kiếm sản phẩm
+const getSearchProducts = async (req, res, next) => {
+  try {
+    let { value, page, perPage } = req.query;
+    const typeList = helpers.typeOfProduct(value);
+    const typeQuery = typeList.map((item) => {
+      return { type: item };
+    });
+    // pagination
+    if (!page) page = 1;
+    if (!perPage) perPage = 8;
+    const nSkip = (parseInt(page) - 1) * perPage;
+
+    // query
+    let numOfProduct = 0;
+    let result = [];
+    let query;
+    if (typeQuery.length > 0)
+      query = {
+        $text: { $search: `${value}` },
+        $or: typeQuery,
+      };
+    else
+      query = {
+        $text: {
+          $search: `${value}`,
+        },
+      };
+    // lọc theo điều kiện nếu có
+    if (value !== '') {
+      numOfProduct = await ProductModel.find(query).countDocuments();
+      result = await ProductModel.find(query)
+        .skip(nSkip)
+        .limit(parseInt(perPage));
+    } else {
+      // trả về tất cả
+      numOfProduct = await ProductModel.find({}).countDocuments();
+      result = await ProductModel.find({}).skip(nSkip).limit(parseInt(perPage));
+    }
+
+    // return
+    if (result) {
+      return res.status(200).json({ count: numOfProduct, list: result });
+    }
+  } catch (error) {
+    console.error('Search product error: ', error);
+    return res.status(400).json({ count: 0, list: [] });
+  }
+};
+
 module.exports = {
   getProduct,
   getProductList,
   getAllProducts,
+  getSearchProducts,
 };

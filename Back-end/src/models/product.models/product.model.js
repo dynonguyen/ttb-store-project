@@ -59,6 +59,12 @@ const productSchema = new Schema({
   },
 });
 
+// text search index
+productSchema.index(
+  { name: 'text', brand: 'text' },
+  { name: 'ix_search_text', default_language: 'none' },
+);
+
 const ProductModel = mongoose.model('product', productSchema, 'products');
 
 module.exports = ProductModel;

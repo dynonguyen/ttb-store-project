@@ -6,6 +6,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import {
+  AutoComplete,
   Avatar,
   Badge,
   Button,
@@ -19,13 +20,12 @@ import loginApi from 'apis/loginApi';
 import defaultAvt from 'assets/imgs/default-avt.png';
 import constants from 'constants/index';
 import helpers from 'helpers';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CartView from './CartView';
 import './index.scss';
 const { Header } = Layout;
-const { Search } = Input;
 
 function totalItemCarts(carts) {
   if (carts) {
@@ -37,6 +37,13 @@ function HeaderView() {
   const { isAuth } = useSelector((state) => state.authenticate);
   const user = useSelector((state) => state.user);
   const carts = useSelector((state) => state.carts);
+  const options = helpers.autoSearchOptions();
+  const [isShowSearchBar, setIsShowSearchBar] = useState(false);
+
+  // state search
+  const location = useLocation().pathname;
+  const initLink = '/search?t=1&keyword=';
+  const [linkSearch, setLinkSearch] = useState('');
 
   // event: log out
   const onLogout = async () => {
@@ -74,25 +81,25 @@ function HeaderView() {
       </Menu.Item>
       <Menu.Item>
         <Link to={constants.ROUTES.SIGNUP}>
-          <Button size="large" className="w-100" type="default">
+          <Button size="large" className="w-100 btn-secondary" type="default">
             Đăng ký
           </Button>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Button size="large" className="w-100" type="default">
+        <Button size="large" className="w-100 btn-secondary" type="default">
           Quản lý Tài khoản
         </Button>
       </Menu.Item>
     </Menu>
   );
 
-  const onSearch = (value) => console.log(value);
+  // rendering ...
   return (
-    <Header className="container-fluid Header-View">
-      <div className="container d-flex justify-content-between">
-        {/* Logo */}
-        <div className="col- logo-TTB p-r-20">
+    <>
+      <Header className="container-fluid Header-View">
+        <div className="container d-flex justify-content-between">
+          {/* Logo */}
           <Link to="/">
             <img
               src="https://previews.123rf.com/images/putracetol/putracetol1805/putracetol180502182/101179920-science-computer-logo-icon-design.jpg"
@@ -100,96 +107,144 @@ function HeaderView() {
               height="48"
             />
           </Link>
-        </div>
 
-        {/* thanh tìm kiếm */}
-        <div className="flex-grow-1 t-right search-bar-wrapper">
-          <div className="Header-View-icon search-icon">
-            <SearchOutlined />
+          {/* thanh tìm kiếm */}
+          <div className="flex-grow-1 m-lr-32 t-right search-bar-wrapper">
+            <div className="search-bar pos-relative">
+              <div>
+                <AutoComplete
+                  className="trans-center w-100"
+                  options={options}
+                  onChange={(value) =>
+                    setLinkSearch(helpers.formatQueryString(value))
+                  }
+                  filterOption={(inputValue, option) =>
+                    option.value
+                      .toUpperCase()
+                      .indexOf(inputValue.toUpperCase()) !== -1
+                  }>
+                  <Input
+                    maxLength={200}
+                    size="large"
+                    placeholder="Tìm sản phẩm, thương hiệu mong muốn ..."
+                  />
+                </AutoComplete>
+                <Button type="primary btn-search" size="large">
+                  <Link
+                    to={linkSearch === '' ? location : initLink + linkSearch}>
+                    <SearchOutlined /> Tìm kiếm
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
-          <div className="search-bar pos-relative flex-grow-1 m-r-8">
-            <Search
-              className="trans-center"
-              placeholder="Tìm kiếm"
-              onSearch={onSearch}
-              enterButton
+
+          {/* Icon search responsive */}
+          <div className="align-i-center search-icon">
+            <SearchOutlined
+              className="font-size-28px"
+              onClick={() => setIsShowSearchBar(!isShowSearchBar)}
             />
           </div>
-        </div>
 
-        {/* Thanh công cụ Navbar */}
-        <div>
-          <Menu
-            className="t-right"
-            theme="light"
-            mode="horizontal"
-            overflowedIndicator={
-              <MenuOutlined
-                style={{
-                  fontSize: 28,
-                  transform: 'translateY(7px)',
-                }}
-              />
-            }>
-            <Menu.Item key="0">
-              <Link to="/">
-                <span className="font-weight-500 m-r-5 Header-View-text">
-                  Đơn hàng
-                </span>
-                <ReconciliationOutlined className="Header-View-icon" />
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="1">
-              <Dropdown overlay={userActionMenu} placement="bottomRight">
-                <Link
-                  to={
-                    isAuth ? constants.ROUTES.ACCOUNT : constants.ROUTES.LOGIN
-                  }>
-                  {!isAuth ? (
-                    <>
-                      <span className="font-weight-500 m-r-5 Header-View-text">
-                        Đăng nhập
-                      </span>
-                      <UserOutlined className="Header-View-icon" />
-                    </>
-                  ) : (
-                    <>
-                      <span className="font-weight-500 m-r-5 Header-View-text">
-                        {helpers.reduceProductName(user.fullName, 10)}
-                      </span>
-                      <Avatar src={user.avt ? user.avt : defaultAvt} />
-                    </>
-                  )}
-                </Link>
-              </Dropdown>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Dropdown
-                overlay={<CartView list={carts} />}
-                placement="bottomLeft"
-                arrow>
-                <Link to={constants.ROUTES.CART}>
+          {/* Thanh công cụ Navbar */}
+          <div>
+            <Menu
+              className="t-right"
+              theme="light"
+              mode="horizontal"
+              overflowedIndicator={
+                <MenuOutlined
+                  style={{
+                    fontSize: 28,
+                    transform: 'translateY(7px)',
+                  }}
+                />
+              }>
+              <Menu.Item key="0">
+                <Link to="/">
                   <span className="font-weight-500 m-r-5 Header-View-text">
-                    Giỏ hàng
+                    Đơn hàng
                   </span>
-                  <ShoppingCartOutlined className="Header-View-icon" />
-                  <Badge
-                    size="small"
-                    count={totalItemCarts(carts)}
-                    overflowCount={9}
-                    offset={[-10, -20]}
-                  />
+                  <ReconciliationOutlined className="Header-View-icon" />
                 </Link>
-              </Dropdown>
-            </Menu.Item>
-          </Menu>
+              </Menu.Item>
+              <Menu.Item key="1">
+                <Dropdown overlay={userActionMenu} placement="bottomRight">
+                  <Link
+                    to={
+                      isAuth ? constants.ROUTES.ACCOUNT : constants.ROUTES.LOGIN
+                    }>
+                    {!isAuth ? (
+                      <>
+                        <span className="font-weight-500 m-r-5 Header-View-text">
+                          Đăng nhập
+                        </span>
+                        <UserOutlined className="Header-View-icon" />
+                      </>
+                    ) : (
+                      <>
+                        <span className="font-weight-500 m-r-5 Header-View-text">
+                          {helpers.reduceProductName(user.fullName, 10)}
+                        </span>
+                        <Avatar src={user.avt ? user.avt : defaultAvt} />
+                      </>
+                    )}
+                  </Link>
+                </Dropdown>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Dropdown
+                  overlay={<CartView list={carts} />}
+                  placement="bottomLeft"
+                  arrow>
+                  <Link to={constants.ROUTES.CART}>
+                    <span className="font-weight-500 m-r-5 Header-View-text">
+                      Giỏ hàng
+                    </span>
+                    <ShoppingCartOutlined className="Header-View-icon" />
+                    <Badge
+                      size="small"
+                      count={totalItemCarts(carts)}
+                      overflowCount={9}
+                      offset={[-10, -20]}
+                    />
+                  </Link>
+                </Dropdown>
+              </Menu.Item>
+            </Menu>
+          </div>
         </div>
-      </div>
 
-      <div className="search-bar-responsive">
-        <Search placeholder="Tìm kiếm" onSearch={onSearch} enterButton />
-      </div>
-    </Header>
+        {/* search bar responsive */}
+        {isShowSearchBar && (
+          <div className="search-bar-responsive t-center">
+            <AutoComplete
+              onChange={(value) =>
+                setLinkSearch(helpers.formatQueryString(value))
+              }
+              defaultActiveFirstOption={[]}
+              className="w-60"
+              options={options}
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }>
+              <Input
+                maxLength={200}
+                size="large"
+                placeholder="Tìm sản phẩm, thương hiệu mong muốn ..."
+              />
+            </AutoComplete>
+            <Button type="primary btn-search" size="large">
+              <Link to={linkSearch === '' ? location : initLink + linkSearch}>
+                <SearchOutlined /> Tìm kiếm
+              </Link>
+            </Button>
+          </div>
+        )}
+      </Header>
+    </>
   );
 }
 

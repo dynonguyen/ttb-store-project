@@ -87,8 +87,22 @@ const convertProductType = (type = 0) => {
   }
 };
 
+// fn: xác định loại sản phẩm thông qua string
+const typeOfProduct = (str = '') => {
+  if (str === undefined || str === '') return [];
+  let typeList = [];
+  const strLow = str.toLowerCase();
+  const list = constants.PRODUCT_TYPES_VN;
+  for (let i = 0; i < list.length; ++i) {
+    if (strLow.includes(list[i].label.toLowerCase()))
+      typeList.push(list[i].type);
+  }
+  return typeList;
+};
+
 module.exports = {
   generateVerifyCode,
   isVerifyEmail,
   convertProductType,
+  typeOfProduct,
 };

@@ -33,6 +33,7 @@ const ROUTES = {
   ADMIN: '/admin',
   ACCOUNT: '/account',
   CART: '/cart',
+  SEARCH: '/search',
 };
 
 // FILTERS
@@ -59,7 +60,7 @@ const FILTER_BRAND_LAPTOP = [
     to: '/',
   },
   {
-    title: 'lenovo',
+    title: 'Lenovo',
     to: '/',
   },
   {
@@ -199,7 +200,6 @@ const FILTER_BUS_RAM = [
     title: '1600 MHz',
     to: '/',
   },
-
   {
     title: '2400 MHz',
     to: '/',
@@ -1263,6 +1263,274 @@ const FILTER_SERIES_MAINBOARD = [
   },
 ];
 
+// filter options list
+const FILTER_OPTION_LIST = [
+  // 0: LAPTOP
+  {
+    key: 0,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_LAPTOP,
+      },
+      {
+        title: 'Kích thước',
+        subFilters: FILTER_SIZE_LAPTOP,
+      },
+      {
+        title: 'Laptop theo giá',
+        subFilters: FILTER_PRICE_LAPTOP,
+      },
+      {
+        title: 'Cấu hình chip',
+        subFilters: FILTER_CHIP_LAPTOP,
+      },
+      {
+        title: 'Linh kiện laptop',
+        subFilters: FILTER_ACCESSORY_LAPTOP,
+      },
+    ],
+  },
+  // 1: DISK
+  {
+    key: 1,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_DISK,
+      },
+      {
+        title: 'Ổ cứng theo loại',
+        subFilters: FILTER_TYPE_DISK,
+      },
+      {
+        title: 'Dung lượng',
+        subFilters: FILTER_CAPACITY_DISK,
+      },
+      {
+        title: 'Chuẩn kêt nối',
+        subFilters: FILTER_CONNECT_STD_DISK,
+      },
+      {
+        title: 'Kích thước',
+        subFilters: FILTER_SIZE_DISK,
+      },
+    ],
+  },
+  // 2: RAM
+  {
+    key: 2,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_RAM,
+      },
+      {
+        title: 'RAM theo bus',
+        subFilters: FILTER_BUS_RAM,
+      },
+      {
+        title: 'Dung lượng',
+        subFilters: FILTER_CAPACITY_RAM,
+      },
+      {
+        title: 'Thế hệ RAM',
+        subFilters: FILTER_GENERATION_RAM,
+      },
+    ],
+  },
+  // 3: MONITOR
+  {
+    key: 3,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_MONITOR,
+      },
+      {
+        title: 'Tấm nền',
+        subFilters: FILTER_GB_PLATE_MONITOR,
+      },
+      {
+        title: 'Độ phân giải',
+        subFilters: FILTER_RESOLUTON_MONITOR,
+      },
+      {
+        title: 'Kích thước',
+        subFilters: FILTER_SIZE_MONITOR,
+      },
+      {
+        title: 'Tần số quét',
+        subFilters: FILTER_FREQUENCY_MONITOR,
+      },
+    ],
+  },
+  // 4: DISPLAY
+  {
+    key: 4,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_DISPLAY,
+      },
+      {
+        title: 'Dung lượng',
+        subFilters: FILTER_CAPACITY_DISPLAY,
+      },
+      {
+        title: 'Nhà sản xuất',
+        subFilters: FILTER_MANUFACTURER_DISPLAY,
+      },
+    ],
+  },
+  // 5: MOBILE
+  {
+    key: 5,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_MOBILE,
+      },
+      {
+        title: 'Theo giá',
+        subFilters: FILTER_PRICE_MOBILE,
+      },
+      {
+        title: 'Bộ nhớ trong',
+        subFilters: FILTER_ROM_MOBILE,
+      },
+      {
+        title: 'Dung lượng RAM',
+        subFilters: FILTER_RAM_MOBILE,
+      },
+      {
+        title: 'Phụ kiện điện thoại',
+        subFilters: FILTER_ACCESSORY_MOBILE,
+      },
+    ],
+  },
+  // 6: MOUSE - KEYBOARD
+  {
+    key: 6,
+    data: [
+      {
+        title: 'Chuột theo thương hiệu',
+        subFilters: FILTER_BRAND_MOUSE,
+      },
+      {
+        title: 'Chuột theo loại',
+        subFilters: FILTER_TYPE_MOUSE,
+      },
+      {
+        title: 'Bàn phím theo thương hiệu',
+        subFilters: FILTER_BRAND_KEYBOARD,
+      },
+      {
+        title: 'Loại bàn phím',
+        subFilters: FILTER_TYPE_KEYBOARD,
+      },
+      {
+        title: 'Màu bàn phím',
+        subFilters: FILTER_COLOR_KEYBOARD,
+      },
+      {
+        title: 'Led bàn phím',
+        subFilters: FILTER_LED_KEYBOARD,
+      },
+    ],
+  },
+  // 7: HEADPHONE
+  {
+    key: 7,
+    data: [
+      {
+        title: 'Loại tai nghe',
+        subFilters: FILTER_TYPE_HEADPHONE,
+      },
+      {
+        title: 'Chuẩn kết nối',
+        subFilters: FILTER_CONNECT_STD_HEADPHONE,
+      },
+    ],
+  },
+  // 8: ROUTER
+  {
+    key: 8,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_ROUTER,
+      },
+      {
+        title: 'Băngt thông',
+        subFilters: FILTER_BANDWIDTH_ROUTER,
+      },
+      {
+        title: 'Độ mạnh ăng-ten',
+        subFilters: FILTER_STRONG_ROUTER,
+      },
+    ],
+  },
+  // 9: SPEAKER
+  {
+    key: 9,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_SPEAKER,
+      },
+      {
+        title: 'Công suất tổng',
+        subFilters: FILTER_WATTAGE_SPEAKER,
+      },
+      {
+        title: 'Chuẩn kết nối',
+        subFilters: FILTER_CONNECT_STD_SPEAKER,
+      },
+    ],
+  },
+  // 10: CAMERA
+  {
+    key: 10,
+    data: [
+      {
+        title: 'Camera theo thương hiệu',
+        subFilters: FILTER_BRAND_CAMERA,
+      },
+      {
+        title: 'Camera hành trình',
+        subFilters: FILTER_OTHER_CAMERA,
+      },
+    ],
+  },
+  // 11: MAINBOARD
+  {
+    key: 11,
+    data: [
+      {
+        title: 'Thương hiệu',
+        subFilters: FILTER_BRAND_MAINBOARD,
+      },
+      {
+        title: 'Chipset',
+        subFilters: FILTER_CHIPSET_MAINBOARD,
+      },
+      {
+        title: 'Chuẩn kích thước',
+        subFilters: FILTER_SIZE_STD_MAINBOARD,
+      },
+      {
+        title: 'Socket',
+        subFilters: FILTER_SOCKET_MAINBOARD,
+      },
+      {
+        title: 'Series mainboard',
+        subFilters: FILTER_SERIES_MAINBOARD,
+      },
+    ],
+  },
+];
+
 export default {
   REFRESH_TOKEN_KEY: 'refresh_token',
   MAX_VERIFY_CODE: 6,
@@ -1338,4 +1606,5 @@ export default {
   FILTER_SOCKET_MAINBOARD,
   FILTER_CHIPSET_MAINBOARD,
   FILTER_SIZE_STD_MAINBOARD,
+  FILTER_OPTION_LIST,
 };
