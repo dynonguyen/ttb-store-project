@@ -33,6 +33,7 @@ const ROUTES = {
   ADMIN: '/admin',
   ACCOUNT: '/account',
   CART: '/cart',
+  SEARCH: '/search',
 };
 
 // FILTERS

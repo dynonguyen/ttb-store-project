@@ -1,12 +1,11 @@
 import { Button, Col, InputNumber, Row, Spin } from 'antd';
 import productNotFoundUrl from 'assets/imgs/no-products-found.png';
 import ProductView from 'components/ProductView';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import productApi from 'apis/productApi';
-import './index.scss';
 import helpers from 'helpers';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './index.scss';
 
 // fn: hàm tính tổng lượt đánh giá sản phẩm
 function sumRate(rates = []) {
@@ -15,7 +14,7 @@ function sumRate(rates = []) {
 
 function ResultSearch(props) {
   const { initList } = props;
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([...initList]);
   const [isLoading, setIsLoading] = useState(false);
   const [price, setPrice] = useState({ from: 0, to: 0 });
   const [sortBtnActive, setSortBtnActive] = useState(0);
@@ -32,7 +31,7 @@ function ResultSearch(props) {
     if (type) {
       if (type === sortBtnActive) {
         // trả về danh sách ban đầu
-        setList(initList);
+        setList([...initList]);
         setSortBtnActive(0);
         return;
       } else {
@@ -41,7 +40,7 @@ function ResultSearch(props) {
         setSortBtnActive(type);
       }
 
-      let newList = initList;
+      let newList = [];
       switch (type) {
         // theo giá giảm dần
         case 1:
@@ -167,6 +166,8 @@ function ResultSearch(props) {
           </div>
         </div>
       </Col>
+
+      {/* render list */}
       <Col span={24} className="Result-Search-list p-16">
         {!list || list.length === 0 ? (
           <div className="trans-center d-flex flex-direction-column pos-relative">

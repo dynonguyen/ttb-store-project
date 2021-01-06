@@ -50,7 +50,7 @@ const routes = [
     main: () => <NotFound />,
   },
   {
-    path: '/search',
+    path: constants.ROUTES.SEARCH,
     exact: true,
     main: () => <SearchFilterPage />,
   },

@@ -1,5 +1,35 @@
 import constants from 'constants/index';
 
+// fn: query string: ?t=0&key=1 => [{ t:0 }, { key: 1 }]
+const queryString = (query = '') => {
+  if (!query || query === '') return [];
+  let result = [];
+  let q = query;
+  // xoá ký tự '?' nếu có
+  if (q[0] === '?') q = q.slice(1, q.length);
+  // tách các cụm query ['t=0', 'key=1']
+  const queryList = q.split('&');
+  result = queryList.map((str) => {
+    let res = {};
+    let temp = str.split('=');
+    if (temp.length <= 1) res[temp[0]] = '';
+    else res[temp[0]] = temp[1];
+    return res;
+  });
+
+  return result;
+};
+
+// fn: định dạng chuỗi truy vấn
+const formatQueryString = (str = '') => {
+  let result = str;
+  // xoá tất cả ký tự đặc biệt
+  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\{\}\[\]\\\/]/gi, '');
+  // thay khoảng trắng thành dấu cộng
+  result = result.replace(/[\s]/gi, '+');
+  return result;
+};
+
 // fn: hàm rút gọn tên sản phẩm
 const reduceProductName = (name, length = 64) => {
   let result = name;
@@ -240,7 +270,8 @@ const randomColor = () => {
 const autoSearchOptions = () => {
   let result = [];
   // laptop
-  result.push({ value: 'Laptop Macbook' });
+  result.push({ value: 'Laptop' });
+  result.push({ value: 'Macbook' });
   result.push({ value: 'RAM' });
   result.push({ value: 'Ổ cứng SSD' });
   result.push({ value: 'Máy ảnh Sony' });
@@ -302,6 +333,8 @@ const autoSearchOptions = () => {
 };
 
 export default {
+  formatQueryString,
+  queryString,
   reduceProductName,
   formatProductPrice,
   calStar,

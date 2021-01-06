@@ -22,11 +22,10 @@ import constants from 'constants/index';
 import helpers from 'helpers';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CartView from './CartView';
 import './index.scss';
 const { Header } = Layout;
-const { Search } = Input;
 
 function totalItemCarts(carts) {
   if (carts) {
@@ -40,6 +39,11 @@ function HeaderView() {
   const carts = useSelector((state) => state.carts);
   const options = helpers.autoSearchOptions();
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
+
+  // state search
+  const location = useLocation().pathname;
+  const initLink = '/search?t=1&keyword=';
+  const [linkSearch, setLinkSearch] = useState('');
 
   // event: log out
   const onLogout = async () => {
@@ -90,14 +94,6 @@ function HeaderView() {
     </Menu>
   );
 
-  // event: tìm kiếm
-  const onSearch = async (value) => {
-    try {
-      if (!value) return;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   // rendering ...
   return (
     <>
@@ -119,6 +115,9 @@ function HeaderView() {
                 <AutoComplete
                   className="trans-center w-100"
                   options={options}
+                  onChange={(value) =>
+                    setLinkSearch(helpers.formatQueryString(value))
+                  }
                   filterOption={(inputValue, option) =>
                     option.value
                       .toUpperCase()
@@ -131,7 +130,10 @@ function HeaderView() {
                   />
                 </AutoComplete>
                 <Button type="primary btn-search" size="large">
-                  <SearchOutlined /> Tìm kiếm
+                  <Link
+                    to={linkSearch === '' ? location : initLink + linkSearch}>
+                    <SearchOutlined /> Tìm kiếm
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -218,6 +220,10 @@ function HeaderView() {
         {isShowSearchBar && (
           <div className="search-bar-responsive t-center">
             <AutoComplete
+              onChange={(value) =>
+                setLinkSearch(helpers.formatQueryString(value))
+              }
+              defaultActiveFirstOption={[]}
               className="w-60"
               options={options}
               filterOption={(inputValue, option) =>
@@ -231,7 +237,9 @@ function HeaderView() {
               />
             </AutoComplete>
             <Button type="primary btn-search" size="large">
-              <SearchOutlined /> Tìm kiếm
+              <Link to={linkSearch === '' ? location : initLink + linkSearch}>
+                <SearchOutlined /> Tìm kiếm
+              </Link>
             </Button>
           </div>
         )}
