@@ -7,23 +7,24 @@
   z-index: 999;
   &.ant-layout-header {
     background-color: $color-primary;
+    height: 72px;
+    line-height: 72px;
+  }
+  .ant-menu-horizontal {
+    border-bottom: none !important;
   }
   .ant-menu-light {
     background-color: $color-primary;
     color: $text-color-primary;
     height: 64px;
   }
-  .ant-btn-primary {
-    background-color: #3a5dd9;
-    border: none;
-    &:hover,
-    &:active {
-      -webkit-filter: brightness(1.2);
-      filter: brightness(1.2);
-    }
-  }
+
   .ant-menu-item {
     margin: 0px 8px !important;
+  }
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover {
+    color: #3a5dd9 !important;
+    border-bottom: 2px solid #3a5dd9 !important;
   }
   &-icon {
     font-size: 32px !important;
@@ -31,6 +32,9 @@
   }
   .ant-menu-item a {
     color: $icon-color-primary;
+    &:hover {
+      color: #3a5dd9 !important;
+    }
   }
   .ant-menu-submenu {
     color: $color-secondary;
@@ -40,23 +44,23 @@
     transform: translateY(2px);
     color: $color-secondary;
   }
-  .search-bar {
-    transform: translateY(35px);
-    margin-right: 20px !important;
-  }
   .search-bar-responsive {
     display: none;
   }
   .anticon-menu {
     color: #9b9b9b;
     &:hover {
-      color: #1890ff;
+      color: #3a5dd9;
     }
   }
   .ant-menu {
     .anticon {
       margin: 0 !important;
     }
+  }
+  .ant-input {
+    background-color: #f3f4f5;
+    border-color: #eee;
   }
 }
 
@@ -78,37 +82,25 @@
 
 @media only screen and (max-width: 768px) {
   .Header-View {
-    &-text {
-      display: inherit;
+    .search-bar-responsive {
+      display: block;
     }
-    .logo-TTB {
-      margin: auto;
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .Header-View {
     .search-icon {
-      display: inline-block;
+      display: flex;
       color: #9b9b9b;
       &:hover,
       &:active {
-        color: #19c2ff;
+        color: #3a5dd9;
       }
-    }
-    .search-bar {
-      display: none;
-    }
-    .search-bar-responsive {
-      display: block;
-      height: 48px;
-    }
-    &.ant-layout-header {
-      height: 112px;
     }
     &-text {
       display: inline-block;
+    }
+    .search-bar-wrapper {
+      display: none;
+    }
+    &-text {
+      display: inherit;
     }
   }
 }

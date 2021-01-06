@@ -20,6 +20,12 @@ const productApi = {
     const url = PRODUCT_API_URL + '/all';
     return axiosClient.get(url, { params: { page, perPage } });
   },
+
+  // api: tìm kiếm sản phẩm
+  getSearchProducts: (value = '', page = 1, perPage = 8) => {
+    const url = PRODUCT_API_URL + '/search';
+    return axiosClient.get(url, { params: { value, page, perPage } });
+  },
 };
 
 export default productApi;

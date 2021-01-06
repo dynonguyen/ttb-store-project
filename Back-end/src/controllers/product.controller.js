@@ -1,3 +1,4 @@
+const { Model } = require('mongoose');
 const helpers = require('../helpers');
 const ProductDescModel = require('../models/product.models/description.model');
 const ProductModel = require('../models/product.models/product.model');
@@ -62,8 +63,40 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
+// api: tìm kiếm sản phẩm
+const getSearchProducts = async (req, res, next) => {
+  try {
+    let { value, page, perPage } = req.query;
+
+    // pagination
+    if (!page) page = 1;
+    if (!perPage) perPage = 8;
+    const nSkip = (parseInt(page) - 1) * perPage;
+
+    // query
+    const numOfProduct = await ProductModel.find({
+      $text: { $search: `"${value}"` },
+    }).countDocuments();
+
+    const result = await ProductModel.find({
+      $text: { $search: `"${value}"` },
+    })
+      .skip(nSkip)
+      .limit(parseInt(perPage));
+
+    // return
+    if (result) {
+      return res.status(200).json({ count: numOfProduct, data: result });
+    }
+  } catch (error) {
+    console.error('Search product error: ', error);
+    return res.status(400).json({ count: 0, data: [] });
+  }
+};
+
 module.exports = {
   getProduct,
   getProductList,
   getAllProducts,
+  getSearchProducts,
 };
