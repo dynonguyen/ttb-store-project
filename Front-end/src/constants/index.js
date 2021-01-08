@@ -34,6 +34,7 @@ const ROUTES = {
   ACCOUNT: '/account',
   CART: '/cart',
   SEARCH: '/search',
+  FILTER: '/filter',
 };
 
 // FILTERS
@@ -41,113 +42,113 @@ const ROUTES = {
 const FILTER_BRAND_LAPTOP = [
   {
     title: 'Apple',
-    to: '/',
+    to: 'apple',
   },
   {
     title: 'Acer',
-    to: '/',
+    to: 'acer',
   },
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'Dell',
-    to: '/',
+    to: 'dell',
   },
   {
     title: 'HP',
-    to: '/',
+    to: 'hp',
   },
   {
     title: 'Lenovo',
-    to: '/',
+    to: 'lenovo',
   },
   {
     title: 'LG',
-    to: '/',
+    to: 'lg',
   },
   {
     title: 'MSI',
-    to: '/',
+    to: 'msi',
   },
 ];
 const FILTER_SIZE_LAPTOP = [
   {
     title: 'Dưới 13 inch',
-    to: '/',
+    to: `duoi_13_inch`,
   },
   {
     title: 'Từ 13 đến 15 inch',
-    to: '/',
+    to: `tu_13_den_15_inch`,
   },
   {
     title: 'Trên 15 inch',
-    to: '/',
+    to: `tren_15_inch`,
   },
 ];
 const FILTER_PRICE_LAPTOP = [
   {
     title: 'Dưới 10 triệu',
-    to: '/',
+    to: `nhohon-10tr`,
   },
   {
     title: 'Từ 10 - 15 triệu',
-    to: '/',
+    to: `lonhon-10tr,nhohon-15tr`,
   },
   {
     title: 'Từ 15 - 20 triệu',
-    to: '/',
+    to: `lonhon-15tr,nhohon-20tr`,
   },
   {
     title: 'Từ 20 - 30 triệu',
-    to: '/',
+    to: `lonhon-20tr,nhohon-30tr`,
   },
   {
     title: 'Từ 30 - 50 triệu',
-    to: '/',
+    to: `lonhon-30tr,nhohon-50tr`,
   },
   {
     title: 'Trên 50 triệu',
-    to: '/',
+    to: `lonhon-50tr`,
   },
 ];
 const FILTER_CHIP_LAPTOP = [
   {
     title: 'Intel Core i3',
-    to: '/',
+    to: '0',
   },
   {
     title: 'Intel Core i5',
-    to: '/',
+    to: '1',
   },
   {
     title: 'Intel Core i7',
-    to: '/',
+    to: '2',
   },
   {
     title: 'Intel Core i9',
-    to: '/',
+    to: '3',
   },
   {
     title: 'AMD Ryzen 3',
-    to: '/',
+    to: '4',
   },
   {
     title: 'AMD Ryzen 5',
-    to: '/',
+    to: '5',
   },
   {
     title: 'AMD Ryzen 7',
-    to: '/',
+    to: '6',
   },
   {
     title: 'Pentium',
-    to: '/',
+    to: '7',
   },
   {
     title: 'Celeron',
-    to: '/',
+    to: '8',
   },
 ];
 const FILTER_ACCESSORY_LAPTOP = [
@@ -277,127 +278,123 @@ const FILTER_GENERATION_RAM = [
 const FILTER_BRAND_DISK = [
   {
     title: 'SAMSUNG',
-    to: '/',
+    to: 'samsung',
   },
   {
     title: 'GIGABYTE',
-    to: '/',
+    to: 'gigabyte',
   },
   {
     title: 'WD',
-    to: '/',
+    to: 'wd',
   },
   {
     title: 'ORICO',
-    to: '/',
+    to: 'orico',
   },
   {
     title: 'KINGSTON',
-    to: '/',
+    to: 'kington',
   },
   {
     title: 'LACIE',
-    to: '/',
+    to: 'lacie',
   },
   {
     title: 'SEAGATE',
-    to: '/',
+    to: 'seagate',
   },
   {
     title: 'CRUCIAL',
-    to: '/',
+    to: 'crucial',
   },
 ];
 const FILTER_CAPACITY_DISK = [
   {
     title: '128 GB',
-    to: '/',
+    to: '128GB',
   },
   {
     title: '256 GB',
-    to: '/',
+    to: '256GB',
   },
   {
     title: '512 GB',
-    to: '/',
+    to: '512GB',
   },
   {
     title: '1 TB',
-    to: '/',
+    to: '1000GB',
   },
   {
     title: '2 TB',
-    to: '/',
+    to: '2000GB',
   },
   {
     title: '4 TB',
-    to: '/',
+    to: '4000GB',
   },
   {
     title: '6 TB',
-    to: '/',
+    to: '6000GB',
   },
   {
     title: '120 GB',
-    to: '/',
+    to: '120GB',
   },
   {
     title: '240 GB',
-    to: '/',
+    to: '240GB',
   },
   {
     title: '500 GB',
-    to: '/',
+    to: '500GB',
   },
 ];
 const FILTER_CONNECT_STD_DISK = [
   {
     title: 'SATA 3',
-    to: '/',
+    to: '0',
   },
   {
     title: 'USB 3.0',
-    to: '/',
-  },
-  {
-    title: 'M.2 NVme',
-    to: '/',
-  },
-  {
-    title: 'USB Type C',
-    to: '/',
+    to: '1',
   },
   {
     title: 'M.2 SATA',
-    to: '/',
+    to: '2',
+  },
+  {
+    title: 'M.2 NVme',
+    to: '3',
   },
 ];
 const FILTER_SIZE_DISK = [
   {
     title: '2.5"',
-    to: '/',
+    to: `2.5"`,
   },
   {
     title: '3.5"',
-    to: '/',
+    to: `3.5"`,
   },
   {
     title: 'M.2 2280',
-    to: '/',
+    to: `M.2 2280`,
   },
   {
     title: 'M.2',
-    to: '/',
+    to: `M.2`,
   },
 ];
 const FILTER_TYPE_DISK = [
   {
     title: 'SSD',
-    to: '/',
+    to: 'SSD',
   },
   {
     title: 'HDD',
-    to: '/',
+    to: 'HDD',
   },
 ];
 // camera
@@ -1268,52 +1265,59 @@ const FILTER_OPTION_LIST = [
   // 0: LAPTOP
   {
     key: 0,
+    root: `${ROUTES.FILTER}?t=0`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_LAPTOP,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Kích thước',
         subFilters: FILTER_SIZE_LAPTOP,
+        query: 'reg-kich_thuoc_man_hinh=',
       },
       {
         title: 'Laptop theo giá',
         subFilters: FILTER_PRICE_LAPTOP,
+        query: 'p-o-gia=',
       },
       {
         title: 'Cấu hình chip',
         subFilters: FILTER_CHIP_LAPTOP,
-      },
-      {
-        title: 'Linh kiện laptop',
-        subFilters: FILTER_ACCESSORY_LAPTOP,
+        query: 'the_he_chip=',
       },
     ],
   },
   // 1: DISK
   {
     key: 1,
+    root: `${ROUTES.FILTER}?t=1`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_DISK,
+        query: 'p-reg-brand=',
       },
       {
         title: 'Ổ cứng theo loại',
         subFilters: FILTER_TYPE_DISK,
+        query: 'loai=',
       },
       {
         title: 'Dung lượng',
         subFilters: FILTER_CAPACITY_DISK,
+        query: 'dungluong=',
       },
       {
         title: 'Chuẩn kêt nối',
         subFilters: FILTER_CONNECT_STD_DISK,
+        query: 'chuan_ket_noi=',
       },
       {
         title: 'Kích thước',
         subFilters: FILTER_SIZE_DISK,
+        query: 'kich_thuoc=',
       },
     ],
   },
@@ -1531,6 +1535,31 @@ const FILTER_OPTION_LIST = [
   },
 ];
 
+// các cặp chuyển đổi url
+const PAIR_CONVERT_KEY = [
+  { l: `lonhon-`, r: `"$gte":` },
+  { l: `nhohon-`, r: `"$lt":` },
+  { l: `thuong_hieu`, r: `brand` },
+  { l: `kich_thuoc_man_hinh`, r: `displaySize` },
+  { l: `gia`, r: `price` },
+  { l: `the_he_chip`, r: `cpu.series` },
+  { l: `duoi_13_inch`, r: `(1[0-2]\.[0-9]\")` },
+  { l: `tu_13_den_15_inch`, r: `(1[3-5]\.[0-9]\")` },
+  { l: `tren_15_inch`, r: `([2-9][3-5]\.[0-9]\")` },
+  { l: `GB`, r: '' },
+  { l: `loai`, r: `type` },
+  { l: `dungluong`, r: `capacity` },
+  { l: `chuan_ket_noi`, r: `connectionStd` },
+  { l: `kich_thuoc`, r: `size` },
+  { l: `SSD`, r: `1` },
+  { l: `HDD`, r: `0` },
+  { l: `2.5"`, r: `0` },
+  { l: `3.5"`, r: `1` },
+  { l: `M.2 2280`, r: `2` },
+  { l: `M.2`, r: `3` },
+  { l: `tr`, r: `000000` },
+];
+
 export default {
   REFRESH_TOKEN_KEY: 'refresh_token',
   MAX_VERIFY_CODE: 6,
@@ -1607,4 +1636,5 @@ export default {
   FILTER_CHIPSET_MAINBOARD,
   FILTER_SIZE_STD_MAINBOARD,
   FILTER_OPTION_LIST,
+  PAIR_CONVERT_KEY,
 };

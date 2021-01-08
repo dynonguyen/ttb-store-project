@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const monitorSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // tấm nền màn hình: 0 - IPS, 1 - VA, 2 - TN, 3 - PLS, 4 - MVA, 5 - KHT
   bgPlate: { type: Number, enum: [...Array(6).keys()], default: 0 },

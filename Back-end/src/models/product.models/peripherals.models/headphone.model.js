@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const headphoneSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // kiểu tai nghe 0 - Over-ear, 1 - In-ear, 2 - On-ear, 3 - KHT
   type: {

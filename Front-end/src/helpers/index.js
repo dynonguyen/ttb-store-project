@@ -1,5 +1,14 @@
 import constants from 'constants/index';
 
+// fn: chuyển đổi 1 số keyword sang mongo key, ex: "lonhon-" => "$gte:"
+const replaceMongoKeyword = (value = '') => {
+  let result = value;
+  constants.PAIR_CONVERT_KEY.forEach((pair) => {
+    result = result.replace(pair.l, pair.r);
+  });
+  return result;
+};
+
 // fn: query string: ?t=0&key=1 => [{ t:0 }, { key: 1 }]
 const queryString = (query = '') => {
   if (!query || query === '') return [];
@@ -18,6 +27,48 @@ const queryString = (query = '') => {
   });
 
   return result;
+};
+
+// fn: phân tích query param url
+// vd: key = p-reg-brand, value = Apple => {brand: {$regex: /^Apple$/i}}
+// option p- là thuộc tính trong Product Model
+const analysisQuery = (key = '', value = '') => {
+  try {
+    if (key === '') return;
+    let result = {};
+
+    // split '-' => ["p", "reg", "brand"]
+    const options = key.split('-');
+
+    // lấy main key là phần tử cuối trong mảng
+    const mainKey = options[options.length - 1];
+
+    // nếu tồn tại "p" thì là thuộc tính của product model
+    const isProductAttr = options.indexOf('p') === -1 ? false : true;
+
+    // nếu tồn tại "reg" tức là chuỗi cần bỏ vào regex
+    const isRegex = options.indexOf('reg');
+    const isObject = options.indexOf('o');
+    if (isRegex !== -1) {
+      // giá trị value là 1 regex
+      const newObj = {};
+      newObj[mainKey] = { $regex: `${value}` };
+      Object.assign(result, newObj);
+    } else if (isObject !== -1) {
+      //  giá trị value là 1 object
+      const newObj = JSON.parse(`{${value}}`);
+      result[mainKey] = newObj;
+    } else {
+      result[mainKey] = `${value}`;
+    }
+
+    // return
+    return { isProductAttr, result };
+  } catch (error) {
+    // error
+    console.log(error);
+    return { isProductAttr: true, result: {} };
+  }
 };
 
 // fn: định dạng chuỗi truy vấn
@@ -642,8 +693,10 @@ const convertProductValue = (type = 0, product) => {
 };
 
 export default {
+  replaceMongoKeyword,
   formatQueryString,
   queryString,
+  analysisQuery,
   convertProductValue,
   reduceProductName,
   formatProductPrice,

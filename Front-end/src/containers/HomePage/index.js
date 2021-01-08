@@ -9,6 +9,13 @@ import './index.scss';
 import SaleOff from './SaleOff';
 
 function HomePage() {
+  // kéo về đầu trang
+  document.querySelector('body').scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
   return (
     <div className="Home">
       {/* Carousel cho sale off */}

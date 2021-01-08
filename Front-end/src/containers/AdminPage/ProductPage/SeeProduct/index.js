@@ -4,7 +4,7 @@ import {
   EyeOutlined,
   WarningOutlined,
 } from '@ant-design/icons';
-import { message, Pagination, Table, Tooltip } from 'antd';
+import { message, Pagination, Spin, Table, Tooltip } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import adminApi from 'apis/adminApi';
 import productApi from 'apis/productApi';
@@ -23,10 +23,8 @@ function generateFilterType() {
 function SeeProduct() {
   const [editModal, setEditModal] = useState({ visible: false, product: null });
   const [modalDel, setModalDel] = useState({ visible: false, _id: '' });
+  const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
-  const perPage = 10;
 
   // event: xoá sản phẩm
   const onDelete = async (_id) => {
@@ -52,21 +50,23 @@ function SeeProduct() {
     setEditModal({ visible: false });
   };
 
-  // event: Lấy danh sách sản phẩm
+  // event: Lấy toàn bộ danh sách sản phẩm
   useEffect(() => {
     let isSubscribe = true;
+    setIsLoading(true);
     async function getProductList() {
       try {
-        const response = await productApi.getAllProducts(page, perPage);
+        const response = await productApi.getAllProducts(-1);
         if (response && isSubscribe) {
           const { data } = response.data;
           const list = data.map((item, index) => {
             return { ...item, key: index };
           });
           setList(list);
-          setTotal(response.data.count);
+          setIsLoading(false);
         }
       } catch (error) {
+        if (isSubscribe) setIsLoading(false);
         message.error('Lấy danh sách sản phẩm thất bại.');
       }
     }
@@ -75,7 +75,7 @@ function SeeProduct() {
     return () => {
       isSubscribe = false;
     };
-  }, [page]);
+  }, []);
 
   // Cột của bảng
   const columns = [
@@ -121,6 +121,11 @@ function SeeProduct() {
       title: 'Thương hiệu',
       key: 'brand',
       dataIndex: 'brand',
+      sorter: (a, b) => {
+        if (a.brand < b.brand) return -1;
+        if (a.brand > b.brand) return 1;
+        return 0;
+      },
       render: (brand) => (
         <Tooltip title={brand}>{helpers.reduceProductName(brand, 40)}</Tooltip>
       ),
@@ -183,45 +188,51 @@ function SeeProduct() {
 
   // rendering ...
   return (
-    <>
-      {/* modal confirm delete product */}
-      <Modal
-        title="Xác nhận xoá sản phẩm"
-        visible={modalDel.visible}
-        onOk={() => {
-          onDelete(modalDel._id);
-          setModalDel({ visible: false, _id: false });
-        }}
-        onCancel={() => setModalDel({ visible: false, _id: false })}
-        okButtonProps={{ danger: true }}
-        okText="Xoá"
-        cancelText="Huỷ bỏ">
-        <WarningOutlined style={{ fontSize: 28, color: '#F7B217' }} />
-        <b> Không thể khôi phục được, bạn có chắc muốn xoá ?</b>
-      </Modal>
-      {/* table show product list */}
-      <Table
-        pagination={false}
-        className="admin-see-product"
-        columns={columns}
-        dataSource={list}
-      />
-      {/* pagination */}
-      <Pagination
-        className="p-tb-32 t-center"
-        current={page}
-        onChange={(p) => setPage(p)}
-        showSizeChanger={false}
-        total={total}
-        pageSize={perPage}
-      />
-      {/* edit product modal */}
-      <EditProductModal
-        visible={editModal.visible}
-        onClose={(value) => onCloseEditModal(value)}
-        product={editModal.product}
-      />
-    </>
+    <div className="pos-relative">
+      {isLoading ? (
+        <Spin
+          tip="Đang tải danh sách sản phẩm ..."
+          size="large"
+          className="trans-center"
+        />
+      ) : (
+        <>
+          {' '}
+          {/* modal confirm delete product */}
+          <Modal
+            title="Xác nhận xoá sản phẩm"
+            visible={modalDel.visible}
+            onOk={() => {
+              onDelete(modalDel._id);
+              setModalDel({ visible: false, _id: false });
+            }}
+            onCancel={() => setModalDel({ visible: false, _id: false })}
+            okButtonProps={{ danger: true }}
+            okText="Xoá"
+            cancelText="Huỷ bỏ">
+            <WarningOutlined style={{ fontSize: 28, color: '#F7B217' }} />
+            <b> Không thể khôi phục được, bạn có chắc muốn xoá ?</b>
+          </Modal>
+          {/* table show product list */}
+          <Table
+            pagination={{
+              pageSize: 10,
+              position: ['bottomCenter'],
+              showSizeChanger: false,
+            }}
+            className="admin-see-product"
+            columns={columns}
+            dataSource={list}
+          />
+          {/* edit product modal */}
+          <EditProductModal
+            visible={editModal.visible}
+            onClose={(value) => onCloseEditModal(value)}
+            product={editModal.product}
+          />
+        </>
+      )}
+    </div>
   );
 }
 

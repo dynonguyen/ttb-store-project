@@ -61,11 +61,12 @@ li {
 }
 
 .ant-btn-primary {
-  background-color: #3a5dd9 !important;
+  background-color: #3a5dd9;
   &:hover,
   &:active {
-    -webkit-filter: brightness(1.2) !important;
-    filter: brightness(1.2) !important;
+    background-color: #3a5dd9;
+    -webkit-filter: brightness(1.2);
+    filter: brightness(1.2);
   }
-  border: none !important;
+  border: none;
 }

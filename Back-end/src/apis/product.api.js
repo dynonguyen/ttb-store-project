@@ -13,4 +13,7 @@ productApi.get('/all', productController.getAllProducts);
 // api: tìm kiếm sản phẩm
 productApi.get('/search', productController.getSearchProducts);
 
+// api: lọc sản phẩm
+productApi.get('/filter', productController.getFilterProducts);
+
 module.exports = productApi;

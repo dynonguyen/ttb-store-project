@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const backupChargerSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // dung lượng tính theo mAh
   capacity: { type: Number, required: true, default: 5000 },

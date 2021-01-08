@@ -42,7 +42,7 @@ function HeaderView() {
 
   // state search
   const location = useLocation().pathname;
-  const initLink = '/search?t=1&keyword=';
+  const initLink = '/search?keyword=';
   const [linkSearch, setLinkSearch] = useState('');
 
   // event: log out
@@ -86,11 +86,13 @@ function HeaderView() {
           </Button>
         </Link>
       </Menu.Item>
-      <Menu.Item>
-        <Button size="large" className="w-100 btn-secondary" type="default">
-          Quản lý Tài khoản
-        </Button>
-      </Menu.Item>
+      {isAuth && (
+        <Menu.Item>
+          <Button size="large" className="w-100 btn-secondary" type="default">
+            Quản lý Tài khoản
+          </Button>
+        </Menu.Item>
+      )}
     </Menu>
   );
 
@@ -196,7 +198,7 @@ function HeaderView() {
               <Menu.Item key="2">
                 <Dropdown
                   overlay={<CartView list={carts} />}
-                  placement="bottomLeft"
+                  placement="bottomRight"
                   arrow>
                   <Link to={constants.ROUTES.CART}>
                     <span className="font-weight-500 m-r-5 Header-View-text">

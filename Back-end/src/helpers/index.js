@@ -100,9 +100,28 @@ const typeOfProduct = (str = '') => {
   return typeList;
 };
 
+// fn: chuyển object chứa regex dạng string, ex: {$regex: '/^apple$/i'} => {$regex: /^apple$/i}
+const convertObjectContainsRegex = (obj) => {
+  const newObj = { ...obj };
+  for (let key in newObj) {
+    if (typeof newObj[key] === 'object') {
+      for (const k in newObj[key]) {
+        if (k === '$regex' && typeof newObj[key][k] === 'string') {
+          newObj[key][k] = new RegExp(newObj[key][k], 'gi');
+        }
+      }
+    }
+    if (key === '$regex' && typeof newObj[key] === 'string') {
+      newObj[key] = new RegExp(newObj, 'gi');
+    }
+  }
+  return newObj;
+};
+
 module.exports = {
   generateVerifyCode,
   isVerifyEmail,
   convertProductType,
   typeOfProduct,
+  convertObjectContainsRegex,
 };

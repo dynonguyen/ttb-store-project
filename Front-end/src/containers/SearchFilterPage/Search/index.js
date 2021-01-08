@@ -1,29 +1,24 @@
 import ResultSearch from 'components/ResultSearch';
-import ProductCarousel from './ProductCarousel';
+import ProductCarousel from '../ProductCarousel';
 import React, { useEffect, useState } from 'react';
-import FilterOptions from './FilterOptions';
+import FilterOptions from '../FilterOptions';
 import { useLocation } from 'react-router-dom';
 import helpers from 'helpers';
 import { Pagination, Spin } from 'antd';
 import productApi from 'apis/productApi';
 
-function SearchFilterPage() {
+function SearchResult() {
   // get query param
   const search = useLocation().search;
   const query = helpers.queryString(search);
 
-  // search => t=1, filter => t=0, notExist(t)=>search
-  let tQuery = query.find((item) => item.hasOwnProperty('t'));
-  let isSearch = 1;
-  if (tQuery === undefined) isSearch = 1;
-  else isSearch = parseInt(tQuery.t);
-
+  // keyword search
   let keyword = query.find((item) => item.hasOwnProperty('keyword'));
   let keywordValue = '';
   if (keyword !== undefined)
     keywordValue = decodeURI(keyword.keyword.replace(/[+]/gi, ' '));
 
-  // state
+  // state pagination
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -54,20 +49,20 @@ function SearchFilterPage() {
   useEffect(() => {
     let isSubscribe = true;
     setIsLoading(true);
-    if (isSearch) {
-      getSearchProducts(1, isSubscribe);
-      setPage(1);
-    }
+    if (page !== 1) setPage(1);
+    getSearchProducts(1, isSubscribe);
+
     // clean up
     return () => {
       isSubscribe = false;
     };
   }, [search]);
+
   // event: Lấy dữ liệu tìm kiếm khi đổi trang
   useEffect(() => {
     let isSubscribe = true;
     setIsLoading(true);
-    if (isSearch) getSearchProducts(page, isSubscribe);
+    getSearchProducts(page, isSubscribe);
     // clean up
     return () => {
       isSubscribe = false;
@@ -79,6 +74,15 @@ function SearchFilterPage() {
     <div className="container" style={{ minHeight: '100vh' }}>
       {/* Carousel */}
       <ProductCarousel />
+
+      {/* Số  kết quả tìm kiếm */}
+      {!isLoading && (
+        <h2 className="font-size-24px">
+          Tìm được <b>{total}</b> sản phẩm{' '}
+          {keywordValue !== '' ? `cho "${keywordValue}"` : ''}
+        </h2>
+      )}
+
       {/* loading */}
       {isLoading ? (
         <Spin
@@ -88,8 +92,6 @@ function SearchFilterPage() {
         />
       ) : (
         <>
-          {/* Bộ lọc */}
-          {isSearch !== 1 && <FilterOptions />}
           {/* Kết quả lọc, tìm kiếm */}
           <ResultSearch initList={list} />
           {/* pagination */}
@@ -109,4 +111,4 @@ function SearchFilterPage() {
   );
 }
 
-export default SearchFilterPage;
+export default SearchResult;

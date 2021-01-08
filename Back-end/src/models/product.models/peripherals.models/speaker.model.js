@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const speakerSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // công suất tổng tính theo W
   wattage: { type: Number, default: 3 },

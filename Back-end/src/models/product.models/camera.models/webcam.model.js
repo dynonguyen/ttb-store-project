@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const webcamSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // chuẩn kết nối: 0 - USB, 1 - USB 2.0
   connectionStd: { type: Number, enum: [0, 1], default: 0 },

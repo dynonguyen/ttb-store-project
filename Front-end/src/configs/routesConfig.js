@@ -1,7 +1,6 @@
 import constants from 'constants/index.js';
 import HomePage from 'containers/HomePage';
 import ProductDetailPage from 'containers/ProductDetailPage';
-import SearchFilterPage from 'containers/SearchFilterPage';
 import React from 'react';
 import { Route } from 'react-router-dom';
 
@@ -13,6 +12,12 @@ const ForgotPassword = React.lazy(() =>
 );
 const NotFound = React.lazy(() => import('components/NotFound'));
 const AdminPage = React.lazy(() => import('containers/AdminPage'));
+const SearchResult = React.lazy(() =>
+  import('containers/SearchFilterPage/Search'),
+);
+const FilterResult = React.lazy(() =>
+  import('containers/SearchFilterPage/Filter'),
+);
 
 const routes = [
   {
@@ -52,7 +57,12 @@ const routes = [
   {
     path: constants.ROUTES.SEARCH,
     exact: true,
-    main: () => <SearchFilterPage />,
+    main: () => <SearchResult />,
+  },
+  {
+    path: constants.ROUTES.FILTER,
+    exact: true,
+    main: () => <FilterResult />,
   },
 ];
 
