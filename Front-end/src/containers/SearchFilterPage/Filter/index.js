@@ -27,7 +27,6 @@ function FilterResult() {
   // get query param
   let search = decodeURI(useLocation().search);
   search = helpers.replaceMongoKeyword(search);
-  console.log(search);
   const queryStrList = helpers.queryString(search);
   let type = 0;
   const queryList = queryStrList.filter((item) => {
@@ -41,9 +40,6 @@ function FilterResult() {
   });
   const { dOption, pOption } = analysisQueryList(queryList);
 
-  // console.log('query list: ', queryList);
-  // console.log('dOption: ', dOption);
-  // console.log('pOption: ', pOption);
   // state pagination
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
@@ -121,7 +117,7 @@ function FilterResult() {
       ) : (
         <>
           {/* Bộ lọc  */}
-          <FilterOptions type={1} />
+          <FilterOptions type={type} />
 
           {/* Kết quả lọc, tìm kiếm */}
           <ResultSearch initList={list} />

@@ -173,105 +173,105 @@ const FILTER_ACCESSORY_LAPTOP = [
 const FILTER_BRAND_RAM = [
   {
     title: 'G.SKILL',
-    to: '/',
+    to: 'g.skill',
   },
   {
     title: 'KINGSTON',
-    to: '/',
+    to: 'kingston',
   },
   {
     title: 'KINGMAX',
-    to: '/',
+    to: 'kingmax',
   },
   {
     title: 'CORSAIR',
-    to: '/',
+    to: 'corsair',
   },
   {
     title: 'GEIL',
-    to: '/',
+    to: 'geil',
   },
   {
     title: 'GIGABYTE',
-    to: '/',
+    to: 'gigabyte',
   },
 ];
 const FILTER_BUS_RAM = [
   {
     title: '1600 MHz',
-    to: '/',
+    to: '1600MHz',
   },
   {
     title: '2400 MHz',
-    to: '/',
+    to: '2400MHz',
   },
   {
     title: '2666 MHz',
-    to: '/',
+    to: '2666MHz',
   },
   {
     title: '2800 MHz',
-    to: '/',
+    to: '2800MHz',
   },
   {
     title: '3000 MHz',
-    to: '/',
+    to: '3000MHz',
   },
   {
     title: '3200 MHz',
-    to: '/',
+    to: '3200MHz',
   },
   {
     title: '3600 MHz',
-    to: '/',
+    to: '3600MHz',
   },
 ];
 const FILTER_CAPACITY_RAM = [
   {
     title: '1 x 4GB',
-    to: '/',
+    to: '1x4gb',
   },
   {
     title: '2 x 4GB',
-    to: '/',
+    to: '2x4gb',
   },
   {
     title: '1 x 8GB',
-    to: '/',
+    to: '1x8gb',
   },
   {
     title: '2 x 8GB',
-    to: '/',
+    to: '2x8gb',
   },
   {
     title: '1 x 16GB',
-    to: '/',
+    to: '1x16gb',
   },
   {
     title: '2 x 16GB',
-    to: '/',
+    to: '2x16gb',
   },
   {
     title: '1 x 32 GB',
-    to: '/',
+    to: '1x32gb',
   },
   {
     title: '1 x 64GB',
-    to: '/',
+    to: '2x64gb',
   },
 ];
 const FILTER_GENERATION_RAM = [
   {
     title: 'DDR3',
-    to: '/',
+    to: 'ddr3',
   },
   {
     title: 'DDR3L',
-    to: '/',
+    to: 'DDR3L',
   },
   {
     title: 'DDR4',
-    to: '/',
+    to: 'DDR4',
   },
 ];
 // disk
@@ -384,7 +384,7 @@ const FILTER_SIZE_DISK = [
   },
   {
     title: 'M.2',
-    to: `M.2`,
+    to: `m.2`,
   },
 ];
 const FILTER_TYPE_DISK = [
@@ -401,352 +401,352 @@ const FILTER_TYPE_DISK = [
 const FILTER_BRAND_CAMERA = [
   {
     title: 'Canon',
-    to: '/',
+    to: 'canon',
   },
   {
     title: 'Sony',
-    to: '/',
+    to: 'sony',
   },
   {
     title: 'Fujifilm',
-    to: '/',
+    to: 'fujifilm',
   },
 ];
 const FILTER_OTHER_CAMERA = [
   {
     title: 'GoPro',
-    to: '/',
+    to: 'gopro',
   },
   {
     title: 'Webcam Logitech',
-    to: '/',
+    to: `webcam logitech`,
   },
   {
     title: 'Transcend',
-    to: '/',
+    to: 'transcend',
   },
 ];
 // monitor
 const FILTER_BRAND_MONITOR = [
   {
     title: 'SAMSUNG',
-    to: '/',
+    to: 'samsung',
   },
   {
     title: 'LG',
-    to: '/',
+    to: 'lg',
   },
   {
     title: 'Dell',
-    to: '/',
+    to: 'dell',
   },
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'Acer',
-    to: '/',
+    to: 'acer',
   },
   {
     title: 'MSI',
-    to: '/',
+    to: 'msi',
   },
 ];
 const FILTER_GB_PLATE_MONITOR = [
   {
     title: 'IPS',
-    to: '/',
+    to: 'IPS',
   },
   {
     title: 'VA',
-    to: '/',
+    to: 'va',
   },
   {
     title: 'TN',
-    to: '/',
+    to: 'TN',
   },
   {
     title: 'PLS',
-    to: '/',
+    to: 'PLS',
   },
   {
     title: 'MVA',
-    to: '/',
+    to: 'MVA',
   },
   {
     title: 'KHT',
-    to: '/',
+    to: 'KHT',
   },
 ];
 const FILTER_RESOLUTON_MONITOR = [
   {
     title: '1920 x 1080',
-    to: '/',
+    to: '1920x1080',
   },
   {
     title: '2560 x 1440',
-    to: '/',
+    to: '2560x1440',
   },
   {
     title: '3840 x 2160',
-    to: '/',
+    to: '3840x2160',
   },
   {
     title: '1366 x 768',
-    to: '/',
+    to: '1366x768',
   },
   {
     title: '1600 x 900',
-    to: '/',
+    to: '1600x900',
   },
   {
     title: '3440 x 1440',
-    to: '/',
+    to: '3440x1440',
   },
   {
     title: '2560 x 1080',
-    to: '/',
+    to: '2560x1080',
   },
 ];
 const FILTER_SIZE_MONITOR = [
   {
     title: '27"',
-    to: '/',
+    to: `27"`,
   },
   {
     title: '23.8"',
-    to: '/',
+    to: `23.8"`,
   },
   {
     title: '24"',
-    to: '/',
+    to: `24"`,
   },
   {
     title: '31.5"',
-    to: '/',
+    to: `31.5"`,
   },
   {
     title: '23.6"',
-    to: '/',
+    to: `23.6"`,
   },
   {
     title: '19.5"',
-    to: '/',
+    to: `19.5"`,
   },
   {
     title: '18.5"',
-    to: '/',
+    to: `18.5"`,
   },
 ];
 const FILTER_FREQUENCY_MONITOR = [
   {
     title: '60 Hz',
-    to: '/',
+    to: '60Hz',
   },
   {
     title: '144 Hz',
-    to: '/',
+    to: '144Hz',
   },
   {
     title: '75 Hz',
-    to: '/',
+    to: '75Hz',
   },
   {
     title: '165 Hz',
-    to: '/',
+    to: '165Hz',
   },
   {
     title: '240 Hz',
-    to: '/',
+    to: '240Hz',
   },
   {
     title: '100 Hz',
-    to: '/',
+    to: '100Hz',
   },
   {
     title: '200 Hz',
-    to: '/',
+    to: '200Hz',
   },
 ];
 // display
 const FILTER_BRAND_DISPLAY = [
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'GIGABYTE',
-    to: '/',
+    to: 'gigabyte',
   },
   {
     title: 'MSI',
-    to: '/',
+    to: 'msi',
   },
   {
     title: 'GALAX',
-    to: '/',
+    to: 'galax',
   },
   {
     title: 'Colorful',
-    to: '/',
+    to: 'colorful',
   },
   {
     title: 'NVIDIA',
-    to: '/',
+    to: 'nvidia',
   },
 ];
 const FILTER_CAPACITY_DISPLAY = [
   {
     title: '2 GB',
-    to: '/',
+    to: '2GB',
   },
   {
     title: '3 GB',
-    to: '/',
+    to: '3GB',
   },
   {
     title: '4 GB',
-    to: '/',
+    to: '4GB',
   },
   {
     title: '5 GB',
-    to: '/',
+    to: '5GB',
   },
   {
     title: '6 GB',
-    to: '/',
+    to: '6GB',
   },
   {
     title: '8 GB',
-    to: '/',
+    to: '8GB',
   },
   {
     title: '11 GB',
-    to: '/',
+    to: '11GB',
   },
 ];
 const FILTER_MANUFACTURER_DISPLAY = [
   {
     title: 'NVIDIA',
-    to: '/',
+    to: 'NVIDIA',
   },
   {
     title: 'AMD',
-    to: '/',
+    to: 'AMD',
   },
 ];
 // mobile
 const FILTER_BRAND_MOBILE = [
   {
-    title: 'Iphone',
-    to: '/',
+    title: 'iPhone',
+    to: 'apple',
   },
   {
     title: 'Samsung',
-    to: '/',
+    to: 'samsung',
   },
   {
     title: 'OPPO',
-    to: '/',
+    to: 'oppo',
   },
   {
     title: 'Realme',
-    to: '/',
+    to: 'realme',
   },
   {
     title: 'Xiaomi',
-    to: '/',
+    to: 'xiaomi',
   },
   {
     title: 'Nokia',
-    to: '/',
+    to: 'nokia',
   },
   {
     title: 'Huawei',
-    to: '/',
+    to: 'huawei',
   },
   {
     title: 'Vivo',
-    to: '/',
+    to: 'vivo',
   },
 ];
 const FILTER_PRICE_MOBILE = [
   {
     title: 'Dưới 5 triệu',
-    to: '/',
+    to: 'nhohon-5tr',
   },
   {
     title: '5-10 triệu',
-    to: '/',
+    to: 'lonhon-5tr,nhohon-10tr',
   },
   {
     title: '10-15 triệu',
-    to: '/',
+    to: 'lonhon-10tr,nhohon-15tr',
   },
   {
     title: '15-20 triệu',
-    to: '/',
+    to: 'lonhon-15tr,nhohon-20tr',
   },
   {
     title: 'Trên 20 triệu',
-    to: '/',
+    to: 'lonhon-20tr',
   },
 ];
 const FILTER_ROM_MOBILE = [
   {
     title: '16 GB',
-    to: '/',
+    to: '16GB',
   },
   {
     title: '32 GB',
-    to: '/',
+    to: '32GB',
   },
   {
     title: '64 GB',
-    to: '/',
+    to: '64GB',
   },
   {
     title: '128 GB',
-    to: '/',
+    to: '128GB',
   },
   {
     title: '256 GB',
-    to: '/',
+    to: '256GB',
   },
   {
     title: '512 GB',
-    to: '/',
+    to: '512GB',
   },
 ];
 const FILTER_RAM_MOBILE = [
   {
     title: '1 GB',
-    to: '/',
+    to: '1GB',
   },
   {
     title: '2 GB',
-    to: '/',
+    to: '2GB',
   },
   {
     title: '3 GB',
-    to: '/',
+    to: '3GB',
   },
   {
     title: '4 GB',
-    to: '/',
+    to: '4GB',
   },
   {
     title: '6 GB',
-    to: '/',
+    to: '6GB',
   },
   {
     title: '8 GB',
-    to: '/',
+    to: '8GB',
   },
   {
     title: '12 GB',
-    to: '/',
+    to: '12GB',
   },
 ];
 const FILTER_ACCESSORY_MOBILE = [
@@ -759,167 +759,169 @@ const FILTER_ACCESSORY_MOBILE = [
 const FILTER_BRAND_MOUSE = [
   {
     title: 'NEWMEN',
-    to: '/',
+    to: 'newmen',
   },
   {
     title: 'LOGITECH',
-    to: '/',
+    to: 'logitech',
   },
   {
     title: 'CORSAIR',
-    to: '/',
+    to: 'corsair',
   },
   {
     title: 'RAZER',
-    to: '/',
+    to: 'rezer',
   },
   {
     title: 'E-Dra',
-    to: '/',
+    to: 'e-dra',
   },
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'Khác',
-    to: '/',
+    to: '',
   },
 ];
 const FILTER_TYPE_MOUSE = [
   {
     title: 'Có dây',
-    to: '/',
+    to: 'co_day',
   },
   {
     title: 'Không dây',
-    to: '/',
+    to: 'khong_day',
   },
+];
+const FILTER_LED_MOUSE = [
   {
     title: 'Led RGB',
-    to: '/',
+    to: 'rgb',
   },
   {
     title: 'Không Led',
-    to: '/',
+    to: 'khong_Led',
   },
 ];
 // keyboard
 const FILTER_BRAND_KEYBOARD = [
   {
     title: 'LOGITECH',
-    to: '/',
+    to: 'logitech',
   },
   {
     title: 'CORSAIR',
-    to: '/',
+    to: 'corsair',
   },
   {
     title: 'RAZER',
-    to: '/',
+    to: 'razer',
   },
   {
     title: 'E-Dra',
-    to: '/',
+    to: 'e-dra',
   },
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'KINGSTON',
-    to: '/',
+    to: 'kingston',
   },
   {
     title: 'AKKO',
-    to: '/',
+    to: 'akko',
   },
 ];
 const FILTER_TYPE_KEYBOARD = [
   {
     title: 'Bàn phím thường',
-    to: '/',
+    to: 'ban_phim_thuong',
   },
   {
     title: 'Bàn phím cơ',
-    to: '/',
+    to: 'ban_phim_co',
   },
   {
     title: 'Bàn phím giả cơ',
-    to: '/',
+    to: 'ban_phim_gc',
   },
 ];
 const FILTER_COLOR_KEYBOARD = [
   {
     title: 'Đen',
-    to: '/',
+    to: '0',
   },
   {
     title: 'Bạc',
-    to: '/',
+    to: '1',
   },
   {
     title: 'Trắng',
-    to: '/',
+    to: '2',
   },
   {
     title: 'Hồng',
-    to: '/',
+    to: '3',
   },
   {
     title: 'Khác',
-    to: '/',
+    to: '4',
   },
 ];
 const FILTER_LED_KEYBOARD = [
   {
     title: 'Không led',
-    to: '/',
+    to: '0',
   },
   {
     title: 'Đơn sắc',
-    to: '/',
+    to: '1',
   },
   {
     title: 'Rainbow',
-    to: '/',
+    to: '2',
   },
   {
     title: 'RGB',
-    to: '/',
+    to: '3',
   },
 ];
 //headphone
 const FILTER_TYPE_HEADPHONE = [
   {
     title: 'Over-ear',
-    to: '/',
+    to: 'over_ear',
   },
   {
     title: 'In-ear',
-    to: '/',
+    to: 'in_ear',
   },
   {
     title: 'On-ear',
-    to: '/',
+    to: 'on_ear',
   },
 ];
 const FILTER_CONNECT_STD_HEADPHONE = [
   {
     title: '3.5mm',
-    to: '/',
+    to: '0',
   },
   {
     title: 'Bluetooth',
-    to: '/',
+    to: '1',
   },
   {
     title: 'USB 3.0',
-    to: '/',
+    to: '2',
   },
   {
     title: 'Bluetooth 4.0',
-    to: '/',
+    to: '3',
   },
   {
     title: 'Bluetooth 5.0',
@@ -927,336 +929,336 @@ const FILTER_CONNECT_STD_HEADPHONE = [
   },
   {
     title: '2.4 GHz Wireless',
-    to: '/',
+    to: '4',
   },
 ];
 // router
 const FILTER_BRAND_ROUTER = [
   {
     title: 'TPLINK',
-    to: '/',
+    to: 'tplink',
   },
   {
     title: 'D-LINK',
-    to: '/',
+    to: 'd-link',
   },
   {
     title: 'TENDA',
-    to: '/',
+    to: 'tenda',
   },
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'TOTO LINK',
-    to: '/',
+    to: `toto link`,
   },
   {
     title: 'LINKSYS',
-    to: '/',
+    to: 'linksys',
   },
   {
     title: 'CISCO',
-    to: '/',
+    to: 'cisco',
   },
 ];
 const FILTER_BANDWIDTH_ROUTER = [
   {
     title: '2.4 GHz',
-    to: '/',
+    to: '0',
   },
   {
     title: '2.4 GHz / 5 GHz',
-    to: '/',
+    to: '1',
   },
 ];
 const FILTER_STRONG_ROUTER = [
   {
     title: '2 dBi',
-    to: '/',
+    to: '2dBi',
   },
   {
     title: '2.5 dBi',
-    to: '/',
+    to: '2.5dBi',
   },
   {
     title: '3 dBi',
-    to: '/',
+    to: '3dBi',
   },
   {
     title: '4 dBi',
-    to: '/',
+    to: '4dBi',
   },
   {
     title: '4.5 dBi',
-    to: '/',
+    to: '4.5dBi',
   },
   {
     title: '5 dBi',
-    to: '/',
+    to: '5dBi',
   },
   {
     title: '6 dBi',
-    to: '/',
+    to: '6dBi',
   },
   {
     title: '7 dBi',
-    to: '/',
+    to: '7dBi',
   },
   {
     title: '9 dBi',
-    to: '/',
+    to: '9dBi',
   },
   {
     title: '11 dBi',
-    to: '/',
+    to: '11dBi',
   },
 ];
 //speaker
 const FILTER_BRAND_SPEAKER = [
   {
     title: 'Sony',
-    to: '/',
+    to: 'sony',
   },
   {
     title: 'SOUNDMAX',
-    to: '/',
+    to: 'soundmax',
   },
   {
     title: 'LOGITECH',
-    to: '/',
+    to: 'logitech',
   },
   {
     title: 'Bose',
-    to: '/',
+    to: 'bose',
   },
   {
     title: 'JBL',
-    to: '/',
+    to: 'jbl',
   },
   {
     title: 'MICROLAB',
-    to: '/',
+    to: 'microlab',
   },
   {
     title: 'Apple',
-    to: '/',
+    to: 'apple',
   },
   {
     title: 'XIAOMI',
-    to: '/',
+    to: 'xiaomi',
   },
   {
     title: 'Remax',
-    to: '/',
+    to: 'remax',
   },
   {
     title: 'Khác',
-    to: '/',
+    to: '',
   },
 ];
 const FILTER_WATTAGE_SPEAKER = [
   {
     title: '3W',
-    to: '/',
+    to: 'nhohon-3W',
   },
   {
     title: '4W-10W',
-    to: '/',
+    to: 'lonhon-4W,nhohon-10W',
   },
   {
     title: '10W-20W',
-    to: '/',
+    to: 'lonhon-10W,nhohon-20W',
   },
   {
     title: '20W-30W',
-    to: '/',
+    to: 'lonhon-20W,nhohon-30W',
   },
   {
     title: '30W-50W',
-    to: '/',
+    to: 'lonhon-40W,nhohon-50W',
   },
   {
     title: '50W-100W',
-    to: '/',
+    to: 'lonhon-50W,nhohon-100W',
   },
   {
     title: '200W',
-    to: '/',
+    to: 'lonhon-200W,nhohon-300W',
   },
   {
     title: '300W',
-    to: '/',
+    to: 'lonhon-300W,nhohon-600W',
   },
   {
     title: '600W',
-    to: '/',
+    to: 'lonhon-600W',
   },
 ];
 const FILTER_CONNECT_STD_SPEAKER = [
   {
     title: '3.5mm',
-    to: '/',
+    to: '3.5mm',
   },
   {
     title: 'Bluetooth',
-    to: '/',
+    to: 'bluetooth',
   },
   {
     title: 'USB 3.0',
-    to: '/',
+    to: `usb 3.0`,
   },
   {
     title: 'Bluetooth 4.0',
-    to: '/',
+    to: `bluetooth 4.0`,
   },
   {
     title: 'Bluetooth 5.0',
-    to: '/',
+    to: `bluetooth 5.0`,
   },
   {
     title: 'Micro USB',
-    to: '/',
+    to: `micro usb`,
   },
 ];
 // mainboard
 const FILTER_BRAND_MAINBOARD = [
   {
     title: 'ASUS',
-    to: '/',
+    to: 'asus',
   },
   {
     title: 'GIGABYTE',
-    to: '/',
+    to: 'gigabyte',
   },
   {
     title: 'MSI',
-    to: '/',
+    to: 'msi',
   },
   {
     title: 'ASROCK',
-    to: '/',
+    to: 'asrock',
   },
   {
     title: 'INTEL',
-    to: '/',
+    to: 'intel',
   },
 ];
 const FILTER_CHIPSET_MAINBOARD = [
   {
     title: 'Z490',
-    to: '/',
+    to: 'z490',
   },
   {
     title: 'B450',
-    to: '/',
+    to: 'b450',
   },
   {
     title: 'B365',
-    to: '/',
+    to: 'b365',
   },
   {
     title: 'B360',
-    to: '/',
+    to: 'b360',
   },
   {
     title: 'Z390',
-    to: '/',
+    to: 'z390',
   },
   {
     title: 'H310',
-    to: '/',
+    to: 'h310',
   },
   {
     title: 'A320',
-    to: '/',
+    to: 'a320',
   },
   {
     title: 'B460',
-    to: '/',
+    to: 'b460',
   },
   {
     title: 'Z370',
-    to: '/',
+    to: 'z370',
   },
   {
     title: 'X570',
-    to: '/',
+    to: 'x570',
   },
   {
     title: 'B350',
-    to: '/',
+    to: 'b350',
   },
 ];
 const FILTER_SIZE_STD_MAINBOARD = [
   {
     title: 'Micro-ATX',
-    to: '/',
+    to: '0',
   },
   {
     title: 'ATX',
-    to: '/',
+    to: '1',
   },
   {
     title: 'Extended-ATX',
-    to: '/',
+    to: '2',
   },
   {
     title: 'Mini-ATX',
-    to: '/',
+    to: '3',
   },
   {
     title: 'XL-ATX',
-    to: '/',
+    to: '4',
   },
 ];
 const FILTER_SOCKET_MAINBOARD = [
   {
     title: '1151-v2',
-    to: '/',
+    to: '0',
   },
   {
     title: '1200',
-    to: '/',
+    to: '1',
   },
   {
     title: 'AM4',
-    to: '/',
+    to: '2',
   },
   {
     title: '1151',
-    to: '/',
+    to: '3',
   },
   {
     title: 'sTRX',
-    to: '/',
+    to: '4',
   },
 ];
 const FILTER_SERIES_MAINBOARD = [
   {
     title: 'ROG',
-    to: '/',
+    to: 'rog',
   },
   {
     title: 'AORUS',
-    to: '/',
+    to: 'aorus',
   },
   {
     title: 'Gaming',
-    to: '/',
+    to: 'gmain',
   },
   {
     title: 'PRO',
-    to: '/',
+    to: 'pro',
   },
   {
     title: 'KHT',
-    to: '/',
+    to: 'kht',
   },
   {
     title: 'Prime',
-    to: '/',
+    to: 'prime',
   },
 ];
 
@@ -1297,7 +1299,7 @@ const FILTER_OPTION_LIST = [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_DISK,
-        query: 'p-reg-brand=',
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Ổ cứng theo loại',
@@ -1324,212 +1326,267 @@ const FILTER_OPTION_LIST = [
   // 2: RAM
   {
     key: 2,
+    root: `${ROUTES.FILTER}?t=4`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_RAM,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'RAM theo bus',
         subFilters: FILTER_BUS_RAM,
+        query: 'bus=',
       },
       {
         title: 'Dung lượng',
         subFilters: FILTER_CAPACITY_RAM,
+        query: 'p-reg-dlram=',
       },
       {
         title: 'Thế hệ RAM',
         subFilters: FILTER_GENERATION_RAM,
+        query: 'loai=',
       },
     ],
   },
   // 3: MONITOR
   {
     key: 3,
+    root: `${ROUTES.FILTER}?t=9`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_MONITOR,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Tấm nền',
         subFilters: FILTER_GB_PLATE_MONITOR,
+        query: 'tam_nen=',
       },
       {
         title: 'Độ phân giải',
         subFilters: FILTER_RESOLUTON_MONITOR,
+        query: 'dpg=',
       },
       {
         title: 'Kích thước',
         subFilters: FILTER_SIZE_MONITOR,
+        query: 'reg-kich_thuoc_man_hinh=',
       },
       {
         title: 'Tần số quét',
         subFilters: FILTER_FREQUENCY_MONITOR,
+        query: 'tan_so_quet=',
       },
     ],
   },
   // 4: DISPLAY
   {
     key: 4,
+    root: `${ROUTES.FILTER}?t=2`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_DISPLAY,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Dung lượng',
         subFilters: FILTER_CAPACITY_DISPLAY,
+        query: 'dungluong=',
       },
       {
         title: 'Nhà sản xuất',
         subFilters: FILTER_MANUFACTURER_DISPLAY,
+        query: 'nha_sx=',
       },
     ],
   },
   // 5: MOBILE
   {
     key: 5,
+    root: `${ROUTES.FILTER}?t=5`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_MOBILE,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Theo giá',
         subFilters: FILTER_PRICE_MOBILE,
+        query: 'p-o-gia=',
       },
       {
         title: 'Bộ nhớ trong',
         subFilters: FILTER_ROM_MOBILE,
+        query: 'rom=',
       },
       {
         title: 'Dung lượng RAM',
         subFilters: FILTER_RAM_MOBILE,
-      },
-      {
-        title: 'Phụ kiện điện thoại',
-        subFilters: FILTER_ACCESSORY_MOBILE,
+        query: 'ram=',
       },
     ],
   },
-  // 6: MOUSE - KEYBOARD
+  // 6: MOUSE
   {
     key: 6,
+    root: `${ROUTES.FILTER}?t=10`,
     data: [
       {
         title: 'Chuột theo thương hiệu',
         subFilters: FILTER_BRAND_MOUSE,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Chuột theo loại',
         subFilters: FILTER_TYPE_MOUSE,
+        query: 'loai=',
       },
+      {
+        title: 'Chuột theo đèn led',
+        subFilters: FILTER_LED_MOUSE,
+        query: 'led=',
+      },
+    ],
+  },
+  // 12: KEYBOARD
+  {
+    key: 12,
+    root: `${ROUTES.FILTER}?t=8`,
+    data: [
       {
         title: 'Bàn phím theo thương hiệu',
         subFilters: FILTER_BRAND_KEYBOARD,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Loại bàn phím',
         subFilters: FILTER_TYPE_KEYBOARD,
+        query: 'loai=',
       },
       {
         title: 'Màu bàn phím',
         subFilters: FILTER_COLOR_KEYBOARD,
+        query: 'mau=',
       },
       {
         title: 'Led bàn phím',
         subFilters: FILTER_LED_KEYBOARD,
+        query: 'MauLed=',
       },
     ],
   },
   // 7: HEADPHONE
   {
     key: 7,
+    root: `${ROUTES.FILTER}?t=7`,
     data: [
       {
         title: 'Loại tai nghe',
         subFilters: FILTER_TYPE_HEADPHONE,
+        query: 'loai=',
       },
       {
         title: 'Chuẩn kết nối',
         subFilters: FILTER_CONNECT_STD_HEADPHONE,
+        query: 'chuan_ket_noi=',
       },
     ],
   },
   // 8: ROUTER
   {
     key: 8,
+    root: `${ROUTES.FILTER}?t=11`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_ROUTER,
+        query: 'p-reg-thuong_hieu=',
       },
       {
-        title: 'Băngt thông',
+        title: 'Băng thông',
         subFilters: FILTER_BANDWIDTH_ROUTER,
+        query: 'bang_thong=',
       },
       {
         title: 'Độ mạnh ăng-ten',
         subFilters: FILTER_STRONG_ROUTER,
+        query: 'do_manh_angten=',
       },
     ],
   },
   // 9: SPEAKER
   {
     key: 9,
+    root: `${ROUTES.FILTER}?t=12`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_SPEAKER,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Công suất tổng',
         subFilters: FILTER_WATTAGE_SPEAKER,
+        query: 'o-cong_suat=',
       },
       {
         title: 'Chuẩn kết nối',
         subFilters: FILTER_CONNECT_STD_SPEAKER,
+        query: 'reg-chuan_cong=',
       },
     ],
   },
   // 10: CAMERA
   {
     key: 10,
+    root: `${ROUTES.FILTER}?t=13`,
     data: [
       {
         title: 'Camera theo thương hiệu',
         subFilters: FILTER_BRAND_CAMERA,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Camera hành trình',
         subFilters: FILTER_OTHER_CAMERA,
+        query: 'reg-name=',
       },
     ],
   },
   // 11: MAINBOARD
   {
     key: 11,
+    root: `${ROUTES.FILTER}?t=3`,
     data: [
       {
         title: 'Thương hiệu',
         subFilters: FILTER_BRAND_MAINBOARD,
+        query: 'p-reg-thuong_hieu=',
       },
       {
         title: 'Chipset',
         subFilters: FILTER_CHIPSET_MAINBOARD,
+        query: 'reg-chipset=',
       },
       {
         title: 'Chuẩn kích thước',
         subFilters: FILTER_SIZE_STD_MAINBOARD,
+        query: 'chuan_kt=',
       },
       {
         title: 'Socket',
         subFilters: FILTER_SOCKET_MAINBOARD,
+        query: 'socket=',
       },
       {
         title: 'Series mainboard',
         subFilters: FILTER_SERIES_MAINBOARD,
+        query: 'reg-series=',
       },
     ],
   },
@@ -1556,8 +1613,54 @@ const PAIR_CONVERT_KEY = [
   { l: `2.5"`, r: `0` },
   { l: `3.5"`, r: `1` },
   { l: `M.2 2280`, r: `2` },
-  { l: `M.2`, r: `3` },
+  { l: `m.2`, r: `3` },
+  { l: `dlram`, r: `name` },
   { l: `tr`, r: `000000` },
+  { l: `MHz`, r: '' },
+  { l: `ddr3`, r: `0` },
+  { l: `DDR3L`, r: `1` },
+  { l: `DDR4`, r: `2` },
+  { l: `tam_nen`, r: `bgPlate` },
+  { l: `IPS`, r: `0` },
+  { l: `va`, r: `1` },
+  { l: `TN`, r: `2` },
+  { l: `PLS`, r: `3` },
+  { l: `MVA`, r: `4` },
+  { l: `KHT`, r: `5` },
+  { l: `dpg`, r: `resolution` },
+  { l: `1920x1080`, r: `0` },
+  { l: `2560x1440`, r: `1` },
+  { l: `1366x768`, r: `2` },
+  { l: `1600x900`, r: `3` },
+  { l: `3840x2160`, r: `4` },
+  { l: `2560x1080`, r: `5` },
+  { l: `3440x1440`, r: `6` },
+  { l: `tan_so_quet`, r: `frequency` },
+  { l: `Hz`, r: '' },
+  { l: `nha_sx`, r: `manufacturer` },
+  { l: `NVIDIA`, r: `0` },
+  { l: `AMD`, r: `1` },
+  { l: `co_day`, r: `0` },
+  { l: `khong_day`, r: `1` },
+  { l: `led`, r: `isLed` },
+  { l: `rgb`, r: `true` },
+  { l: `khong_Led`, r: `false` },
+  { l: `ban_phim_thuong`, r: `0` },
+  { l: `ban_phim_gc`, r: `1` },
+  { l: `ban_phim_co`, r: `2` },
+  { l: `mau`, r: `color` },
+  { l: `MauLed`, r: `ledColor` },
+  { l: `over_ear`, r: `0` },
+  { l: `in_ear`, r: `1` },
+  { l: `on_ear`, r: `2` },
+  { l: `bang_thong`, r: `bandwidth` },
+  { l: `do_manh_angten`, r: `strong` },
+  { l: `dBi`, r: '' },
+  { l: `cong_suat`, r: `wattage` },
+  { l: `W`, r: '' },
+  { l: `chuan_cong`, r: `connectionPort` },
+  { l: `chuan_kt`, r: `sizeStd` },
+  { l: `socket`, r: `socketType` },
 ];
 
 export default {
@@ -1617,6 +1720,7 @@ export default {
   FILTER_RAM_MOBILE,
   FILTER_ACCESSORY_MOBILE,
   FILTER_TYPE_MOUSE,
+  FILTER_LED_MOUSE,
   FILTER_BRAND_MOUSE,
   FILTER_BRAND_KEYBOARD,
   FILTER_COLOR_KEYBOARD,

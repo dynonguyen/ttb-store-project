@@ -10,6 +10,8 @@ import ramIcon from 'assets/icon/products/ram_32px.png';
 import routerIcon from 'assets/icon/products/router_32px.png';
 import speakerIcon from 'assets/icon/products/speaker_32px.png';
 import ssdIcon from 'assets/icon/products/ssd_32px.png';
+import keyboardIcon from 'assets/icon/products/keyboard_32px.png';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -55,7 +57,13 @@ const menu = [
     key: 6,
     to: '/filter?t=10',
     icon: mouseIcon,
-    title: 'Chuột - Bàn phím',
+    title: 'Chuột máy tính',
+  },
+  {
+    key: 12,
+    to: '/filter?t=8',
+    icon: keyboardIcon,
+    title: 'Bàn phím',
   },
   {
     key: 7,

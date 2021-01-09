@@ -4,7 +4,7 @@ import constants from 'constants/index';
 const replaceMongoKeyword = (value = '') => {
   let result = value;
   constants.PAIR_CONVERT_KEY.forEach((pair) => {
-    result = result.replace(pair.l, pair.r);
+    result = result.replaceAll(pair.l, pair.r);
   });
   return result;
 };
@@ -161,7 +161,9 @@ const convertProductKey = (key) => {
     case 'disk':
       return 'Ổ cứng';
     case 'ram':
-      return 'RAM';
+      return 'RAM (GB)';
+    case 'rom':
+      return 'Bộ nhớ trong (GB)';
     case 'pin':
       return 'Dung lượng pin';
     case 'weight':
