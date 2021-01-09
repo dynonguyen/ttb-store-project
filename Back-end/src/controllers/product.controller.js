@@ -142,8 +142,6 @@ const getFilterProducts = async (req, res, next) => {
       JSON.parse(dOption),
     );
 
-    console.log(' pOption: ', pOptionQuery);
-    console.log(' dOption: ', dOptionQuery);
     // pagination
     if (!page) page = 1;
     if (!perPage) perPage = 8;

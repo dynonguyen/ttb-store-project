@@ -1325,7 +1325,7 @@ const FILTER_OPTION_LIST = [
   },
   // 2: RAM
   {
-    key: 2,
+    key: 4,
     root: `${ROUTES.FILTER}?t=4`,
     data: [
       {
@@ -1352,7 +1352,7 @@ const FILTER_OPTION_LIST = [
   },
   // 3: MONITOR
   {
-    key: 3,
+    key: 9,
     root: `${ROUTES.FILTER}?t=9`,
     data: [
       {
@@ -1384,7 +1384,7 @@ const FILTER_OPTION_LIST = [
   },
   // 4: DISPLAY
   {
-    key: 4,
+    key: 2,
     root: `${ROUTES.FILTER}?t=2`,
     data: [
       {
@@ -1433,7 +1433,7 @@ const FILTER_OPTION_LIST = [
   },
   // 6: MOUSE
   {
-    key: 6,
+    key: 10,
     root: `${ROUTES.FILTER}?t=10`,
     data: [
       {
@@ -1455,7 +1455,7 @@ const FILTER_OPTION_LIST = [
   },
   // 12: KEYBOARD
   {
-    key: 12,
+    key: 8,
     root: `${ROUTES.FILTER}?t=8`,
     data: [
       {
@@ -1499,7 +1499,7 @@ const FILTER_OPTION_LIST = [
   },
   // 8: ROUTER
   {
-    key: 8,
+    key: 11,
     root: `${ROUTES.FILTER}?t=11`,
     data: [
       {
@@ -1521,7 +1521,7 @@ const FILTER_OPTION_LIST = [
   },
   // 9: SPEAKER
   {
-    key: 9,
+    key: 12,
     root: `${ROUTES.FILTER}?t=12`,
     data: [
       {
@@ -1543,7 +1543,7 @@ const FILTER_OPTION_LIST = [
   },
   // 10: CAMERA
   {
-    key: 10,
+    key: 13,
     root: `${ROUTES.FILTER}?t=13`,
     data: [
       {
@@ -1560,7 +1560,7 @@ const FILTER_OPTION_LIST = [
   },
   // 11: MAINBOARD
   {
-    key: 11,
+    key: 3,
     root: `${ROUTES.FILTER}?t=3`,
     data: [
       {

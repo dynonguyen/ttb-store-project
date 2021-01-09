@@ -103,16 +103,35 @@ const typeOfProduct = (str = '') => {
 // fn: chuyển object chứa regex dạng string, ex: {$regex: '/^apple$/i'} => {$regex: /^apple$/i}
 const convertObjectContainsRegex = (obj) => {
   const newObj = { ...obj };
-  for (let key in newObj) {
-    if (typeof newObj[key] === 'object') {
-      for (const k in newObj[key]) {
-        if (k === '$regex' && typeof newObj[key][k] === 'string') {
-          newObj[key][k] = new RegExp(newObj[key][k], 'gi');
+  if (newObj.hasOwnProperty('$or')) {
+    // đa giá trị
+    newObj['$or'].forEach((item) => {
+      for (let key in item) {
+        if (typeof item[key] === 'object') {
+          for (const k in item[key]) {
+            if (k === '$regex' && typeof item[key][k] === 'string') {
+              item[key][k] = new RegExp(item[key][k], 'gi');
+            }
+          }
+        }
+        if (key === '$regex' && typeof item[key] === 'string') {
+          item[key] = new RegExp(item[key], 'gi');
         }
       }
-    }
-    if (key === '$regex' && typeof newObj[key] === 'string') {
-      newObj[key] = new RegExp(newObj, 'gi');
+    });
+  } else {
+    // đơn giá trị
+    for (let key in newObj) {
+      if (typeof newObj[key] === 'object') {
+        for (const k in newObj[key]) {
+          if (k === '$regex' && typeof newObj[key][k] === 'string') {
+            newObj[key][k] = new RegExp(newObj[key][k], 'gi');
+          }
+        }
+      }
+      if (key === '$regex' && typeof newObj[key] === 'string') {
+        newObj[key] = new RegExp(newObj[key], 'gi');
+      }
     }
   }
   return newObj;

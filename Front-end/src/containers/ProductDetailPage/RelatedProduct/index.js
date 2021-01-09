@@ -27,7 +27,9 @@ function RelatedProduct(props) {
       }
     }
     getRelatedProducts();
-    return () => (isSubscribe = false);
+    return () => {
+      isSubscribe = false;
+    };
   }, [id, type, brand]);
 
   // rendering...

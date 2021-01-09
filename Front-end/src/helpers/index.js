@@ -43,23 +43,57 @@ const analysisQuery = (key = '', value = '') => {
     // lấy main key là phần tử cuối trong mảng
     const mainKey = options[options.length - 1];
 
-    // nếu tồn tại "p" thì là thuộc tính của product model
+    // Note:nếu tồn tại "p" thì là thuộc tính của product model
     const isProductAttr = options.indexOf('p') === -1 ? false : true;
 
-    // nếu tồn tại "reg" tức là chuỗi cần bỏ vào regex
+    // Note: nếu tồn tại "reg" tức là chuỗi cần bỏ vào regex
     const isRegex = options.indexOf('reg');
+
+    // Note: nếu tồn tại "o" tức chuỗi là 1 object
     const isObject = options.indexOf('o');
-    if (isRegex !== -1) {
-      // giá trị value là 1 regex
-      const newObj = {};
-      newObj[mainKey] = { $regex: `${value}` };
-      Object.assign(result, newObj);
-    } else if (isObject !== -1) {
-      //  giá trị value là 1 object
-      const newObj = JSON.parse(`{${value}}`);
-      result[mainKey] = newObj;
+
+    // value tồn tại ";" tức là đa giá trị
+    const compositeValues = value.split(';');
+    if (compositeValues.length <= 1) {
+      // Note: đơn giá trị
+      if (isRegex !== -1) {
+        // giá trị value là 1 regex
+        const newObj = {};
+        newObj[mainKey] = { $regex: `${value}` };
+        Object.assign(result, newObj);
+      } else if (isObject !== -1) {
+        //  giá trị value là 1 object
+        const newObj = JSON.parse(`{${value}}`);
+        result[mainKey] = newObj;
+      } else {
+        // không chứa key đặc biệt
+        result[mainKey] = `${value}`;
+      }
     } else {
-      result[mainKey] = `${value}`;
+      // Note: nhiều giá trị [values]
+      result['$or'] = [];
+      if (isRegex !== -1) {
+        // giá trị value là 1 regex
+        compositeValues.forEach((valueItem) => {
+          const newObj = {};
+          newObj[mainKey] = { $regex: `${valueItem}` };
+          result['$or'].push(newObj);
+        });
+      } else if (isObject !== -1) {
+        //  giá trị value là 1 object
+        compositeValues.forEach((valueItem) => {
+          const newObj = {};
+          newObj[mainKey] = JSON.parse(`{${valueItem}}`);
+          result['$or'].push(newObj);
+        });
+      } else {
+        // không chứa key đặc biệt
+        compositeValues.forEach((valueItem) => {
+          const newObj = {};
+          newObj[mainKey] = `${valueItem}`;
+          result['$or'].push(newObj);
+        });
+      }
     }
 
     // return

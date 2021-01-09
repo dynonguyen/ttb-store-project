@@ -1,11 +1,10 @@
-import ResultSearch from 'components/ResultSearch';
-import ProductCarousel from '../ProductCarousel';
-import React, { useEffect, useState } from 'react';
-import FilterOptions from '../FilterOptions';
-import { useLocation } from 'react-router-dom';
-import helpers from 'helpers';
 import { Pagination, Spin } from 'antd';
 import productApi from 'apis/productApi';
+import ResultSearch from 'components/ResultSearch';
+import helpers from 'helpers';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import ProductCarousel from '../ProductCarousel';
 
 function SearchResult() {
   // get query param
