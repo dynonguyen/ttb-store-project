@@ -10,9 +10,17 @@ const getUser = async (req, res, next) => {
         .json({ message: 'Không thể lấy thông tin user', error });
     //else get information user -> send client
     const { _id } = req.user;
-    const infoUser = await UserModel.findOne({ accountId: _id });
+    const infoUser = await UserModel.findOne({ accountId: _id }).populate({
+      path: 'accountId',
+      select: 'email -_id',
+    });
+
     //send information user except _id
-    const infoUserSend = { ...infoUser._doc, accountId: null, _id: null };
+    const infoUserSend = {
+      ...infoUser._doc,
+      email: infoUser.accountId.email,
+      accountId: null,
+    };
     res.status(200).json({ user: infoUserSend });
   } catch (error) {
     res.status(400).json({ message: 'Không thể lấy thông tin user', error });

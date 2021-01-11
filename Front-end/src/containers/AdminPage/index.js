@@ -14,12 +14,12 @@ import Avatar from 'antd/lib/avatar/avatar';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import defaultAvt from 'assets/imgs/default-avt.png';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import AdminUser from './AdminUser';
 import './index.scss';
 import Login from './Login';
 import AddProduct from './ProductPage/ProductAddForm';
 import SeeProduct from './ProductPage/SeeProduct';
+import logoUrl from 'assets/imgs/sec_logo.png';
 
 const mainColor = '#141428';
 const menuList = [
@@ -162,13 +162,8 @@ function AdminPage() {
           <div
             className="d-flex align-i-center"
             style={{ height: '72px', backgroundColor: mainColor }}>
-            <div className="logo" style={{ flexBasis: '200px' }}>
-              <img
-                className="m-t-5 m-l-50"
-                width="44x"
-                height="44px"
-                src="https://seeklogo.com/images/T/ton-tb-logo-DE07849F3E-seeklogo.com.gif"
-              />
+            <div className="logo t-center" style={{ flexBasis: '200px' }}>
+              <img width={100} height={48} src={logoUrl} />
             </div>
             <div className="flex-grow-1 d-flex align-i-center">
               <h2 className="t-color-primary flex-grow-1 p-l-44 main-title">

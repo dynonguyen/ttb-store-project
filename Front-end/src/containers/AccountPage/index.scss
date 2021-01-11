@@ -1,0 +1,23 @@
+.account-page {
+  .intro {
+    border-bottom: solid 1px #ddd;
+  }
+  .icon {
+    color: #888;
+  }
+  .name {
+    color: #444;
+  }
+  &-menu {
+    &-item {
+      &.active,
+      &:hover,
+      &:active {
+        & > * {
+          color: #3a5dd9;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

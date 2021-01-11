@@ -35,6 +35,7 @@ const ROUTES = {
   CART: '/cart',
   SEARCH: '/search',
   FILTER: '/filter',
+  ACCOUNT: '/account/:userId',
 };
 
 // FILTERS

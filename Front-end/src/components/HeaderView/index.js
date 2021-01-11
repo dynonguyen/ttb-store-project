@@ -18,6 +18,7 @@ import {
 } from 'antd';
 import loginApi from 'apis/loginApi';
 import defaultAvt from 'assets/imgs/default-avt.png';
+import logoUrl from 'assets/imgs/logo.png';
 import constants from 'constants/index';
 import helpers from 'helpers';
 import React, { useState } from 'react';
@@ -26,7 +27,6 @@ import { Link, useLocation } from 'react-router-dom';
 import CartView from './CartView';
 import './index.scss';
 const { Header } = Layout;
-
 function totalItemCarts(carts) {
   if (carts) {
     return carts.reduce((total, item) => total + item.amount, 0);
@@ -89,7 +89,7 @@ function HeaderView() {
       {isAuth && (
         <Menu.Item>
           <Button size="large" className="w-100 btn-secondary" type="default">
-            Quản lý Tài khoản
+            <Link to={`/account/${user._id}`}>Quản lý Tài khoản</Link>
           </Button>
         </Menu.Item>
       )}
@@ -102,11 +102,14 @@ function HeaderView() {
       <Header className="container-fluid Header-View">
         <div className="container d-flex justify-content-between">
           {/* Logo */}
-          <Link to="/">
+          <Link
+            to="/"
+            className="d-flex flex-direction-column justify-content-center">
             <img
-              src="https://previews.123rf.com/images/putracetol/putracetol1805/putracetol180502182/101179920-science-computer-logo-icon-design.jpg"
-              width="48"
-              height="48"
+              src={logoUrl}
+              width={110}
+              height={48}
+              style={{ transform: 'translateY(-5px)' }}
             />
           </Link>
 
@@ -187,9 +190,9 @@ function HeaderView() {
                     ) : (
                       <>
                         <span className="font-weight-500 m-r-5 Header-View-text">
-                          {helpers.reduceProductName(user.fullName, 10)}
+                          {helpers.reduceProductName(user.fullName, 12)}
                         </span>
-                        <Avatar src={user.avt ? user.avt : defaultAvt} />
+                        <Avatar src={defaultAvt} />
                       </>
                     )}
                   </Link>

@@ -18,6 +18,7 @@ const SearchResult = React.lazy(() =>
 const FilterResult = React.lazy(() =>
   import('containers/SearchFilterPage/Filter'),
 );
+const AccountPage = React.lazy(() => import('containers/AccountPage'));
 
 const routes = [
   {
@@ -63,6 +64,11 @@ const routes = [
     path: constants.ROUTES.FILTER,
     exact: true,
     main: () => <FilterResult />,
+  },
+  {
+    path: constants.ROUTES.ACCOUNT,
+    exact: true,
+    main: () => <AccountPage />,
   },
 ];
 
