@@ -162,7 +162,7 @@ function UpdateAccountForm() {
                       className="w-30"
                       size="large"
                       type="primary"
-                      disabled={isSubmitting}
+                      loading={isSubmitting}
                       htmlType="submit">
                       {isSubmitting ? 'Đang cập nhật ...' : 'Cập nhật'}
                     </Button>

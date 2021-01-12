@@ -15,6 +15,7 @@ const corsConfig = require('./src/configs/cors.config');
 const constants = require('./src/constants');
 const accountApi = require('./src/apis/account.api');
 const adminApi = require('./src/apis/admin.api');
+const addressApi = require('./src/apis/address.api');
 const loginApi = require('./src/apis/login.api');
 const productApi = require('./src/apis/product.api');
 const commentApi = require('./src/apis/comment.api');
@@ -66,6 +67,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // api trang admin
 app.use('/apis/admin', adminApi);
+
+// api liên quan đến address
+app.use('/apis/address', addressApi);
 
 // api liên quan đến account
 app.use('/apis/accounts', accountApi);

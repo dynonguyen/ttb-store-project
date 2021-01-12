@@ -67,7 +67,7 @@ const routes = [
   },
   {
     path: constants.ROUTES.ACCOUNT,
-    exact: true,
+    exact: false,
     main: () => <AccountPage />,
   },
 ];
