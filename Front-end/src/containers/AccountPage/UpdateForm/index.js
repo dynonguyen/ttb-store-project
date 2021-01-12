@@ -1,27 +1,28 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Col, Row, Tooltip } from 'antd';
+import { Button, Col, message, Row, Tooltip } from 'antd';
+import userApi from 'apis/userApi';
 import DatePickerField from 'components/Custom/Field/DatePickerField';
 import InputField from 'components/Custom/Field/InputField';
 import SelectField from 'components/Custom/Field/SelectField';
 import constants from 'constants/index';
-import { FastField, Formik, Form } from 'formik';
-import { now } from 'moment';
-import React from 'react';
+import { FastField, Form, Formik } from 'formik';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
-
 function UpdateAccountForm() {
   const user = useSelector((state) => state.user);
-  const { fullName, email, address, birthday, gender } = user;
+  const { _id, fullName, email, address, birthday, gender } = user;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // giá trọ khởi tạo cho formik
   const initialValue = {
     email,
     fullName,
     address,
     gender,
-    birthday: new Date(1900, 1, 1),
+    birthday,
   };
-  console.log(initialValue);
+
   // validate form trước submit với yup
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -49,13 +50,36 @@ function UpdateAccountForm() {
       .max(100, '* Tối đa 100 ký tự'),
   });
 
+  // fn: update account
+  const handleUpdate = async (value) => {
+    try {
+      setIsSubmitting(true);
+      if (JSON.stringify(initialValue) === JSON.stringify(value)) {
+        setIsSubmitting(false);
+        return;
+      }
+      const response = await userApi.putUpdateUser(_id, value);
+      if (response) {
+        message.success('Cập nhật thành công.');
+        setIsSubmitting(false);
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+    } catch (error) {
+      message.error('Cập nhật thất bại. Thử lại', 2);
+      setIsSubmitting(false);
+    }
+  };
+
+  //rendering...
   return (
     <>
       {email && (
         <Formik
           initialValues={initialValue}
           validationSchema={validationSchema}
-          onSubmit={(v) => console.log(v)}>
+          onSubmit={(value) => handleUpdate(value)}>
           {(formikProps) => {
             const suffixColor = 'rgba(0, 0, 0, 0.25)';
             return (
@@ -66,6 +90,7 @@ function UpdateAccountForm() {
                     <FastField
                       name="email"
                       component={InputField}
+                      disabled={true}
                       className="input-form-common"
                       placeholder="Email *"
                       size="large"
@@ -101,7 +126,7 @@ function UpdateAccountForm() {
                       className="input-form-common"
                       name="birthday"
                       component={DatePickerField}
-                      placeholder="Ngày sinh"
+                      placeholder={birthday}
                       size="large"
                     />
                   </Col>
@@ -137,8 +162,9 @@ function UpdateAccountForm() {
                       className="w-30"
                       size="large"
                       type="primary"
+                      disabled={isSubmitting}
                       htmlType="submit">
-                      Cập nhật
+                      {isSubmitting ? 'Đang cập nhật ...' : 'Cập nhật'}
                     </Button>
                   </Col>
                 </Row>

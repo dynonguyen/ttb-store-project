@@ -8,6 +8,10 @@ const userApi = {
     const url = USER_API_URL;
     return axiosClient.get(url);
   },
+  putUpdateUser: (userId = '', value = {}) => {
+    const url = USER_API_URL + '/update';
+    return axiosClient.put(url, { userId, value });
+  },
 };
 
 export default userApi;

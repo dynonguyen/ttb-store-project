@@ -174,9 +174,9 @@ function AdminPage() {
               </h2>
               <a
                 href="/"
-                className="p-r-24 t-color-primary font-weight-500 p-b-10">
+                className="open-web p-r-24 t-color-primary font-weight-500 p-b-10">
                 <HomeOutlined
-                  className="font-size-28px t-color-primary m-r-10"
+                  className="icon font-size-28px t-color-primary m-r-10"
                   style={{ transform: 'translateY(3px)' }}
                 />
                 <span className="open-web-title">Open the website</span>
@@ -194,7 +194,7 @@ function AdminPage() {
           <div className="d-flex">
             {/* menu dashboard */}
             <Menu
-              className="menu"
+              className="menu p-t-24"
               theme="dark"
               onClick={handleSelected}
               style={{
