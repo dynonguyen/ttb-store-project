@@ -22,6 +22,18 @@ const addressApi = {
       params: { id: provinceId, district: districtId },
     });
   },
+
+  // api: Lấy danh sách địa chỉ nhận hàng
+  getDeliveryAddressList: (userId) => {
+    const url = ADDRESS_API_ENDPOINT + '/delivery';
+    return axiosClient.get(url, { params: { userId } });
+  },
+
+  // api: Thêm địa chỉ nhận hàng
+  postAddDeliveryAddress: (userId, newAddress) => {
+    const url = ADDRESS_API_ENDPOINT + '/delivery';
+    return axiosClient.post(url, { userId, newAddress });
+  },
 };
 
 export default addressApi;

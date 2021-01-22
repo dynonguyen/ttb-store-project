@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
-import { Button, Col, Form, Input, Modal, Row, Select } from 'antd';
+import { Button, Col, Form, Input, message, Modal, Row, Select } from 'antd';
 import addressApi from 'apis/addressApi';
+import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 const { Option } = Select;
 
 function AddressAddForm(props) {
@@ -13,6 +14,7 @@ function AddressAddForm(props) {
   const [streetList, setStreetList] = useState([]);
   const provinceId = useRef('');
   const formRef = useRef(null);
+  const user = useSelector((state) => state.user);
 
   // fn: lấy danh sách tỉnh thành
   useEffect(() => {
@@ -61,15 +63,34 @@ function AddressAddForm(props) {
   };
 
   // event: thêm địa chỉ
-  const onAddAddress = async (value) => {
-    console.log(value);
-    return null;
+  const onAddAddress = async (newAddress) => {
+    try {
+      const { name, phone, ...rest } = newAddress;
+      const sentData = { name, phone, address: { ...rest } };
+      const userId = user._id;
+      const response = await addressApi.postAddDeliveryAddress(
+        userId,
+        sentData,
+      );
+      if (response && response.status === 200) {
+        message.success('Thêm địa chỉ thành công', 2);
+      }
+    } catch (error) {
+      if (error) {
+        if (error.response) message.error(error.response.data.message, 2);
+        else message.error('Thêm địa chỉ thất bại', 2);
+      }
+    }
+    setIsVisible(false);
+    onCloseForm(1);
   };
 
   // rendering ...
   return (
     <Modal
       visible={isVisible}
+      closable={true}
+      maskClosable={false}
       onCancel={() => {
         setIsVisible(false);
         onCloseForm();
@@ -97,12 +118,34 @@ function AddressAddForm(props) {
             <Form.Item
               name="name"
               className="m-tb-16"
-              rules={[{ required: true, message: '* Bắt buộc nhập' }]}>
+              rules={[
+                { required: true, message: '* Bắt buộc nhập' },
+                {
+                  max: 40,
+                  message: 'Tối đa 40 ký tự',
+                },
+              ]}>
               <Input size="middle" placeholder="Họ tên *" maxLength={60} />
             </Form.Item>
             <Form.Item
               name="phone"
-              rules={[{ required: true, message: '* Bắt buộc nhập' }]}>
+              rules={[
+                { required: true, message: '* Bắt buộc nhập' },
+                {
+                  validator: (_, value) =>
+                    /0\d{0,9}/gi.test(value)
+                      ? Promise.resolve()
+                      : Promise.reject('Số điện thoại không hợp lệ'),
+                },
+                {
+                  max: 10,
+                  message: 'Số điện thoại bao gồm 10 số',
+                },
+                {
+                  min: 10,
+                  message: 'Số điện thoại bao gồm 10 số',
+                },
+              ]}>
               <Input
                 size="middle"
                 placeholder="Số điện thoại *"
@@ -200,7 +243,7 @@ function AddressAddForm(props) {
             </Form.Item>
             {/* chi tiết */}
             <Form.Item
-              name="addDetails"
+              name="details"
               rules={[{ required: true, message: '* bắt buộc nhập' }]}>
               <Input
                 className="m-t-16"

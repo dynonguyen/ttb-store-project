@@ -58,7 +58,7 @@ const postLogin = async (req, res, next) => {
       // tạo mã refresh token
       const refreshToken = await jwtConfig.encodedToken(
         process.env.JWT_SECRET_REFRESH_KEY,
-        { accountID: account._id, keepLogin },
+        { accountId: account._id, keepLogin },
         constants.JWT_REFRESH_EXPIRES_TIME,
       );
 

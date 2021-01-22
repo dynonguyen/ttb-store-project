@@ -10,4 +10,10 @@ addressApi.get('/district', addressController.getDistrict);
 // api: lấy danh sách phường, đường theo id huyện
 addressApi.get('/street', addressController.getWardStreetList);
 
+// api: Lấy danh sách địa chỉ nhận hàng
+addressApi.get('/delivery', addressController.getDeliveryAddressList);
+
+// api: Thêm địa chỉ nhận hàng
+addressApi.post('/delivery', addressController.postAddDeliveryAddress);
+
 module.exports = addressApi;

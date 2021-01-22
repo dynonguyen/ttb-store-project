@@ -1,31 +1,11 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
-import React, { useState } from 'react';
+import { Button, Spin } from 'antd';
+import addressApi from 'apis/addressApi';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import AddressAddForm from './AddressAddForm';
 
-const list = [
-  {
-    name: 'Tuấn',
-    address: '14/8, Phường Bình Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh ',
-    phone: '0377757578',
-  },
-  {
-    name: 'Tuấn',
-    address: '14/8, Phường Bình Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh',
-    phone: '0377757578',
-  },
-  {
-    name: 'Tuấn',
-    address: '14/8, Phường Bình Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh',
-    phone: '0377757578',
-  },
-  {
-    name: 'Tuấn',
-    address: '14/8, Phường Bình Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh',
-    phone: '0377757578',
-  },
-];
-
+// fn: hiển thị danh sách
 function showAddressList(list = []) {
   return (
     list &&
@@ -65,26 +45,74 @@ function showAddressList(list = []) {
 
 function AddressUserList() {
   const [isVisibleForm, setIsVisibleForm] = useState(false);
+  const [list, setList] = useState([]);
+  const user = useSelector((state) => state.user);
+  const [updateList, setUpdateList] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // event: Lấy danh sách địa chỉ
+  useEffect(() => {
+    async function getDeliveryAddressList() {
+      try {
+        setIsLoading(true);
+        const response = await addressApi.getDeliveryAddressList(user._id);
+        if (isSubscribe && response) {
+          setList(response.data.list);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        if (isSubscribe) {
+          setList([]);
+          setIsLoading(false);
+        }
+      }
+    }
+    if (user) getDeliveryAddressList();
+    let isSubscribe = true;
+    return () => (isSubscribe = false);
+  }, [user, updateList]);
 
   // rendering
   return (
-    <div>
-      {/* thêm địa chỉ */}
-      <Button
-        type="dashed"
-        size="large"
-        className="w-100"
-        onClick={() => setIsVisibleForm(true)}
-        style={{ height: 54 }}>
-        <PlusOutlined />
-        Thêm địa chỉ
-      </Button>
-      {/* hiện danh sách địa chỉ */}
-      <div className="m-t-16">{showAddressList(list)}</div>
-      {isVisibleForm && (
-        <AddressAddForm onCloseForm={() => setIsVisibleForm(false)} />
+    <>
+      {isLoading ? (
+        <div className="t-center">
+          <Spin tip="Đang tải danh sách địa chỉ giao hàng ..." size="large" />
+        </div>
+      ) : (
+        <div>
+          {/* thêm địa chỉ, chỉ cho tối đa 5 địa chỉ */}
+          {list.length < 5 && (
+            <Button
+              type="dashed"
+              size="large"
+              className="w-100"
+              onClick={() => setIsVisibleForm(true)}
+              style={{ height: 54 }}>
+              <PlusOutlined />
+              Thêm địa chỉ
+            </Button>
+          )}
+          {/* hiện danh sách địa chỉ */}
+          {list.length > 0 ? (
+            <div className="m-t-16">{showAddressList(list)}</div>
+          ) : (
+            <h3 className="m-t-16 t-center" style={{ color: '#888' }}>
+              Hiện tại bạn chưa có địa chỉ giao, nhận hàng nào
+            </h3>
+          )}
+          {isVisibleForm && (
+            <AddressAddForm
+              onCloseForm={(addFlag) => {
+                // cở hiệu báo thêm mới địa chỉ thành công để cập nhật lại địa chỉ
+                if (addFlag) setUpdateList(!updateList);
+                setIsVisibleForm(false);
+              }}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
