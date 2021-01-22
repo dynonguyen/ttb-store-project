@@ -58,8 +58,8 @@ function EvaluationView(props) {
         productId,
         time: new Date().getTime(),
         content,
+        rate: star.current - 1,
       };
-      if (star.current !== 0) data = { ...data, rate: star.current - 1 };
       const response = await commentApi.postComment(data);
       if (response) {
         setCmtListState([...cmtListState, data]);

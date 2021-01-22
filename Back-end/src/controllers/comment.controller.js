@@ -18,9 +18,9 @@ const getCommentList = async (req, res, next) => {
 const postComment = async (req, res, next) => {
   try {
     const data = req.body;
+    const { productId, rate } = data;
     // Nếu có rate thì cập nhật lại rate trong product
-    if (data.hasOwnProperty('rate')) {
-      const { productId, rate } = data;
+    if (parseInt(rate) !== -1) {
       const product = await ProductModel.findById(productId);
       if (product) {
         let oldRate = product.rate;
@@ -31,10 +31,12 @@ const postComment = async (req, res, next) => {
         );
       }
     }
+
     const response = await CommentModel.create(data);
     if (response) return res.status(200).send('success');
+    return res.status(400).send('failed');
   } catch (error) {
-    return res.status(400).send('success');
+    return res.status(400).send('failed');
   }
 };
 

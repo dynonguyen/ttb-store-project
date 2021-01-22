@@ -3,7 +3,6 @@ import constants from 'constants/index';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 function UserComment(props) {
@@ -13,7 +12,6 @@ function UserComment(props) {
   const isReduceCmt = content.length >= 200 ? true : false;
   const [isMore, setIsMore] = useState(false);
   const [loginRedirect, setLoginRedirect] = useState(false);
-
   // rendering ...
   return (
     <>
@@ -31,8 +29,16 @@ function UserComment(props) {
         }
         content={
           <>
-            <Rate defaultValue={rate + 1} disabled style={{ fontSize: 14 }} />
-            <h3>{helpers.convertRateToText(rate)}</h3>
+            {rate !== -1 && (
+              <>
+                <Rate
+                  defaultValue={rate + 1}
+                  disabled
+                  style={{ fontSize: 14 }}
+                />
+                <h3>{helpers.convertRateToText(rate)}</h3>
+              </>
+            )}
 
             <p className="t-justify">
               {isMore ? content : content.slice(0, 200)}
