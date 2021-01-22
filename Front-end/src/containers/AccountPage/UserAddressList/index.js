@@ -115,7 +115,7 @@ function AddressUserList() {
   return (
     <>
       {isLoading ? (
-        <div className="t-center">
+        <div className="t-center m-tb-48">
           <Spin tip="Đang tải danh sách địa chỉ giao hàng ..." size="large" />
         </div>
       ) : (

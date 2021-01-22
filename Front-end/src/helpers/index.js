@@ -728,6 +728,37 @@ const convertProductValue = (type = 0, product) => {
   }
 };
 
+// fn: chuyển đổi thời gian now -> dd/mm/yyyy
+const formatOrderDate = (date = Date.now()) => {
+  const newDate = new Date(date);
+  const d = newDate.getDate(),
+    m = newDate.getMonth() + 1,
+    y = newDate.getFullYear();
+  return `${d}/${m}/${y}`;
+};
+
+// fn: chuyển đổi tình trạng đơn hàng
+const convertOrderStatus = (orderStatus = 0) => {
+  switch (orderStatus) {
+    case 0:
+      return 'Đặt hàng thành công';
+    case 1:
+      return 'Đã tiếp nhận';
+    case 2:
+      return 'Đang lấy hàng';
+    case 3:
+      return 'Đóng gói xong';
+    case 4:
+      return 'Đang giao vận chuyển';
+    case 5:
+      return 'Đang vận chuyển';
+    case 6:
+      return 'Giao hàng thành công';
+    default:
+      return 'Đặt hàng thành công';
+  }
+};
+
 export default {
   replaceMongoKeyword,
   formatQueryString,
@@ -745,4 +776,6 @@ export default {
   convertSeriesChipCpu,
   randomColor,
   autoSearchOptions,
+  formatOrderDate,
+  convertOrderStatus,
 };

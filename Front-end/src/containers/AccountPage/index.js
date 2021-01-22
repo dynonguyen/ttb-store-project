@@ -7,10 +7,11 @@ import {
 import { Button, Col, Result, Row } from 'antd';
 import userLogo from 'assets/icon/user_32px.png';
 import constants from 'constants/index';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 import './index.scss';
+import OrderList from './OrderList';
 import UpdateAccountForm from './UpdateForm';
 import AddressUserList from './UserAddressList';
 
@@ -59,6 +60,7 @@ function AccountPage() {
         return (
           <>
             <h2 className="m-b-16">Các đơn hàng của bạn</h2>
+            <OrderList />
           </>
         );
       case 'addresses':
@@ -87,11 +89,17 @@ function AccountPage() {
     }
   }
 
+  // event: lấy lại key khi bấm vào đơn hàng menu
+  useEffect(() => {
+    if (pathname === `${constants.ROUTES.ACCOUNT}/orders`)
+      setActiveKey('orders');
+  }, [pathname]);
+
   // rendering ...
   return (
     <>
       {!isAuth && <Redirect to={constants.ROUTES.LOGIN} />}
-      <Row className="account-page h-100vh container m-tb-32">
+      <Row className="account-page container m-tb-32">
         <Col className="p-r-16" span={24} md={6}>
           {/* giới thiệu */}
           <div className="d-flex p-b-4 m-b-12 intro">
