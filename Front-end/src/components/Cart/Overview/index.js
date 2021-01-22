@@ -1,7 +1,9 @@
-import React from 'react';
-import { List, Avatar, Card, Row, Col, Image } from 'antd';
+import { Avatar, Button, Card, Empty, InputNumber, List } from 'antd';
+import constants from 'constants/index';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 const { Meta } = Card;
@@ -14,67 +16,20 @@ function totalPrice(list) {
   }, 0);
 }
 
-const list = [
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-  // {
-  //   avt:
-  //     'https://admin.thinkpro.vn//backend/uploads/product/color_images/2020/9/5/MacBook-Pro-16-2019.jpg',
-  //   name: 'Macbook Pro 16',
-  //   amount: 5,
-  //   price: 10,
-  //   code: 'SKU200500854',
-  // },
-];
+// const list = [];
+// for (let i = 0; i < 10; i++) {
+//   list.push({
+//     avt:
+//       'https://cdn.tgdd.vn/Files/2020/07/22/1272660/apple-macbook-pro-16-inch-01-_1680x964-800-resize.jpg',
+//     name: 'Macbook Pro 16',
+//     amount: 5,
+//     price: 10,
+//     code: 'SKU200500854',
+//   });
+// }
 
 function CartOverview(props) {
-  // const { list } = props;
+  const { list } = props;
   return (
     // <div className="Cart-View">
     //   <h2 className="font-weight-700">Giỏ hàng của bạn</h2>
@@ -104,19 +59,23 @@ function CartOverview(props) {
         itemLayout="vertical"
         size="large"
         dataSource={list}
+        locale={{
+          emptyText: (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description="Giỏ hàng chưa có sản phẩm">
+              <Link to={constants.ROUTES.HOME}>
+                <Button
+                  className="m-tb-8 d-block m-lr-auto w-50"
+                  type="primary"
+                  size="large">
+                  Mua sắm ngay
+                </Button>
+              </Link>
+            </Empty>
+          ),
+        }}
         renderItem={(item) => (
-          // <Card style={{ maxWidth: 900 }}>
-          //   <Meta
-          //     avatar={
-          //       <Avatar style={{ width: 80, height: 50 }} src={item.avt} />
-          //     }
-          //     title={item.name}
-          //     description={`Số lượng: ${item.amount}`}
-          //   />
-          //   <p className="product-price">
-          //     {helpers.formatProductPrice(item.price)}
-          //   </p>
-          // </Card>
           <div className="d-flex justify-content-between bg-white m-b-16">
             {/* Tên, mã sản phẩm */}
             <div>
@@ -131,8 +90,10 @@ function CartOverview(props) {
               </Card>
             </div>
             <div className="p-24">
-              <p className="product-amount">{`Số lượng: ${item.amount}`}</p>
+              {/* <p className="product-amount">{`Số lượng: ${item.amount}`}</p> */}
+              <InputNumber min={1} max={10} defaultValue={`${item.amount}`} />
             </div>
+
             <div className="p-24">
               <p className="product-price">
                 {helpers.formatProductPrice(item.price)}

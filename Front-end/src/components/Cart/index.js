@@ -6,6 +6,18 @@ import CartOverview from './Overview';
 import CartPayment from './Payment';
 import './index.scss';
 
+const list = [];
+// for (let i = 0; i < 10; i++) {
+//   list.push({
+//     avt:
+//       'https://cdn.tgdd.vn/Files/2020/07/22/1272660/apple-macbook-pro-16-inch-01-_1680x964-800-resize.jpg',
+//     name: 'Macbook Pro 16',
+//     amount: 5,
+//     price: 10,
+//     code: 'SKU200500854',
+//   });
+// }
+
 function Cart() {
   return (
     <div className="Cart-Detail-View container m-t-20">
@@ -21,18 +33,18 @@ function Cart() {
           </span>
         </Col>
 
-        <Col span={24} md={18}>
+        {/* <Col span={24} md={18}>
           <h2 className="font-weight-700">Giỏ hàng của bạn</h2>
-        </Col>
+        </Col> */}
 
         {/* Chi tiết giỏ hàng */}
         <Col span={24} md={18}>
-          <CartOverview list={[]} />
+          <CartOverview list={list} />
         </Col>
 
         {/* Thanh toán */}
         <Col span={24} md={6}>
-          <CartPayment list={[]} />
+          <CartPayment list={list} />
         </Col>
       </Row>
     </div>
