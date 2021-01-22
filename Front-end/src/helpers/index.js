@@ -729,12 +729,14 @@ const convertProductValue = (type = 0, product) => {
 };
 
 // fn: chuyển đổi thời gian now -> dd/mm/yyyy
-const formatOrderDate = (date = Date.now()) => {
+const formatOrderDate = (date = Date.now(), flag = 0) => {
   const newDate = new Date(date);
   const d = newDate.getDate(),
     m = newDate.getMonth() + 1,
     y = newDate.getFullYear();
-  return `${d}/${m}/${y}`;
+  return flag === 0
+    ? `${d}/${m}/${y}`
+    : `${newDate.getHours()}:${newDate.getMinutes()} ${d}/${m}/${y}`;
 };
 
 // fn: chuyển đổi tình trạng đơn hàng
@@ -759,6 +761,28 @@ const convertOrderStatus = (orderStatus = 0) => {
   }
 };
 
+// fn: chuyển đổi phương thức thanh toán
+const convertPaymentMethod = (payMethod = 0) => {
+  switch (payMethod) {
+    case 0:
+      return 'Thanh toán tiền mặt khi nhận hàng';
+    case 1:
+      return 'Thanh toán online';
+    default:
+      return 'Thanh toán tiền mặt khi nhận hàng';
+  }
+};
+
+// fn: tính tổng phí đơn hàng
+const calTotalOrderFee = (order) => {
+  const { transportFee, orderProd, numOfProd } = order;
+  const total =
+    transportFee +
+    (orderProd.price * numOfProd -
+      (orderProd.price * numOfProd * orderProd.discount) / 100);
+  return total;
+};
+
 export default {
   replaceMongoKeyword,
   formatQueryString,
@@ -778,4 +802,6 @@ export default {
   autoSearchOptions,
   formatOrderDate,
   convertOrderStatus,
+  convertPaymentMethod,
+  calTotalOrderFee,
 };

@@ -28,14 +28,16 @@ const orderSchema = new Schema({
   // ngày mua
   orderDate: { type: Date, required: true, default: new Date() },
 
-  // sản phẩm
-  orderProd: { type: Schema.Types.ObjectId, required: true, ref: 'product' },
+  // sản phẩm lúc mua
+  orderProd: {
+    id: { type: Schema.Types.ObjectId, required: true, ref: 'product' },
+    name: { type: String, required: true, trim: true },
+    price: { type: Number, required: true, default: 0 },
+    discount: { type: Number, required: true, default: 0 },
+  },
 
   // số lượng
   numOfProd: { type: Number, required: true, default: 1 },
-
-  // Tổng tiền (bao gồm phí vận chuyển, giảm giá ...)
-  totalMoney: { type: Number, required: true, default: 0 },
 
   // trạng thái đơn hàng
   // 0 - Đặt hàng thành công, 1 - TTB đã tiếp nhận, 2 - Đang lấy hàng, 3 - Đóng gói xong
@@ -51,6 +53,9 @@ const orderSchema = new Schema({
   // 0 - thanh toán tiền mặt khi nhận hàng
   // 1 - thanh toán qua VNPay
   paymentMethod: { type: Number, required: true, enum: [0, 1], default: 0 },
+
+  // phí vận chuyển
+  transportFee: { type: Number, required: true, default: 0 },
 });
 
 const OrderModel = mongoose.model('order', orderSchema, 'orders');
