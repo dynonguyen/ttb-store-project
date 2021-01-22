@@ -15,6 +15,7 @@ const RouterModel = require('../models/product.models/peripherals.models/router.
 const SpeakerModel = require('../models/product.models/peripherals.models/speaker.model');
 const CameraModel = require('../models/product.models/camera.models/camera.model');
 const WebcamModel = require('../models/product.models/camera.models/webcam.model');
+const AddressModel = require('../models/address.model');
 
 //fn: tạo mã xác thực
 const generateVerifyCode = (numberOfDigits) => {
@@ -137,10 +138,55 @@ const convertObjectContainsRegex = (obj) => {
   return newObj;
 };
 
+// fn: chuyển address id thành address string
+const convertAddress = async (address) => {
+  try {
+    let result = '';
+    const { province, district, wards, street, details } = address;
+    const data = await AddressModel.findOne({ id: province.toString() });
+    if (data) {
+      const { districts } = data;
+      const proName = data.name;
+
+      const dis = districts.find((item) => {
+        return item.id === district.toString();
+      });
+
+      if (dis) {
+        const disName = dis ? dis.name : '';
+        const ward = dis.wards.find((item) => item.id == wards.toString());
+        const wName = ward.prefix + ' ' + ward.name;
+
+        const s = dis.streets
+          ? dis.streets.find((item) => item.id == street.toString())
+          : null;
+        const sName = s ? s.prefix + ' ' + s.name : '';
+        result =
+          details +
+          ', ' +
+          sName +
+          ', ' +
+          wName +
+          ', ' +
+          disName +
+          ', ' +
+          proName;
+      } else {
+        return proName;
+      }
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};
+
 module.exports = {
   generateVerifyCode,
   isVerifyEmail,
   convertProductType,
   typeOfProduct,
   convertObjectContainsRegex,
+  convertAddress,
 };

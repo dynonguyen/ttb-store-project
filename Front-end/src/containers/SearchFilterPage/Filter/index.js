@@ -112,7 +112,6 @@ function FilterResult() {
     return true;
   });
   const { dOption, pOption } = analysisQueryList(queryList);
-
   // state pagination
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);

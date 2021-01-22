@@ -1,4 +1,8 @@
 .account-page {
+  min-height: 50vh;
+  a {
+    color: #444;
+  }
   .intro {
     border-bottom: solid 1px #ddd;
   }
@@ -19,5 +23,11 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .account-page {
+    min-height: 100vh;
   }
 }

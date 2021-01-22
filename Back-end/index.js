@@ -15,10 +15,12 @@ const corsConfig = require('./src/configs/cors.config');
 const constants = require('./src/constants');
 const accountApi = require('./src/apis/account.api');
 const adminApi = require('./src/apis/admin.api');
+const addressApi = require('./src/apis/address.api');
 const loginApi = require('./src/apis/login.api');
 const productApi = require('./src/apis/product.api');
 const commentApi = require('./src/apis/comment.api');
 const userApi = require('./src/apis/user.api');
+const orderApi = require('./src/apis/order.api');
 
 // ! ================== set port ================== //
 const app = express();
@@ -67,6 +69,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // api trang admin
 app.use('/apis/admin', adminApi);
 
+// api liên quan đến address
+app.use('/apis/address', addressApi);
+
 // api liên quan đến account
 app.use('/apis/accounts', accountApi);
 
@@ -81,6 +86,9 @@ app.use('/apis/products', productApi);
 
 // api liên quan comment
 app.use('/apis/comments', commentApi);
+
+// api liên quan đơn hàng
+app.use('/apis/orders', orderApi);
 
 // Note: Khi deploy production, việc redirect các route sẽ để react giải quyết
 app.get('*', (req, res) => {

@@ -101,11 +101,11 @@ function SeeProduct() {
       title: 'Giá',
       key: 'price',
       dataIndex: 'price',
-      defaultSortOrder: 'ascend',
+      defaultSortOrder: 'descend',
       sorter: (a, b) => a.price - b.price,
       render: (price) => (
         <h3 style={{ color: '#4F55C5' }}>
-          {helpers.formatProductPrice(price)}
+          {price ? helpers.formatProductPrice(price) : 'Liên hệ'}
         </h3>
       ),
     },
@@ -188,7 +188,7 @@ function SeeProduct() {
 
   // rendering ...
   return (
-    <div className="pos-relative">
+    <div className="pos-relative p-8">
       {isLoading ? (
         <Spin
           tip="Đang tải danh sách sản phẩm ..."

@@ -1,16 +1,20 @@
 import { DatePicker } from 'antd';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function DatePickerField(props) {
   const { field, form, className, placeholder, size } = props;
   const { name } = field;
   const { errors, touched } = form;
   const showError = errors[name] && touched[name];
-
   const handleOnChange = (date, dateString) => {
     form.setFieldValue(name, dateString);
   };
+
+  useEffect(() => {
+    handleOnChange(new Date(), field.value);
+    return () => {};
+  }, []);
 
   return (
     <>

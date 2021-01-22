@@ -1,6 +1,6 @@
 const UserModel = require('../models/account.models/user.model');
 
-//get user
+// api: get user
 const getUser = async (req, res, next) => {
   try {
     //if check authentication wrong then return error
@@ -27,7 +27,25 @@ const getUser = async (req, res, next) => {
   }
 };
 
+// api: update user
+const putUpdateUser = async (req, res, next) => {
+  try {
+    const { userId, value } = req.body;
+    if (await UserModel.exists({ _id: userId })) {
+      const response = await UserModel.updateOne({ _id: userId }, { ...value });
+      if (response) {
+        return res.status(200).json({ message: 'success' });
+      }
+    } else {
+      return res.status(409).json({ message: 'Tài khoản không tồn tại' });
+    }
+  } catch (error) {
+    return res.status(409).json({ message: 'Cập nhật thất bại' });
+  }
+};
+
 //export
 module.exports = {
   getUser,
+  putUpdateUser,
 };

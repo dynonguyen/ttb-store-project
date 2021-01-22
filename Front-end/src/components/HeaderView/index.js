@@ -41,14 +41,13 @@ function HeaderView() {
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
 
   // state search
-  const location = useLocation().pathname;
+  const locations = useLocation().pathname;
   const initLink = '/search?keyword=';
   const [linkSearch, setLinkSearch] = useState('');
 
   // event: log out
   const onLogout = async () => {
     try {
-      console.log('logout');
       const response = await loginApi.postLogout();
       if (response) {
         message.success('Đăng xuất thành công', 2);
@@ -89,7 +88,7 @@ function HeaderView() {
       {isAuth && (
         <Menu.Item>
           <Button size="large" className="w-100 btn-secondary" type="default">
-            <Link to={`/account/${user._id}`}>Quản lý Tài khoản</Link>
+            <Link to={constants.ROUTES.ACCOUNT + '/'}>Quản lý Tài khoản</Link>
           </Button>
         </Menu.Item>
       )}
@@ -136,7 +135,7 @@ function HeaderView() {
                 </AutoComplete>
                 <Button type="primary btn-search" size="large">
                   <Link
-                    to={linkSearch === '' ? location : initLink + linkSearch}>
+                    to={linkSearch === '' ? locations : initLink + linkSearch}>
                     <SearchOutlined /> Tìm kiếm
                   </Link>
                 </Button>
@@ -167,7 +166,7 @@ function HeaderView() {
                 />
               }>
               <Menu.Item key="0">
-                <Link to="/">
+                <Link to={constants.ROUTES.ACCOUNT + '/orders'}>
                   <span className="font-weight-500 m-r-5 Header-View-text">
                     Đơn hàng
                   </span>
@@ -178,7 +177,9 @@ function HeaderView() {
                 <Dropdown overlay={userActionMenu} placement="bottomRight">
                   <Link
                     to={
-                      isAuth ? constants.ROUTES.ACCOUNT : constants.ROUTES.LOGIN
+                      isAuth
+                        ? `${constants.ROUTES.ACCOUNT}/`
+                        : constants.ROUTES.LOGIN
                     }>
                     {!isAuth ? (
                       <>
@@ -242,7 +243,7 @@ function HeaderView() {
               />
             </AutoComplete>
             <Button type="primary btn-search" size="large">
-              <Link to={linkSearch === '' ? location : initLink + linkSearch}>
+              <Link to={linkSearch === '' ? locations : initLink + linkSearch}>
                 <SearchOutlined /> Tìm kiếm
               </Link>
             </Button>
