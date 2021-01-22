@@ -63,8 +63,9 @@ const getDeliveryAddressList = async (req, res, next) => {
           return { ...item, address: newAddress };
         }),
       );
-
       return res.status(200).json({ list: list });
+    } else {
+      return res.status(200).json({ list: [] });
     }
   } catch (error) {
     return res.status(401).json({ list: [] });
@@ -101,11 +102,67 @@ const postAddDeliveryAddress = async (req, res, next) => {
       );
       if (responseUpdate) return res.status(200).json({ message: 'success' });
     }
+
+    return res
+      .status(409)
+      .json({ message: 'Thêm địa chỉ giao hàng thất bại, thử lại' });
   } catch (error) {
     console.error(error);
     return res
       .status(409)
       .json({ message: 'Thêm địa chỉ giao hàng thất bại, thử lại' });
+  }
+};
+
+// api: Xoá 1 địa chỉ nhận hàng
+const delAddDeliveryAddress = async (req, res, next) => {
+  try {
+    const { userId, item } = req.query;
+    const deliveryAdd = await DeliveryAddressModel.findOne({
+      user: userId,
+    }).select('list -_id');
+    if (deliveryAdd) {
+      const { list } = deliveryAdd;
+      const newList = list.filter((ele, index) => index !== parseInt(item));
+      const response = await DeliveryAddressModel.updateOne(
+        { user: userId },
+        { list: newList },
+      );
+      if (response) return res.status(200).json({ message: 'success' });
+    } else {
+      return res.status(401).json({ message: 'Xoá địa chỉ thất bại' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ message: 'Xoá địa chỉ thất bại' });
+  }
+};
+
+// api: cài mặc định 1 địa chỉ nhận hàng
+const putSetDefaultDeliveryAddress = async (req, res, next) => {
+  try {
+    const { userId, item } = req.query;
+    const deliveryAdd = await DeliveryAddressModel.findOne({
+      user: userId,
+    }).select('list -_id');
+
+    if (deliveryAdd) {
+      const { list } = deliveryAdd;
+      let newList = list.filter((ele, index) => index === parseInt(item));
+      for (let i = 0; i < list.length; ++i) {
+        if (i !== parseInt(item)) newList.push(list[i]);
+      }
+      const response = await DeliveryAddressModel.updateOne(
+        { user: userId },
+        { list: newList },
+      );
+      if (response) return res.status(200).json({ message: 'success' });
+    } else {
+      return res.status(401).json({ message: 'Xoá địa chỉ thất bại' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ message: 'Xoá địa chỉ thất bại' });
   }
 };
 
@@ -115,4 +172,6 @@ module.exports = {
   getWardStreetList,
   getDeliveryAddressList,
   postAddDeliveryAddress,
+  delAddDeliveryAddress,
+  putSetDefaultDeliveryAddress,
 };

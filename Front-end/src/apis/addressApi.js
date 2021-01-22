@@ -34,6 +34,18 @@ const addressApi = {
     const url = ADDRESS_API_ENDPOINT + '/delivery';
     return axiosClient.post(url, { userId, newAddress });
   },
+
+  // api: Xoá 1 địa chỉ giao nhận
+  delDeliveryAddress: (userId, item) => {
+    const url = ADDRESS_API_ENDPOINT + '/delivery';
+    return axiosClient.delete(url, { params: { userId, item } });
+  },
+
+  // api: sửa mặc định địa chỉ giao
+  putSetDefaultDeliveryAddress: (userId, item) => {
+    const url = ADDRESS_API_ENDPOINT + '/delivery';
+    return axiosClient.put(url, null, { params: { userId, item } });
+  },
 };
 
 export default addressApi;

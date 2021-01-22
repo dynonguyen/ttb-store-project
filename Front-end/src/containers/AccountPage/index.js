@@ -4,7 +4,7 @@ import {
   ReconciliationOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Col, Row } from 'antd';
+import { Button, Col, Result, Row } from 'antd';
 import userLogo from 'assets/icon/user_32px.png';
 import constants from 'constants/index';
 import React, { useState } from 'react';
@@ -72,6 +72,11 @@ function AccountPage() {
         return (
           <>
             <h2 className="m-b-16">Thông báo</h2>
+            <Result
+              icon={<NotificationOutlined />}
+              title="Hiện tại, không có thông báo nào"
+            />
+            ,
           </>
         );
       default:

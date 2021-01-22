@@ -1,47 +1,9 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Spin } from 'antd';
+import { Button, message, Spin } from 'antd';
 import addressApi from 'apis/addressApi';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AddressAddForm from './AddressAddForm';
-
-// fn: hiển thị danh sách
-function showAddressList(list = []) {
-  return (
-    list &&
-    list.map((item, index) => (
-      <div
-        className="bg-white bor-rad-8 box-sha-home p-tb-8 p-lr-16 m-b-16"
-        key={index}>
-        <div className="d-flex justify-content-between m-b-4">
-          <h3>
-            <b>{item.name}</b>
-            {index === 0 && (
-              <span
-                className="font-size-12px p-tb-4 p-lr-8 m-l-8 bor-rad-4"
-                style={{ border: 'solid 1px #3a5dd9', color: '#3a5dd9' }}>
-                Mặc định
-              </span>
-            )}
-          </h3>
-
-          <div>
-            <Button type="link">Chỉnh sửa</Button>
-            <Button danger type="primary" disabled={index === 0}>
-              Xoá
-            </Button>
-          </div>
-        </div>
-        <p className="m-b-6">
-          <b>Địa chỉ:</b> {item.address}
-        </p>
-        <p className="m-b-6">
-          <b>Số điện thoại:</b> {item.phone}
-        </p>
-      </div>
-    ))
-  );
-}
 
 function AddressUserList() {
   const [isVisibleForm, setIsVisibleForm] = useState(false);
@@ -50,8 +12,86 @@ function AddressUserList() {
   const [updateList, setUpdateList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // event: xoá 1 địa chỉ giao nhận
+  const onDelDeliveryAdd = async (item) => {
+    try {
+      const response = await addressApi.delDeliveryAddress(user._id, item);
+      if (response) {
+        message.success('Xoá địa chỉ thành công');
+        setUpdateList(!updateList);
+      }
+    } catch (error) {
+      message.error('Xoá địa chỉ giao, nhận thất bại.');
+    }
+  };
+
+  // event: đặt mặc định
+  const onSetDefaultDeliveryAdd = async (item) => {
+    try {
+      const response = await addressApi.putSetDefaultDeliveryAddress(
+        user._id,
+        item,
+      );
+      if (response) {
+        message.success('Cập nhật thành công');
+        setUpdateList(!updateList);
+      }
+    } catch (error) {
+      message.error('Cập nhật thất bại.');
+    }
+  };
+
+  // fn: hiển thị danh sách
+  function showAddressList(list = []) {
+    return (
+      list &&
+      list.map((item, index) => (
+        <div
+          className="bg-white bor-rad-8 box-sha-home p-tb-8 p-lr-16 m-b-16"
+          key={index}>
+          <div className="d-flex justify-content-between m-b-4">
+            <h3>
+              <b>{item.name}</b>
+              {index === 0 && (
+                <span
+                  className="font-size-12px p-tb-4 p-lr-8 m-l-8 bor-rad-4"
+                  style={{ border: 'solid 1px #3a5dd9', color: '#3a5dd9' }}>
+                  Mặc định
+                </span>
+              )}
+            </h3>
+
+            {index !== 0 && (
+              <div>
+                <Button
+                  type="link"
+                  onClick={() => onSetDefaultDeliveryAdd(index)}>
+                  Đặt mặc định
+                </Button>
+                <Button
+                  danger
+                  type="primary"
+                  disabled={index === 0}
+                  onClick={() => onDelDeliveryAdd(index)}>
+                  Xoá
+                </Button>
+              </div>
+            )}
+          </div>
+          <p className="m-b-6">
+            <b>Địa chỉ:</b> {item.address}
+          </p>
+          <p className="m-b-6">
+            <b>Số điện thoại:</b> {item.phone}
+          </p>
+        </div>
+      ))
+    );
+  }
+
   // event: Lấy danh sách địa chỉ
   useEffect(() => {
+    let isSubscribe = true;
     async function getDeliveryAddressList() {
       try {
         setIsLoading(true);
@@ -68,7 +108,6 @@ function AddressUserList() {
       }
     }
     if (user) getDeliveryAddressList();
-    let isSubscribe = true;
     return () => (isSubscribe = false);
   }, [user, updateList]);
 
