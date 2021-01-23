@@ -56,6 +56,18 @@ const orderSchema = new Schema({
 
   // phí vận chuyển
   transportFee: { type: Number, required: true, default: 0 },
+
+  // hình thức giao hàng
+  // 0 - tiêu chuẩn, 1 - tiết kiệm, 2 - nhanh
+  transportMethod: {
+    type: Number,
+    enum: [0, 1, 2],
+    required: true,
+    default: 0,
+  },
+
+  // ghi chú cho đơn hàng
+  note: { type: String, trim: true, maxlength: 200 },
 });
 
 const OrderModel = mongoose.model('order', orderSchema, 'orders');

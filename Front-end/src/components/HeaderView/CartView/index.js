@@ -21,7 +21,7 @@ function CartView(props) {
   return (
     <div
       className="cart-view p-8"
-      style={{ backgroundColor: '#fff', height: '500', width: '100' }}>
+      style={{ backgroundColor: '#fff', height: '500', width: '180' }}>
       <div className="cart-items p-8">
         <List
           itemLayout="vertical"
@@ -31,7 +31,11 @@ function CartView(props) {
             <Card style={{ width: 300 }}>
               <Meta
                 avatar={
-                  <Avatar style={{ width: 80, height: 50 }} src={item.avt} />
+                  <Avatar
+                    shape="square"
+                    style={{ width: 80, height: 50 }}
+                    src={item.avt}
+                  />
                 }
                 title={item.name}
                 description={`Số lượng: ${item.amount}`}

@@ -4,6 +4,13 @@ const GENDER_OPTIONS = [
   { value: false, label: 'Nữ' },
 ];
 
+// hình thức giao hàng
+const TRANSPORT_METHOD_OPTIONS = [
+  { value: 0, label: 'Giao hàng tiêu chuẩn', price: 40000 },
+  { value: 1, label: 'Giao hàng tiết kiệm', price: 20000 },
+  { value: 2, label: 'Giao hàng nhanh', price: 100000 },
+];
+
 // product type options
 const PRODUCT_TYPES = [
   { type: 0, label: 'Laptop' },
@@ -36,6 +43,7 @@ const ROUTES = {
   SEARCH: '/search',
   FILTER: '/filter',
   ACCOUNT: '/account',
+  PAYMENT: '/payment',
 };
 
 // FILTERS
@@ -1667,6 +1675,7 @@ const PAIR_CONVERT_KEY = [
 export default {
   REFRESH_TOKEN_KEY: 'refresh_token',
   MAX_VERIFY_CODE: 6,
+  TRANSPORT_METHOD_OPTIONS,
   GENDER_OPTIONS,
   // tuổi nhỏ nhất sử dụng app
   MIN_AGE: 8,

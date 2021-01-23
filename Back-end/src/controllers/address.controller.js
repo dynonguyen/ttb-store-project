@@ -49,21 +49,28 @@ const getWardStreetList = async (req, res, next) => {
 };
 
 // api: Lấy danh sách địa chỉ nhận hàng
+// index = -1 lấy hết, ngc lại lấy vị trí index
 const getDeliveryAddressList = async (req, res, next) => {
   try {
-    const { userId } = req.query;
-    const address = await DeliveryAddressModel.findOne({ user: userId }).select(
+    const { userId, flag } = req.query;
+    let address = await DeliveryAddressModel.findOne({ user: userId }).select(
       'list -_id',
     );
+
     if (address) {
-      // đổi địa chỉ sang str
-      let list = await Promise.all(
-        address.list.map(async (item) => {
-          let newAddress = await helpers.convertAddress(item.address);
-          return { ...item, address: newAddress };
-        }),
-      );
-      return res.status(200).json({ list: list });
+      // nếu lấy địa chỉ thô
+      if (parseInt(flag) === 1)
+        return res.status(200).json({ list: address.list });
+      else {
+        // đổi địa chỉ sang str
+        let list = await Promise.all(
+          address.list.map(async (item) => {
+            let newAddress = await helpers.convertAddress(item.address);
+            return { ...item, address: newAddress };
+          }),
+        );
+        return res.status(200).json({ list: list });
+      }
     } else {
       return res.status(200).json({ list: [] });
     }

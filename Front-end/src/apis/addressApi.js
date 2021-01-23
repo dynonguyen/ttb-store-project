@@ -23,10 +23,10 @@ const addressApi = {
     });
   },
 
-  // api: Lấy danh sách địa chỉ nhận hàng
-  getDeliveryAddressList: (userId) => {
+  // api: Lấy danh sách địa chỉ nhận hàng, flag = 1 lấy địa chỉ thô chưa convert sang string
+  getDeliveryAddressList: (userId, flag = 0) => {
     const url = ADDRESS_API_ENDPOINT + '/delivery';
-    return axiosClient.get(url, { params: { userId } });
+    return axiosClient.get(url, { params: { userId, flag } });
   },
 
   // api: Thêm địa chỉ nhận hàng
