@@ -1,0 +1,22 @@
+.Cart-Detail-View {
+  .page-position {
+    .icon-home {
+      border-radius: 50%;
+    }
+    .r-arrow {
+      line-height: 40px;
+    }
+    .cart-name {
+      border-radius: 18px;
+    }
+  }
+  .icon-del-item {
+    color: #3555c5;
+    font-size: 18px;
+    transition: all 0.25s;
+    &:hover,
+    &:active {
+      transform: scale(1.2);
+    }
+  }
+}

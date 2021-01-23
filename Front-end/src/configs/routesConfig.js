@@ -11,6 +11,7 @@ const ForgotPassword = React.lazy(() =>
   import('containers/Login/ForgotPassword'),
 );
 const NotFound = React.lazy(() => import('components/NotFound'));
+const Cart = React.lazy(() => import('components/Cart'));
 const AdminPage = React.lazy(() => import('containers/AdminPage'));
 const SearchResult = React.lazy(() =>
   import('containers/SearchFilterPage/Search'),
@@ -49,6 +50,11 @@ const routes = [
     path: constants.ROUTES.ADMIN,
     exact: true,
     main: () => <AdminPage />,
+  },
+  {
+    path: constants.ROUTES.CART,
+    exact: false,
+    main: () => <Cart list={[]} />,
   },
   {
     path: constants.ROUTES.NOT_FOUND,
