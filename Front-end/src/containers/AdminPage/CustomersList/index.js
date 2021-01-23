@@ -108,7 +108,7 @@ function CustomerList() {
   return (
     <>
       {isLoading ? (
-        <Spin tip="Đang lấy danh sách ..." />
+        <Spin className="trans-center" tip="Đang lấy danh sách ..." />
       ) : (
         <Table
           columns={columns}

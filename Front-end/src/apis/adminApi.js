@@ -47,10 +47,22 @@ const adminApi = {
     return axiosClient.get(url, { params: page });
   },
 
-  //fn: xoá 1 khách hàng
+  // fn: xoá 1 khách hàng
   delCustomer: (userId) => {
     const url = ADMIN_API_ENDPOINT + '/customer/del';
     return axiosClient.delete(url, { params: { userId } });
+  },
+
+  // fn: Lấy danh sách đơn hàng
+  getOrderList: () => {
+    const url = ADMIN_API_ENDPOINT + '/order';
+    return axiosClient.get(url);
+  },
+
+  // fn: cập nhật trạng thái đơn hàng
+  postUpdateOrderStatus: (id, orderStatus) => {
+    const url = ADMIN_API_ENDPOINT + '/order';
+    return axiosClient.post(url, { id, orderStatus });
   },
 };
 

@@ -6,6 +6,7 @@ import {
   IdcardOutlined,
   NotificationOutlined,
   PlusCircleOutlined,
+  ReconciliationOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
@@ -21,6 +22,7 @@ const AddProduct = React.lazy(() => import('./ProductPage/ProductAddForm'));
 const SeeProduct = React.lazy(() => import('./ProductPage/SeeProduct'));
 const AdminUser = React.lazy(() => import('./AdminUser'));
 const CustomerList = React.lazy(() => import('./CustomersList'));
+const OrderList = React.lazy(() => import('./OrderList'));
 
 const mainColor = '#141428';
 const menuList = [
@@ -52,6 +54,12 @@ const menuList = [
     children: [],
   },
   {
+    key: 'o',
+    title: 'Order List',
+    icon: <ReconciliationOutlined />,
+    children: [],
+  },
+  {
     key: 's',
     title: 'Statistic',
     icon: <BarChartOutlined />,
@@ -66,7 +74,7 @@ const menuList = [
 ];
 
 function AdminPage() {
-  const [keyMenu, setKeyMenu] = useState('p0');
+  const [keyMenu, setKeyMenu] = useState('o');
   const [isLogin, setIsLogin] = useState(() => {
     const isLogin = localStorage.getItem('admin');
     return isLogin ? true : false;
@@ -130,6 +138,8 @@ function AdminPage() {
         return <AdminUser />;
       case 'c':
         return <CustomerList />;
+      case 'o':
+        return <OrderList />;
       default:
         break;
     }
