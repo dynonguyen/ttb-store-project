@@ -1,5 +1,14 @@
 import { CheckOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Button, Col, Image, InputNumber, Rate, Row } from 'antd';
+import {
+  Button,
+  Col,
+  Image,
+  InputNumber,
+  message,
+  Modal,
+  Rate,
+  Row,
+} from 'antd';
 import ImgLoadFailed from 'assets/imgs/loading-img-failed.png';
 import constants from 'constants/index';
 import helpers from 'helpers';
@@ -92,6 +101,7 @@ function ProductOverview(props) {
     };
     setNumberOfProduct(1);
     dispatch(cartActions.addToCart(product));
+    message.success('Thêm vào giỏ hàng thành công');
   };
 
   // rendering ...

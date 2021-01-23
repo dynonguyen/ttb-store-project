@@ -2,7 +2,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { Avatar, InputNumber, Tooltip } from 'antd';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function CartItem(props) {
@@ -19,7 +19,6 @@ function CartItem(props) {
     onDelCartItem,
     onUpdateNumOfProd,
   } = props;
-
   return (
     <div className="d-flex bg-white p-12 bor-rad-4 justify-content-between">
       {/* sản phẩm */}
@@ -46,7 +45,7 @@ function CartItem(props) {
             height={20}
             min={1}
             max={stock}
-            defaultValue={amount}
+            value={amount}
             onChange={(value) => onUpdateNumOfProd(index, value)}
             size="large"
             style={{ borderColor: '#3555C5' }}

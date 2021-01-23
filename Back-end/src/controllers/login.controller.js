@@ -101,7 +101,9 @@ const postLoginWithGoogle = async (req, res, next) => {
 
     // nếu user có type = local thì báo lỗi
     if (user.authType === 'local') {
-      return res.status(401).json({ message: 'Email đã được đăng ký.' });
+      return res
+        .status(401)
+        .json({ message: 'Email đã được đăng ký bằng mật khẩu.' });
     }
 
     // tạo refresh token

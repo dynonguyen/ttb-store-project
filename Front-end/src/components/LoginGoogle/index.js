@@ -1,20 +1,18 @@
 import { message } from 'antd';
 import loginApi from 'apis/loginApi';
 import ggIcon from 'assets/icon/gg-icon.png';
-import Delay from 'components/Delay';
 import constants from 'constants/index';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import authReducers from 'reducers/auth';
 import './index.scss';
 
 function LoginGoogle(props) {
   const dispatch = useDispatch();
-  const [isLogged, setIsLogged] = useState(false);
-
+  const history = useHistory();
   // xử lý khi đăng nhập thành công
   const onLoginSuccess = async (refreshToken) => {
     try {
@@ -22,7 +20,9 @@ function LoginGoogle(props) {
       // lưu refresh token vào local storage
       localStorage.setItem(constants.REFRESH_TOKEN, refreshToken);
       dispatch(authReducers.setIsAuth(true));
-      setIsLogged(true);
+      setTimeout(() => {
+        history.goBack();
+      }, constants.DELAY_TIME);
     } catch (error) {
       message.error('Lỗi đăng nhập.');
     }
@@ -51,13 +51,6 @@ function LoginGoogle(props) {
 
   return (
     <>
-      {/* đăng nhập thành công chuyển về home */}
-      {isLogged && (
-        <Delay wait={constants.DELAY_TIME}>
-          <Redirect to="/" />
-        </Delay>
-      )}
-
       <GoogleLogin
         clientId={process.env.GOOGLE_CLIENT_ID}
         render={(renderProps) => (

@@ -8,9 +8,9 @@ import AddressAddForm from './AddressAddForm';
 
 function AddressUserList(props) {
   const { isCheckout, onChecked } = props;
-  const [activeItem, setActiveItem] = useState(0);
   const [isVisibleForm, setIsVisibleForm] = useState(false);
   const [list, setList] = useState([]);
+  const [activeItem, setActiveItem] = useState(-1);
   const user = useSelector((state) => state.user);
   const [updateList, setUpdateList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

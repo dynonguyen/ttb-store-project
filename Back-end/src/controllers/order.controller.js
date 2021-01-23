@@ -1,5 +1,6 @@
 const OrderModel = require('../models/order.model');
 const helpers = require('../helpers');
+const ProductModel = require('../models/product.models/product.model');
 
 // api: lấy danh sách đơn hàng
 const getOrderList = async (req, res, next) => {
@@ -58,24 +59,38 @@ const postCreateOrder = async (req, res, next) => {
 
     let response = {};
     for (let i = 0; i < productList.length; ++i) {
-      response = await OrderModel.create({
-        owner,
-        orderCode: helpers.generateVerifyCode(6),
-        deliveryAdd,
-        paymentMethod,
-        orderStatus,
-        transportMethod,
-        transportFee,
-        orderDate,
-        orderProd: productList[i].orderProd,
-        numOfProd: productList[i].numOfProd,
-        note,
-      });
+      const { orderProd, numOfProd } = productList[i];
+      const product = await ProductModel.findById(orderProd.id);
+      if (product) {
+        if (product.stock < parseInt(numOfProd)) {
+          return res.status(401).json({ message: 'Sản phẩm tồn kho đã hết' });
+        } else {
+          await ProductModel.updateOne(
+            { _id: orderProd.id },
+            { stock: product.stock - parseInt(numOfProd) },
+          );
+          response = await OrderModel.create({
+            owner,
+            orderCode: helpers.generateVerifyCode(6),
+            deliveryAdd,
+            paymentMethod,
+            orderStatus,
+            transportMethod,
+            transportFee,
+            orderDate,
+            orderProd,
+            numOfProd,
+            note,
+          });
+        }
+      } else {
+        return res.status(401).json({ message: 'Sản phẩm đẫ ngừng bán' });
+      }
     }
     if (response) return res.status(200).json({});
   } catch (error) {
     console.error(error);
-    return res.status(401).json({});
+    return res.status(401).json({ message: 'Lỗi hệ thống' });
   }
 };
 
