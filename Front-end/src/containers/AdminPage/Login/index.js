@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Form, Input, Button, Checkbox, message } from 'antd';
+import { Form, Input, Button, Checkbox, message, Row, Col } from 'antd';
 import adminApi from 'apis/adminApi';
 
 function Login(props) {
@@ -21,25 +21,39 @@ function Login(props) {
 
   return (
     <Form name="form" onFinish={onFinish}>
-      <Form.Item
-        label="Username"
-        name="userName"
-        rules={[{ required: true, message: 'Please input your username!' }]}>
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Mật khẩu"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}>
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item>
-        <Button className="w-100 m-t-8" htmlType="submit" type="primary">
-          Đăng nhập
-        </Button>
-      </Form.Item>
+      <Row gutter={[16, 16]}>
+        <Col span={24}>
+          <Form.Item
+            label="Username"
+            name="userName"
+            rules={[
+              { required: true, message: 'Please input your username!' },
+            ]}>
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={24}>
+          <Form.Item
+            label="Mật khẩu"
+            name="password"
+            rules={[
+              { required: true, message: 'Please input your password!' },
+            ]}>
+            <Input.Password />
+          </Form.Item>
+        </Col>
+        <Col span={24}>
+          <Form.Item>
+            <Button
+              size="large"
+              className="w-100 m-t-8"
+              htmlType="submit"
+              type="primary">
+              Đăng nhập
+            </Button>
+          </Form.Item>
+        </Col>
+      </Row>
     </Form>
   );
 }

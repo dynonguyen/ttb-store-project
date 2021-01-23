@@ -40,6 +40,30 @@ const adminApi = {
     const url = ADMIN_API_ENDPOINT + '/users';
     return axiosClient.get(url);
   },
+
+  // fn: lấy danh sách khách hàng
+  getCustomerList: (page = 1) => {
+    const url = ADMIN_API_ENDPOINT + '/customer';
+    return axiosClient.get(url, { params: page });
+  },
+
+  // fn: xoá 1 khách hàng
+  delCustomer: (userId) => {
+    const url = ADMIN_API_ENDPOINT + '/customer/del';
+    return axiosClient.delete(url, { params: { userId } });
+  },
+
+  // fn: Lấy danh sách đơn hàng
+  getOrderList: () => {
+    const url = ADMIN_API_ENDPOINT + '/order';
+    return axiosClient.get(url);
+  },
+
+  // fn: cập nhật trạng thái đơn hàng
+  postUpdateOrderStatus: (id, orderStatus) => {
+    const url = ADMIN_API_ENDPOINT + '/order';
+    return axiosClient.post(url, { id, orderStatus });
+  },
 };
 
 export default adminApi;

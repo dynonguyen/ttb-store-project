@@ -19,6 +19,10 @@ const CameraModel = require('../models/product.models/camera.models/camera.model
 const WebcamModel = require('../models/product.models/camera.models/webcam.model');
 const helpers = require('../helpers');
 const AdminModel = require('../models/account.models/admin.model');
+const UserModel = require('../models/account.models/user.model');
+const AccountModel = require('../models/account.models/account.model');
+const OrderModel = require('../models/order.model');
+
 // fn: upload product avatar to cloudinary
 const uploadProductAvt = async (avtFile, productCode) => {
   try {
@@ -266,6 +270,57 @@ const getUserAdminList = async (req, res, next) => {
   }
 };
 
+// api: lấy danh sách người dùng
+const getCustomerList = async (req, res, next) => {
+  try {
+    const list = await UserModel.find({}).populate({
+      path: 'accountId',
+      select: 'email authType -_id',
+    });
+    return res.status(200).json({ list });
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ list: [] });
+  }
+};
+
+// api: xoá 1 người dùng
+const delCustomer = async (req, res, next) => {
+  try {
+    const { userId } = req.query;
+    const customer = await UserModel.findById(userId);
+    if (customer) {
+      await AccountModel.deleteOne({ _id: customer.accountId });
+      await UserModel.deleteOne({ _id: userId });
+      return res.status(200).json({});
+    }
+  } catch (error) {
+    return res.status(409).json({});
+  }
+};
+
+// api: lấy danh sách đơn hàng
+const getOrderList = async (req, res, next) => {
+  try {
+    const list = await OrderModel.find({}).select('-deliveryAdd -note');
+    return res.status(200).json({ list });
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({});
+  }
+};
+
+// api: cập nhật trạng thái đơn hàng
+const postUpdateOrderStatus = async (req, res, next) => {
+  try {
+    const { id, orderStatus } = req.body;
+    const response = await OrderModel.updateOne({ _id: id }, { orderStatus });
+    if (response) return res.status(200).json({});
+  } catch (error) {
+    return res.status(401).json({});
+  }
+};
+
 module.exports = {
   addProduct,
   getProductListByType,
@@ -273,4 +328,8 @@ module.exports = {
   updateProduct,
   postLogin,
   getUserAdminList,
+  getCustomerList,
+  delCustomer,
+  getOrderList,
+  postUpdateOrderStatus,
 };

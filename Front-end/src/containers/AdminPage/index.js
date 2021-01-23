@@ -6,6 +6,7 @@ import {
   IdcardOutlined,
   NotificationOutlined,
   PlusCircleOutlined,
+  ReconciliationOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
@@ -13,13 +14,15 @@ import { Button, Menu } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import defaultAvt from 'assets/imgs/default-avt.png';
+import logoUrl from 'assets/imgs/sec_logo.png';
 import React, { useState } from 'react';
-import AdminUser from './AdminUser';
 import './index.scss';
 import Login from './Login';
-import AddProduct from './ProductPage/ProductAddForm';
-import SeeProduct from './ProductPage/SeeProduct';
-import logoUrl from 'assets/imgs/sec_logo.png';
+const AddProduct = React.lazy(() => import('./ProductPage/ProductAddForm'));
+const SeeProduct = React.lazy(() => import('./ProductPage/SeeProduct'));
+const AdminUser = React.lazy(() => import('./AdminUser'));
+const CustomerList = React.lazy(() => import('./CustomersList'));
+const OrderList = React.lazy(() => import('./OrderList'));
 
 const mainColor = '#141428';
 const menuList = [
@@ -51,6 +54,12 @@ const menuList = [
     children: [],
   },
   {
+    key: 'o',
+    title: 'Order List',
+    icon: <ReconciliationOutlined />,
+    children: [],
+  },
+  {
     key: 's',
     title: 'Statistic',
     icon: <BarChartOutlined />,
@@ -65,7 +74,7 @@ const menuList = [
 ];
 
 function AdminPage() {
-  const [keyMenu, setKeyMenu] = useState('p0');
+  const [keyMenu, setKeyMenu] = useState('o');
   const [isLogin, setIsLogin] = useState(() => {
     const isLogin = localStorage.getItem('admin');
     return isLogin ? true : false;
@@ -127,8 +136,10 @@ function AdminPage() {
         return <AddProduct />;
       case 'a':
         return <AdminUser />;
-      case 'm':
-        break;
+      case 'c':
+        return <CustomerList />;
+      case 'o':
+        return <OrderList />;
       default:
         break;
     }
