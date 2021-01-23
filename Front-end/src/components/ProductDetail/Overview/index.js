@@ -22,6 +22,7 @@ function countItemInCart(productCode, carts) {
 function ProductOverview(props) {
   const { products } = props;
   const {
+    _id,
     avt,
     name,
     brand,
@@ -77,7 +78,16 @@ function ProductOverview(props) {
 
   // fn: Thêm vào giỏ hàng
   const addCart = () => {
-    let product = { code, name, price, amount: numOfProduct, avt };
+    let product = {
+      code,
+      name,
+      price,
+      amount: numOfProduct,
+      avt,
+      discount,
+      stock,
+      _id,
+    };
     setNumberOfProduct(1);
     dispatch(cartActions.addToCart(product));
   };

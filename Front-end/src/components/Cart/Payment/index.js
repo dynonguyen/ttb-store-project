@@ -1,50 +1,73 @@
-import React from 'react';
 import { Button } from 'antd';
-import { Link } from 'react-router-dom';
-import constants from 'constants/index';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
-
-function totalPrice(list) {
-  console.log(list);
-  return list.reduce((total, item) => {
-    total += item.price * item.amount;
-    return total;
-  }, 0);
-}
+import React from 'react';
 
 function CartPayment(props) {
-  const { list } = props;
+  const { carts } = props;
+  // giá tạm tính
+  const tempPrice = carts.reduce(
+    (a, b) => a + (b.price + (b.price * b.discount) / 100) * b.amount,
+    0,
+  );
+  // tổng khuyến mãi
+  const totalDiscount = carts.reduce(
+    (a, b) => a + ((b.price * b.discount) / 100) * b.amount,
+    0,
+  );
+
+  // rendering ...
   return (
-    <>
-      {list && list.length > 0 ? (
-        <div className="Payment bg-white p-16">
-          <h3 className="font-weight-700">Thanh toán</h3>
-          <div className="d-flex justify-content-between">
-            <p>Thành tiền</p>
-            <h3>{helpers.formatProductPrice(totalPrice(list))}</h3>
-          </div>
-          <div className="p-8">
-            <Link to={constants.ROUTES.CART}>
-              <Button
-                className="m-tb-8 d-block m-lr-auto w-100"
-                type="primary"
-                size="large"
-                style={{ backgroundColor: '#3555c5', color: '#fff' }}>
-                THANH TOÁN
-              </Button>
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <></>
-      )}
-    </>
+    <div className="Payment bg-white p-16">
+      <h2 className="m-b-8">Tiến hành thanh toán</h2>
+      <div className="d-flex justify-content-between m-b-6">
+        <span className="font-size-16px" style={{ color: '#aaa' }}>
+          Tạm tính
+        </span>
+        <b>{helpers.formatProductPrice(tempPrice)}</b>
+      </div>
+      <div className="d-flex justify-content-between m-b-6">
+        <span className="font-size-16px" style={{ color: '#aaa' }}>
+          Phí vận chuyển
+        </span>
+        <b>{helpers.formatProductPrice(0)}</b>
+      </div>
+      <div className="d-flex justify-content-between m-b-6">
+        <span className="font-size-16px" style={{ color: '#aaa' }}>
+          Giảm giá
+        </span>
+        <b>{helpers.formatProductPrice(totalDiscount)}</b>
+      </div>
+      <div className="d-flex justify-content-between">
+        <span className="font-size-16px" style={{ color: '#aaa' }}>
+          Thành tiền
+        </span>
+        <b style={{ color: 'red', fontSize: 20 }}>
+          {helpers.formatProductPrice(tempPrice - totalDiscount)}
+        </b>
+      </div>
+      <div className="t-end">
+        <span
+          style={{ color: '#aaa', fontSize: 16 }}>{`(Đã bao gồm VAT)`}</span>
+      </div>
+
+      <Button
+        className="m-t-16 d-block m-lr-auto w-100"
+        type="primary"
+        size="large"
+        style={{ backgroundColor: '#3555c5', color: '#fff' }}>
+        THANH TOÁN
+      </Button>
+    </div>
   );
 }
 
+CartPayment.defaultProps = {
+  carts: [],
+};
+
 CartPayment.propTypes = {
-  list: PropTypes.array,
+  carts: PropTypes.array,
 };
 
 export default CartPayment;
