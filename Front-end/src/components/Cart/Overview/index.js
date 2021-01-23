@@ -15,45 +15,9 @@ function totalPrice(list) {
     return total;
   }, 0);
 }
-
-// const list = [];
-// for (let i = 0; i < 10; i++) {
-//   list.push({
-//     avt:
-//       'https://cdn.tgdd.vn/Files/2020/07/22/1272660/apple-macbook-pro-16-inch-01-_1680x964-800-resize.jpg',
-//     name: 'Macbook Pro 16',
-//     amount: 5,
-//     price: 10,
-//     code: 'SKU200500854',
-//   });
-// }
-
 function CartOverview(props) {
   const { list } = props;
   return (
-    // <div className="Cart-View">
-    //   <h2 className="font-weight-700">Giỏ hàng của bạn</h2>
-    //   <List
-    //     itemLayout="vertical"
-    //     size="large"
-    //     dataSource={list}
-    //     renderItem={(item) => (
-    //       <Card style={{ width: 300 }}>
-    //         <Meta
-    //           avatar={
-    //             <Avatar style={{ width: 80, height: 50 }} src={item.avt} />
-    //           }
-    //           title={item.name}
-    //           description={`Số lượng: ${item.amount}`}
-    //         />
-    //         <p className="product-price">
-    //           {helpers.formatProductPrice(item.price)}
-    //         </p>
-    //       </Card>
-    //     )}
-    //   />
-    // </div>
-
     <div className="Cart-Overview">
       <List
         itemLayout="vertical"
@@ -79,7 +43,7 @@ function CartOverview(props) {
           <div className="d-flex justify-content-between bg-white m-b-16">
             {/* Tên, mã sản phẩm */}
             <div>
-              <Card style={{ maxWidth: 900 }} bordered={false}>
+              <Card style={{ maxWidth: 400 }} bordered={false}>
                 <Meta
                   avatar={
                     <Avatar style={{ width: 80, height: 50 }} src={item.avt} />

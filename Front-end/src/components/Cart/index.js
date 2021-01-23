@@ -1,12 +1,13 @@
-import React from 'react';
 import { HomeOutlined } from '@ant-design/icons';
-import { List, Avatar, Card, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './index.scss';
 import CartOverview from './Overview';
 import CartPayment from './Payment';
-import './index.scss';
 
-const list = [];
+// const list = [];
 // for (let i = 0; i < 10; i++) {
 //   list.push({
 //     avt:
@@ -19,6 +20,8 @@ const list = [];
 // }
 
 function Cart() {
+  const carts = useSelector((state) => state.carts);
+
   return (
     <div className="Cart-Detail-View container m-t-20">
       <Row gutter={[16, 32]}>
@@ -38,13 +41,13 @@ function Cart() {
         </Col> */}
 
         {/* Chi tiết giỏ hàng */}
-        <Col span={24} md={18}>
-          <CartOverview list={list} />
+        <Col span={24} md={16}>
+          <CartOverview list={carts} />
         </Col>
 
         {/* Thanh toán */}
-        <Col span={24} md={6}>
-          <CartPayment list={list} />
+        <Col span={24} md={8}>
+          <CartPayment list={carts} />
         </Col>
       </Row>
     </div>
