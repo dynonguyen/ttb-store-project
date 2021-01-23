@@ -20,6 +20,12 @@ function convertTime(nDate) {
 // Nên lưu thẳng vào đây để đỡ tốn chi phí query
 const list = [
   {
+    title: 'Loa, âm thanh',
+    type: 12,
+    content: 'Giảm đến 36%',
+    deadline: convertTime(9),
+  },
+  {
     title: 'Laptop',
     type: 0,
     content: 'Giảm trực tiếp 1.5tr',
@@ -37,12 +43,7 @@ const list = [
     content: 'Giảm đến 49%',
     deadline: convertTime(15),
   },
-  {
-    title: 'Loa, âm thanh',
-    type: 12,
-    content: 'Giảm đến 36%',
-    deadline: convertTime(9),
-  },
+
   {
     title: 'Thiết bị mạng',
     type: 11,
