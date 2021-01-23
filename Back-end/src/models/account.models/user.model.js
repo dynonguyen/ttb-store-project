@@ -9,8 +9,6 @@ const userSchema = new Schema({
   // true: male
   gender: { type: Boolean, required: true, default: true },
   address: { type: String, trim: true, default: null },
-  historyPays: [Object],
-  discount: [Object],
 });
 
 const UserModel = mongoose.model('user', userSchema, 'users');

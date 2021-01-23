@@ -13,13 +13,14 @@ import { Button, Menu } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import defaultAvt from 'assets/imgs/default-avt.png';
+import logoUrl from 'assets/imgs/sec_logo.png';
 import React, { useState } from 'react';
-import AdminUser from './AdminUser';
 import './index.scss';
 import Login from './Login';
-import AddProduct from './ProductPage/ProductAddForm';
-import SeeProduct from './ProductPage/SeeProduct';
-import logoUrl from 'assets/imgs/sec_logo.png';
+const AddProduct = React.lazy(() => import('./ProductPage/ProductAddForm'));
+const SeeProduct = React.lazy(() => import('./ProductPage/SeeProduct'));
+const AdminUser = React.lazy(() => import('./AdminUser'));
+const CustomerList = React.lazy(() => import('./CustomersList'));
 
 const mainColor = '#141428';
 const menuList = [
@@ -127,8 +128,8 @@ function AdminPage() {
         return <AddProduct />;
       case 'a':
         return <AdminUser />;
-      case 'm':
-        break;
+      case 'c':
+        return <CustomerList />;
       default:
         break;
     }

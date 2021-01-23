@@ -19,4 +19,10 @@ adminApi.post('/login', adminController.postLogin);
 // api: lấy danh sách user admin
 adminApi.get('/users', adminController.getUserAdminList);
 
+// api: lấy danh sách người dùng
+adminApi.get('/customer', adminController.getCustomerList);
+
+// api: xoá 1 người dùng
+adminApi.delete('/customer/del', adminController.delCustomer);
+
 module.exports = adminApi;
