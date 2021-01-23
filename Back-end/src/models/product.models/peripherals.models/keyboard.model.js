@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const keyboardSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // kiểu bàn phím: 0 - thường, 1 - giả cơ, 2 - cơ
   type: {

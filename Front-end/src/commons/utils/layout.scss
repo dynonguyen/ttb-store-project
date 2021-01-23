@@ -48,6 +48,9 @@
   &-grow-1 {
     flex-grow: 1;
   }
+  &-wrap {
+    flex-wrap: wrap;
+  }
 }
 
 .align {
@@ -91,6 +94,9 @@
       height: #{$i * 10%} !important;
     }
   }
+}
+.h-100vh {
+  height: 100vh;
 }
 
 //max-width, max-height

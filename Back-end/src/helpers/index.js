@@ -15,6 +15,7 @@ const RouterModel = require('../models/product.models/peripherals.models/router.
 const SpeakerModel = require('../models/product.models/peripherals.models/speaker.model');
 const CameraModel = require('../models/product.models/camera.models/camera.model');
 const WebcamModel = require('../models/product.models/camera.models/webcam.model');
+const AddressModel = require('../models/address.model');
 
 //fn: tạo mã xác thực
 const generateVerifyCode = (numberOfDigits) => {
@@ -87,8 +88,105 @@ const convertProductType = (type = 0) => {
   }
 };
 
+// fn: xác định loại sản phẩm thông qua string
+const typeOfProduct = (str = '') => {
+  if (str === undefined || str === '') return [];
+  let typeList = [];
+  const strLow = str.toLowerCase();
+  const list = constants.PRODUCT_TYPES_VN;
+  for (let i = 0; i < list.length; ++i) {
+    if (strLow.includes(list[i].label.toLowerCase()))
+      typeList.push(list[i].type);
+  }
+  return typeList;
+};
+
+// fn: chuyển object chứa regex dạng string, ex: {$regex: '/^apple$/i'} => {$regex: /^apple$/i}
+const convertObjectContainsRegex = (obj) => {
+  const newObj = { ...obj };
+  if (newObj.hasOwnProperty('$or')) {
+    // đa giá trị
+    newObj['$or'].forEach((item) => {
+      for (let key in item) {
+        if (typeof item[key] === 'object') {
+          for (const k in item[key]) {
+            if (k === '$regex' && typeof item[key][k] === 'string') {
+              item[key][k] = new RegExp(item[key][k], 'gi');
+            }
+          }
+        }
+        if (key === '$regex' && typeof item[key] === 'string') {
+          item[key] = new RegExp(item[key], 'gi');
+        }
+      }
+    });
+  } else {
+    // đơn giá trị
+    for (let key in newObj) {
+      if (typeof newObj[key] === 'object') {
+        for (const k in newObj[key]) {
+          if (k === '$regex' && typeof newObj[key][k] === 'string') {
+            newObj[key][k] = new RegExp(newObj[key][k], 'gi');
+          }
+        }
+      }
+      if (key === '$regex' && typeof newObj[key] === 'string') {
+        newObj[key] = new RegExp(newObj[key], 'gi');
+      }
+    }
+  }
+  return newObj;
+};
+
+// fn: chuyển address id thành address string
+const convertAddress = async (address) => {
+  try {
+    let result = '';
+    const { province, district, wards, street, details } = address;
+    const data = await AddressModel.findOne({ id: province.toString() });
+    if (data) {
+      const { districts } = data;
+      const proName = data.name;
+
+      const dis = districts.find((item) => {
+        return item.id === district.toString();
+      });
+
+      if (dis) {
+        const disName = dis ? dis.name : '';
+        const ward = dis.wards.find((item) => item.id == wards.toString());
+        const wName = ward.prefix + ' ' + ward.name;
+
+        const s = dis.streets
+          ? dis.streets.find((item) => item.id == street.toString())
+          : null;
+        const sName = s ? s.prefix + ' ' + s.name : '';
+        result =
+          details +
+          ', ' +
+          sName +
+          ', ' +
+          wName +
+          ', ' +
+          disName +
+          ', ' +
+          proName;
+      } else {
+        return proName;
+      }
+    }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};
+
 module.exports = {
   generateVerifyCode,
   isVerifyEmail,
   convertProductType,
+  typeOfProduct,
+  convertObjectContainsRegex,
+  convertAddress,
 };

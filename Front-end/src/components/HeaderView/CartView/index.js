@@ -17,6 +17,7 @@ function totalPrice(list) {
 
 function CartView(props) {
   const { list } = props;
+  const length = list.length;
   return (
     <div
       className="cart-view p-8"
@@ -45,12 +46,12 @@ function CartView(props) {
 
       <div className="cart-additional p-8">
         <h3>Tổng tiền: {helpers.formatProductPrice(totalPrice(list))}</h3>
-        <Link to={constants.ROUTES.CART}>
+        <Link to={length > 0 ? constants.ROUTES.CART : '/'}>
           <Button
             className="m-tb-8 d-block m-lr-auto w-100"
             type="primary"
             size="large">
-            Đến giỏ hàng
+            {length > 0 ? 'Đến giỏ hàng' : 'Mua sắm ngay'}
           </Button>
         </Link>
       </div>

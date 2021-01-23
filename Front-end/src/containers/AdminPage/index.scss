@@ -1,5 +1,12 @@
 $color-secondary: #41a62a;
 
+.Header-View,
+.Scroll-To,
+.Contact-Icon-Link,
+.footer {
+  display: none !important;
+}
+
 .Admin-Page {
   .option-title,
   a:hover,
@@ -31,6 +38,21 @@ $color-secondary: #41a62a;
         background-color: $color-secondary !important;
       }
     }
+  }
+  .action-btn-product:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+  }
+  .open-web:hover {
+    & > * {
+      color: $color-secondary;
+    }
+  }
+}
+
+.edit-product-modal {
+  .ant-form-item {
+    margin-bottom: 0 !important;
   }
 }
 

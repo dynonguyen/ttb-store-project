@@ -25,6 +25,7 @@ function InputField(props) {
     autofocus,
     ref,
     maxLength,
+    ...rest
   } = props;
   const { name } = field;
   const { errors, touched } = form;
@@ -38,6 +39,7 @@ function InputField(props) {
         className={showError ? className + ' error-input' : className}
         name={name}
         {...field}
+        {...rest}
         placeholder={placeholder}
         size={size}
         suffix={suffix}

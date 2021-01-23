@@ -73,6 +73,7 @@ passport.use(
 
         done(null, newAccount);
       } catch (error) {
+        console.log(error);
         done(error, false);
       }
     },

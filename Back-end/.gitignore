@@ -1,0 +1,9 @@
+node_modules
+yarn.lock
+yarn-error.log
+package-lock.json
+.env
+desktop.ini
+jsconfig.json
+.vscode
+debug.log

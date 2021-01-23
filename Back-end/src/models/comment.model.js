@@ -9,13 +9,9 @@ const commentSchema = new Schema({
   // thời gian
   time: { type: Date, required: true, default: new Date().getTime() },
   // đánh giá
-  rate: { type: Number, enum: [0, 1, 2, 3, 4] },
+  rate: { type: Number, enum: [-1, 0, 1, 2, 3, 4] },
   // nội dung
   content: { type: String, trim: true, maxlength: 1000 },
-  // số lượt like
-  nLike: { type: Number, default: 0 },
-  // comment reply
-  replies: { type: [Schema.Types.ObjectId], default: [] },
 });
 
 const CommentModel = mongoose.model('comment', commentSchema, 'comments');

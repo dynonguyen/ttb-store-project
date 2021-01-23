@@ -52,7 +52,7 @@ function ProductView(props) {
             <span className="Product-View-price--main font-size-20px font-weight-b">
               {helpers.formatProductPrice(price)}
             </span>
-            {discount && (
+            {discount > 0 && (
               <div>
                 <span className="Product-View-price--cancel font-weight-500">
                   {helpers.formatProductPrice(price + (discount * price) / 100)}
@@ -67,10 +67,15 @@ function ProductView(props) {
       </div>
 
       {/* Số lượng hàng còn, chỉ hiển thị khi còn ít hơn 5 */}
-      {stock <= 5 && (
+      {stock <= 5 && stock > 0 && (
         <div className="Product-View-stock font-size-14px">
           chỉ còn {stock} sản phẩm
         </div>
+      )}
+
+      {/* Số lượng hàng còn, chỉ hiển thị khi còn ít hơn 5 */}
+      {stock === 0 && (
+        <b className="Product-View-stock font-size-16px">Đang hết hàng</b>
       )}
 
       {/* Các nút bấm thêm nếu có */}

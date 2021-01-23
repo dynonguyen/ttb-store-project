@@ -8,8 +8,9 @@
 }
 
 .countdown-item {
-  color: #cbedfd;
+  color: yellow;
   font-size: 28px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +24,7 @@
 }
 
 .countdown-item span {
-  color: #cbedfd;
+  color: yellow;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;

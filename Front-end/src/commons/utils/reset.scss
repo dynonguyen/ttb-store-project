@@ -59,3 +59,19 @@ li {
   text-decoration: none;
   list-style-type: none;
 }
+
+.ant-btn-primary {
+  background-color: #3a5dd9;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #3a5dd9;
+    -webkit-filter: brightness(1.2);
+    filter: brightness(1.2);
+  }
+  border: none;
+}
+
+.ant-form-item {
+  margin-bottom: 0 !important;
+}

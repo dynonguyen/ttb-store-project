@@ -35,11 +35,12 @@ function AllProduct() {
 
   // fn: Hiển thị sản phẩm
   const showProducts = (list) => {
+    list = list ? list : [];
     return list.map((product, index) => {
       const { avt, name, price, discount, stock, _id } = product;
       return (
         <Col key={index} span={24} sm={12} lg={8} xl={6}>
-          <Link to={`/products/${_id}`}>
+          <Link to={`/product/${_id}`}>
             <ProductView
               name={name}
               price={price}
@@ -55,7 +56,7 @@ function AllProduct() {
   };
 
   return (
-    <Row className="p-16" style={{ minHeight: 200 }} gutter={[16, 16]}>
+    <Row className="p-16" style={{ minHeight: 400 }} gutter={[16, 16]}>
       <Col span={24}>
         <h2 className="font-weight-700">Tất cả sản phẩm</h2>
         <div className="underline-title"></div>
@@ -67,18 +68,20 @@ function AllProduct() {
           size="large"
         />
       ) : (
-        showProducts(list)
+        <>
+          {showProducts(list)}
+          <Col span={24}>
+            <Pagination
+              className="t-center"
+              current={page}
+              pageSize={24}
+              total={total}
+              onChange={(p) => setPage(p)}
+              showSizeChanger={false}
+            />
+          </Col>
+        </>
       )}
-      <Col span={24}>
-        <Pagination
-          className="t-center"
-          current={page}
-          pageSize={24}
-          total={total}
-          onChange={(p) => setPage(p)}
-          showSizeChanger={false}
-        />
-      </Col>
     </Row>
   );
 }

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const headphoneSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // kiểu tai nghe 0 - Over-ear, 1 - In-ear, 2 - On-ear, 3 - KHT
   type: {
@@ -14,8 +14,8 @@ const headphoneSchema = new Schema({
   },
 
   // chuẩn kết nối
-  // 0 - 3.5mm, 1 - bluetooth, 2 - USB
-  connectionStd: { type: Number, enum: [...Array(3).keys()], default: 0 },
+  // 0 - 3.5mm, 1 - bluetooth, 2 - USB, 3 - Bluetooth 4.0, 4 - bluetooth 5.0, 5 - 2.4 GHz Wireless
+  connectionStd: { type: Number, enum: [...Array(6).keys()], default: 0 },
 
   // thời gian bảo hành tính theo tháng
   warranty: { type: Number, default: 0 },

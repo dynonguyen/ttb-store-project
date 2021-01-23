@@ -21,4 +21,7 @@ loginApi.get('/auth', passportAuth.jwtAuthentication, loginController.getAuth);
 // api: refresh token
 loginApi.post('/refresh_token', loginController.postRefreshToken);
 
+// api: logout
+loginApi.post('/logout', loginController.postLogout);
+
 module.exports = loginApi;

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const mouseSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // loại chuột: 0 - có dây, 1 - không dây
   type: { type: Number, enum: [0, 1], default: 0 },

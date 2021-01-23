@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 import ProductView from 'components/ProductView';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
 
@@ -14,7 +14,18 @@ function RelatedProductList(props) {
   const perPage = useRef(1);
   const [page, setPage] = useState(1);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+
+  // event: resize window
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // fn: phân trang
   const paginate = (list) => {

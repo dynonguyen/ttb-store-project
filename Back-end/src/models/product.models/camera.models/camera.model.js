@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const cameraSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // khẩu dộ: 'f/4-5.6 IS STM'
   aperture: { type: String, trim: true },

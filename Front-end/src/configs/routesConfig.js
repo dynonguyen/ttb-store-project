@@ -1,5 +1,4 @@
 import constants from 'constants/index.js';
-import AdminPage from 'containers/AdminPage';
 import HomePage from 'containers/HomePage';
 import ProductDetailPage from 'containers/ProductDetailPage';
 import React from 'react';
@@ -13,6 +12,14 @@ const ForgotPassword = React.lazy(() =>
 );
 const NotFound = React.lazy(() => import('components/NotFound'));
 const Cart = React.lazy(() => import('components/Cart'));
+const AdminPage = React.lazy(() => import('containers/AdminPage'));
+const SearchResult = React.lazy(() =>
+  import('containers/SearchFilterPage/Search'),
+);
+const FilterResult = React.lazy(() =>
+  import('containers/SearchFilterPage/Filter'),
+);
+const AccountPage = React.lazy(() => import('containers/AccountPage'));
 
 const routes = [
   {
@@ -53,6 +60,21 @@ const routes = [
     path: constants.ROUTES.NOT_FOUND,
     exact: true,
     main: () => <NotFound />,
+  },
+  {
+    path: constants.ROUTES.SEARCH,
+    exact: true,
+    main: () => <SearchResult />,
+  },
+  {
+    path: constants.ROUTES.FILTER,
+    exact: true,
+    main: () => <FilterResult />,
+  },
+  {
+    path: constants.ROUTES.ACCOUNT,
+    exact: false,
+    main: () => <AccountPage />,
   },
 ];
 

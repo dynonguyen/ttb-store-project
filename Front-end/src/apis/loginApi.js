@@ -26,6 +26,12 @@ const loginApi = {
     const url = LOGIN_API_ENDPOINT + '/refresh_token';
     return axiosClient.post(url, refreshToken);
   },
+
+  // api: logout
+  postLogout: () => {
+    const url = LOGIN_API_ENDPOINT + '/logout';
+    return axiosClient.post(url);
+  },
 };
 
 export default loginApi;

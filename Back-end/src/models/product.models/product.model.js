@@ -49,7 +49,21 @@ const productSchema = new Schema({
     type: [Number],
     default: [0, 0, 0, 0, 0],
   },
+  // các thông tin khác kèm theo, lưu với dạng {key: value}
+  // vd: {key: 'ưu đãi kèm theo', value: 'Một con chuột không dây'}
+  otherInfo: {
+    type: Array,
+    key: { type: String, trim: true },
+    value: { type: String, trim: true },
+    default: [],
+  },
 });
+
+// text search index
+productSchema.index(
+  { name: 'text', brand: 'text' },
+  { name: 'ix_search_text', default_language: 'none' },
+);
 
 const ProductModel = mongoose.model('product', productSchema, 'products');
 

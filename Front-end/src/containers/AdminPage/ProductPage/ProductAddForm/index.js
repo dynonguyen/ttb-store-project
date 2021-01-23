@@ -1,6 +1,8 @@
 import {
   ExclamationCircleOutlined,
   InfoCircleOutlined,
+  MinusCircleOutlined,
+  PlusOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
 import {
@@ -13,6 +15,7 @@ import {
   Modal,
   Row,
   Select,
+  Space,
   Tooltip,
   Upload,
 } from 'antd';
@@ -179,15 +182,26 @@ function AddProduct() {
   const onSubmit = async (data) => {
     try {
       setIsSubmitting(true);
-      const { code, name, price, stock, brand, ...rest } = data;
+      const {
+        code,
+        name,
+        price,
+        discount,
+        stock,
+        brand,
+        otherInfo,
+        ...rest
+      } = data;
       // các thuộc tính chung của sản phẩm
       const product = {
         type: typeSelected,
+        discount,
         code,
         name,
         price,
         brand,
         stock,
+        otherInfo,
         avatar,
       };
       // thuộc tính chi tiết của từng loại sp
@@ -346,7 +360,7 @@ function AddProduct() {
                   />
                 </Form.Item>
               </Col>
-              {/*Thời gian bảo hành*/}
+              {/*Mức giảm giá*/}
               <Col span={12} md={8} xl={6} xxl={4}>
                 <Form.Item
                   name="discount"
@@ -356,7 +370,7 @@ function AddProduct() {
                     step={10}
                     size="large"
                     min={0}
-                    max={50}
+                    max={30}
                     placeholder="phần trăm khuyến mãi (5%) *"
                   />
                 </Form.Item>
@@ -385,6 +399,61 @@ function AddProduct() {
                   </Button>
                 </Upload>
               </Col>
+              {/* other information */}
+              <Col span={12} md={8} xl={6} xxl={4}>
+                <Form.List name="otherInfo">
+                  {(fields, { add, remove }) => (
+                    <>
+                      {fields.map((field) => (
+                        <Space
+                          key={field.key}
+                          style={{ display: 'flex', marginBottom: 8 }}
+                          align="center">
+                          <Form.Item
+                            {...field}
+                            name={[field.name, 'key']}
+                            fieldKey={[field.fieldKey, 'key']}
+                            rules={[
+                              {
+                                required: true,
+                                message: 'vd:Ưu đãi',
+                              },
+                            ]}>
+                            <Input placeholder="Key" />
+                          </Form.Item>
+                          <Form.Item
+                            {...field}
+                            name={[field.name, 'value']}
+                            fieldKey={[field.fieldKey, 'value']}
+                            rules={[
+                              {
+                                required: true,
+                                message: 'vd: Combo chuột',
+                              },
+                            ]}>
+                            <Input placeholder="Value" />
+                          </Form.Item>
+
+                          <MinusCircleOutlined
+                            onClick={() => remove(field.name)}
+                          />
+                        </Space>
+                      ))}
+                      <Form.Item>
+                        <Button
+                          size="large"
+                          type="dashed"
+                          onClick={() => add()}
+                          block
+                          icon={<PlusOutlined />}>
+                          Thêm thông tin khác
+                        </Button>
+                      </Form.Item>
+                    </>
+                  )}
+                </Form.List>
+              </Col>
+
               {/* mô tả chi tiết */}
               <ProductDetail onGetDetailDes={onGetDetailDesc} />
 

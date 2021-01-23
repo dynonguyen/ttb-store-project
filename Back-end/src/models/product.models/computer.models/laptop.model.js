@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const laptopSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: {
+    type: Schema.Types.ObjectId,
+    ref: 'product',
+    required: true,
+  },
 
   // chi tiết về cpu
   cpu: {

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const mainboardSchema = new Schema({
   // _id sản phẩm bên ProductModel
-  idProduct: { type: Schema.Types.ObjectId, required: true },
+  idProduct: { type: Schema.Types.ObjectId, ref: 'product', required: true },
 
   // loại chipset: vd 'Z490'
   chipset: { type: String, trim: true, maxlength: 10 },

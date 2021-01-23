@@ -13,7 +13,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.0",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.4.15",
+    "nodemailer": "^6.4.17",
     "passport": "^0.4.1",
     "passport-google-token": "^0.1.2",
     "path": "^0.12.7",
