@@ -7,12 +7,15 @@ import SelectField from 'components/Custom/Field/SelectField';
 import constants from 'constants/index';
 import { FastField, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import userReducers from 'reducers/user';
+
 import * as Yup from 'yup';
 function UpdateAccountForm() {
   const user = useSelector((state) => state.user);
   const { _id, fullName, email, address, birthday, gender } = user;
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
 
   // giá trọ khởi tạo cho formik
   const initialValue = {
@@ -63,8 +66,8 @@ function UpdateAccountForm() {
         message.success('Cập nhật thành công.');
         setIsSubmitting(false);
         setTimeout(() => {
-          location.reload();
-        }, 1000);
+          dispatch(userReducers.getUserRequest());
+        }, 500);
       }
     } catch (error) {
       message.error('Cập nhật thất bại. Thử lại', 2);
