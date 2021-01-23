@@ -14,6 +14,12 @@ const orderApi = {
     const url = ORDER_API_ENDPOINT;
     return axiosClient.get(url, { params: { orderId } });
   },
+
+  // api: tạo đơn hàng
+  postCreateOrder: (data) => {
+    const url = ORDER_API_ENDPOINT;
+    return axiosClient.post(url, data);
+  },
 };
 
 export default orderApi;

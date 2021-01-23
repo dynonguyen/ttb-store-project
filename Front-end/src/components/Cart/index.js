@@ -43,7 +43,7 @@ function Cart() {
                 <b>{` ${carts.reduce(
                   (a, b) => a + parseInt(b.amount),
                   0,
-                )} `}</b>{' '}
+                )} `}</b>
                 sản phẩm
               </h2>
               <Popconfirm

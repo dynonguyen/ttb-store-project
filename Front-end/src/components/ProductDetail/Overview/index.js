@@ -1,10 +1,12 @@
 import { CheckOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Button, Col, Image, InputNumber, Rate, Row } from 'antd';
 import ImgLoadFailed from 'assets/imgs/loading-img-failed.png';
+import constants from 'constants/index';
 import helpers from 'helpers';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import cartActions from 'reducers/carts';
 import './index.scss';
 
@@ -194,13 +196,14 @@ function ProductOverview(props) {
               style={{ backgroundColor: '#3555c5' }}>
               THÊM GIỎ HÀNG
             </Button>
+
             <Button
               onClick={addCart}
               disabled={stock ? false : true}
               size="large"
               className="w-100 btn-group-item"
               style={{ backgroundColor: '#39B3D7' }}>
-              MUA NGAY LUÔN
+              <Link to={constants.ROUTES.PAYMENT}> MUA NGAY LUÔN</Link>
             </Button>
           </div>
         ) : (

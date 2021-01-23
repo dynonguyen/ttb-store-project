@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Spin } from 'antd';
 import addressApi from 'apis/addressApi';
@@ -5,7 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AddressAddForm from './AddressAddForm';
 
-function AddressUserList() {
+function AddressUserList(props) {
+  const { isCheckout, onChecked } = props;
+  const [activeItem, setActiveItem] = useState(0);
   const [isVisibleForm, setIsVisibleForm] = useState(false);
   const [list, setList] = useState([]);
   const user = useSelector((state) => state.user);
@@ -47,12 +50,20 @@ function AddressUserList() {
       list &&
       list.map((item, index) => (
         <div
-          className="bg-white bor-rad-8 box-sha-home p-tb-8 p-lr-16 m-b-16"
+          className={`bg-white bor-rad-8 box-sha-home p-tb-8 p-lr-16 m-b-16 ${
+            activeItem === index && isCheckout ? 'item-active' : ''
+          }`}
+          onClick={() => {
+            if (isCheckout) {
+              setActiveItem(index);
+              onChecked(index);
+            }
+          }}
           key={index}>
           <div className="d-flex justify-content-between m-b-4">
             <h3>
               <b>{item.name}</b>
-              {index === 0 && (
+              {index === 0 && !isCheckout && (
                 <span
                   className="font-size-12px p-tb-4 p-lr-8 m-l-8 bor-rad-4"
                   style={{ border: 'solid 1px #3a5dd9', color: '#3a5dd9' }}>
@@ -61,7 +72,7 @@ function AddressUserList() {
               )}
             </h3>
 
-            {index !== 0 && (
+            {index !== 0 && !isCheckout && (
               <div>
                 <Button
                   type="link"
@@ -119,7 +130,7 @@ function AddressUserList() {
           <Spin tip="Đang tải danh sách địa chỉ giao hàng ..." size="large" />
         </div>
       ) : (
-        <div>
+        <div className="User-Address-List">
           {/* thêm địa chỉ, chỉ cho tối đa 5 địa chỉ */}
           {list.length < 5 && (
             <Button
@@ -154,5 +165,15 @@ function AddressUserList() {
     </>
   );
 }
+
+AddressUserList.defaultProps = {
+  isCheckout: false,
+  onChecked: function() {},
+};
+
+AddressUserList.propTypes = {
+  isCheckout: PropTypes.bool,
+  onChecked: PropTypes.func,
+};
 
 export default AddressUserList;
