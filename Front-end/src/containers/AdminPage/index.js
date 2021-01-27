@@ -74,7 +74,7 @@ const menuList = [
 ];
 
 function AdminPage() {
-  const [keyMenu, setKeyMenu] = useState('o');
+  const [keyMenu, setKeyMenu] = useState('d');
   const [isLogin, setIsLogin] = useState(() => {
     const isLogin = localStorage.getItem('admin');
     return isLogin ? true : false;
