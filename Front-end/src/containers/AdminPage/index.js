@@ -16,6 +16,7 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import defaultAvt from 'assets/imgs/default-avt.png';
 import logoUrl from 'assets/imgs/sec_logo.png';
 import React, { useState } from 'react';
+import Dashboard from './Dashboard';
 import './index.scss';
 import Login from './Login';
 const AddProduct = React.lazy(() => import('./ProductPage/ProductAddForm'));
@@ -129,7 +130,7 @@ function AdminPage() {
   const renderMenuComponent = (key) => {
     switch (key) {
       case 'd':
-        break;
+        return <Dashboard />;
       case 'p0':
         return <SeeProduct />;
       case 'p1':
