@@ -5,11 +5,11 @@ import helpers from 'helpers';
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-// tạo danh sách năm
+// tạo danh sách tháng
 function generateLabels() {
   let result = [];
   for (let i = 0; i < 12; ++i) {
-    result.push(`Tháng ${i + 1}`);
+    result.push(`T${i + 1}`);
   }
   return result;
 }
@@ -58,12 +58,12 @@ function MonthlyRevenue() {
             labels: generateLabels(),
             datasets: [
               {
-                backgroundColor: '#c45850',
+                backgroundColor: '#2EA62A',
                 data: [...data.lastYear],
                 label: `Năm ${year - 1}`,
               },
               {
-                backgroundColor: '#3e95cd',
+                backgroundColor: '#4670FF',
                 data: [...data.thisYear],
                 label: `Năm ${year}`,
               },

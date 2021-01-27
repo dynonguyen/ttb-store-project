@@ -61,12 +61,6 @@ const menuList = [
     children: [],
   },
   {
-    key: 's',
-    title: 'Statistic',
-    icon: <BarChartOutlined />,
-    children: [],
-  },
-  {
     key: 'm',
     title: 'Marketing',
     icon: <NotificationOutlined />,

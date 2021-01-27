@@ -52,6 +52,39 @@ const getStaMonthlyRevenue = async (req, res, next) => {
   }
 };
 
+// api: thống kê doanh thu theo năm
+const getStaAnnualRevenue = async (req, res, next) => {
+  try {
+    const { startYear, endYear } = req.query;
+    // lấy danh sách đơn hàng trong năm thống kê (Chỉ lấy đơn hàng đã thanh toán)
+    const orderList = await OrderModel.find({
+      orderDate: {
+        $gte: new Date(`${startYear}-01-01`),
+        $lte: new Date(`${endYear}-12-31`),
+      },
+      orderStatus: 6,
+    }).select('-_id orderDate numOfProd transportFee orderProd.price');
+
+    let result = [
+      ...Array(parseInt(endYear) + 1 - parseInt(startYear)).fill(0),
+    ];
+    if (orderList) {
+      orderList.forEach((item) => {
+        const resIndex =
+          parseInt(endYear) - new Date(item.orderDate).getFullYear();
+        const totalMoney =
+          item.orderProd.price * item.numOfProd + item.transportFee;
+        result[resIndex] += totalMoney;
+      });
+    }
+    if (orderList) return res.status(200).json({ data: result });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({});
+  }
+};
+
 module.exports = {
   getStaMonthlyRevenue,
+  getStaAnnualRevenue,
 };
