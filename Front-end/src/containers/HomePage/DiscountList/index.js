@@ -23,7 +23,7 @@ const list = [
     title: 'Loa, âm thanh',
     type: 12,
     content: 'Giảm đến 36%',
-    deadline: convertTime(9),
+    deadline: convertTime(6),
   },
   {
     title: 'Laptop',
@@ -54,7 +54,6 @@ const list = [
 
 function DiscountList() {
   const [indexHeader, setIndexHeader] = useState(0);
-
   return (
     <div
       className={`Discount-List box-sha-home d-flex flex-direction-column bg-${indexHeader}`}>
