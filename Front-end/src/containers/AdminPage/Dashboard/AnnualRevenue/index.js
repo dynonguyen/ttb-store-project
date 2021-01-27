@@ -80,6 +80,8 @@ function AnnualRevenue() {
                     callback: function(value, index, values) {
                       return value >= 1000000000
                         ? `${(value / 1000000000).toFixed(1)} tỷ`
+                        : value >= 1000000
+                        ? `${(value / 1000000).toFixed(1)} tr`
                         : helpers.formatProductPrice(value);
                     },
                   },

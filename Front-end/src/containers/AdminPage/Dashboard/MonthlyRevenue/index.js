@@ -81,7 +81,11 @@ function MonthlyRevenue() {
                 {
                   ticks: {
                     callback: function(value, index, values) {
-                      return helpers.formatProductPrice(value);
+                      return value >= 1000000000
+                        ? `${(value / 1000000000).toFixed(1)} tỷ`
+                        : value >= 1000000
+                        ? `${(value / 1000000).toFixed(0)} tr`
+                        : helpers.formatProductPrice(value);
                     },
                   },
                 },

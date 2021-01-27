@@ -1,3 +1,4 @@
+const AddressModel = require('../models/address.model');
 const OrderModel = require('../models/order.model');
 
 // api: thống kê doanh thu theo tháng
@@ -84,7 +85,45 @@ const getStaAnnualRevenue = async (req, res, next) => {
   }
 };
 
+// api: thống kê đơn hàng tỉnh nào nhiều nhất
+const getTopProvinceOrder = async (req, res, next) => {
+  try {
+    // lấy danh sách top 5 đơn hàng trong các tinh
+    const topList = await OrderModel.aggregate([
+      {
+        $group: {
+          _id: '$deliveryAdd.address.province',
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { count: -1 },
+      },
+      {
+        $limit: 5,
+      },
+    ]);
+
+    if (topList) {
+      let result = [];
+      for (let i = 0; i < topList.length; ++i) {
+        const province = await AddressModel.findOne({
+          id: topList[i]._id,
+        }).select('-_id name');
+        if (province)
+          result.push({ province: province.name, count: topList[i].count });
+      }
+
+      return res.status(200).json({ data: result });
+    }
+  } catch (error) {
+    return res.status(401).json({ data: [] });
+    console.error(error);
+  }
+};
+
 module.exports = {
   getStaMonthlyRevenue,
   getStaAnnualRevenue,
+  getTopProvinceOrder,
 };
