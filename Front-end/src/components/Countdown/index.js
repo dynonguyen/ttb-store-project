@@ -32,7 +32,7 @@ function Countdown(props) {
         clearInterval(interval);
       }
     };
-  }, []);
+  }, [props]);
 
   const { days, hours, minutes, seconds } = state;
   const daysRadius = mapNumber(days, 30, 0, 0, 360);

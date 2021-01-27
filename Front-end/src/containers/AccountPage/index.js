@@ -4,7 +4,7 @@ import {
   ReconciliationOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Col, Result, Row } from 'antd';
+import { Button, Col, Result, Row } from 'antd';
 import userLogo from 'assets/icon/user_32px.png';
 import constants from 'constants/index';
 import React, { useEffect, useState } from 'react';
@@ -98,41 +98,58 @@ function AccountPage() {
   // rendering ...
   return (
     <>
-      {!isAuth && <Redirect to={constants.ROUTES.LOGIN} />}
-      <Row className="account-page container m-tb-32">
-        <Col className="p-r-16" span={24} md={6}>
-          {/* giới thiệu */}
-          <div className="d-flex p-b-4 m-b-12 intro">
-            <img src={userLogo} width={32} height={32} className="m-r-12" />
-            <div>
-              <span className="m-b-0 font-size-16px">Tài khoản của</span>
-              <h3>
-                <b className="name">{user.fullName}</b>
-              </h3>
+      {!isAuth ? (
+        <div style={{ minHeight: '82vh' }}>
+          <Result
+            title="Đăng nhập để xem thông tin"
+            extra={[
+              <Button type="primary" key="signup" className="btn-secondary">
+                <Link to={constants.ROUTES.SIGNUP}>Đăng ký</Link>
+              </Button>,
+              <Button type="primary" key="login">
+                <Link to={constants.ROUTES.LOGIN}>Đăng nhập</Link>
+              </Button>,
+            ]}
+          />
+        </div>
+      ) : (
+        <Row className="account-page container m-tb-32">
+          <Col className="p-r-16" span={24} md={6}>
+            {/* giới thiệu */}
+            <div className="d-flex p-b-4 m-b-12 intro">
+              <img src={userLogo} width={32} height={32} className="m-r-12" />
+              <div>
+                <span className="m-b-0 font-size-16px">Tài khoản của</span>
+                <h3>
+                  <b className="name">{user.fullName}</b>
+                </h3>
+              </div>
             </div>
-          </div>
 
-          {/* menu */}
-          <ul className="account-page-menu m-t-12">
-            {menu.map((item, index) => (
-              <Link key={index} to={constants.ROUTES.ACCOUNT + '/' + item.key}>
-                <li
-                  className={`account-page-menu-item p-b-20 ${
-                    item.key === activeKey ? 'active' : ''
-                  }`}
-                  onClick={() => setActiveKey(item.key)}>
-                  {item.Icon}
-                  <span className="font-size-16px">{item.title}</span>
-                </li>
-              </Link>
-            ))}
-          </ul>
-        </Col>
+            {/* menu */}
+            <ul className="account-page-menu m-t-12">
+              {menu.map((item, index) => (
+                <Link
+                  key={index}
+                  to={constants.ROUTES.ACCOUNT + '/' + item.key}>
+                  <li
+                    className={`account-page-menu-item p-b-20 ${
+                      item.key === activeKey ? 'active' : ''
+                    }`}
+                    onClick={() => setActiveKey(item.key)}>
+                    {item.Icon}
+                    <span className="font-size-16px">{item.title}</span>
+                  </li>
+                </Link>
+              ))}
+            </ul>
+          </Col>
 
-        <Col className="p-lr-8" span={24} md={18}>
-          {renderComponent(activeKey)}
-        </Col>
-      </Row>
+          <Col className="p-lr-8" span={24} md={18}>
+            {renderComponent(activeKey)}
+          </Col>
+        </Row>
+      )}
     </>
   );
 }

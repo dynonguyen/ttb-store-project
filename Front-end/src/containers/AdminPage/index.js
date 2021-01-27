@@ -16,6 +16,7 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import defaultAvt from 'assets/imgs/default-avt.png';
 import logoUrl from 'assets/imgs/sec_logo.png';
 import React, { useState } from 'react';
+import Dashboard from './Dashboard';
 import './index.scss';
 import Login from './Login';
 const AddProduct = React.lazy(() => import('./ProductPage/ProductAddForm'));
@@ -60,12 +61,6 @@ const menuList = [
     children: [],
   },
   {
-    key: 's',
-    title: 'Statistic',
-    icon: <BarChartOutlined />,
-    children: [],
-  },
-  {
     key: 'm',
     title: 'Marketing',
     icon: <NotificationOutlined />,
@@ -74,7 +69,7 @@ const menuList = [
 ];
 
 function AdminPage() {
-  const [keyMenu, setKeyMenu] = useState('o');
+  const [keyMenu, setKeyMenu] = useState('d');
   const [isLogin, setIsLogin] = useState(() => {
     const isLogin = localStorage.getItem('admin');
     return isLogin ? true : false;
@@ -129,7 +124,7 @@ function AdminPage() {
   const renderMenuComponent = (key) => {
     switch (key) {
       case 'd':
-        break;
+        return <Dashboard />;
       case 'p0':
         return <SeeProduct />;
       case 'p1':
