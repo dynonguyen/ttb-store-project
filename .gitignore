@@ -9,3 +9,4 @@ jsconfig.json
 debug.log
 Back-end/build
 dummy_database
+/firebase

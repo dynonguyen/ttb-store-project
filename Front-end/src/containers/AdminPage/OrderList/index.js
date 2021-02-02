@@ -100,9 +100,7 @@ function OrderList() {
       key: 'totalMoney',
       dataIndex: 'totalMoney',
       render: (value) => (
-        <b style={{ color: value > 100000000 ? 'red' : '#333' }}>
-          {helpers.formatProductPrice(value)}
-        </b>
+        <b style={{ color: '#333' }}>{helpers.formatProductPrice(value)}</b>
       ),
       sorter: (a, b) => a.totalMoney - b.totalMoney,
     },
