@@ -100,7 +100,6 @@ const analysisQuery = (key = '', value = '') => {
     return { isProductAttr, result };
   } catch (error) {
     // error
-    console.log(error);
     return { isProductAttr: true, result: {} };
   }
 };

@@ -1,8 +1,7 @@
   <h1 align="center"><b>TTB STORE WEBSITE</b></h1>
 
 - ## TTB Store là một website về cửa hàng thiết bị điện tử.
-- ## Link demo ( frontend ): https://ttbstore-9f1f6.web.app/
-- ## Link demo (backend, frontend trong 1 server): https://ttbstore.herokuapp.com/
+- ## Link demo: https://ttbstorevn.web.app/
 
 - ## ✨ **Tính năng**
 
