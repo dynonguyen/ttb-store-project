@@ -1,13 +1,19 @@
 .Product-Carousel {
-  height: 136px;
+  max-height: 136px;
   max-width: 100%;
 
   &-img {
-    height: 136px;
+    max-height: 136px;
     width: 100%;
     &:hover {
       transform: scale(1.2);
     }
     transition: all 0.65s;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .Product-Carousel {
+    display: none !important;
   }
 }

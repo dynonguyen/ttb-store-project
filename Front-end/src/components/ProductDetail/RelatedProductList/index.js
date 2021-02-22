@@ -14,11 +14,18 @@ function RelatedProductList(props) {
   const perPage = useRef(1);
   const [page, setPage] = useState(1);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const [isMdDevice, setIsMdDevice] = useState(false);
   // event: resize window
   useEffect(() => {
+    const w = window.innerWidth;
+    if (w <= 768) setIsMdDevice(true);
+    else setIsMdDevice(false);
+
     function handleResize() {
-      setWindowWidth(window.innerWidth);
+      const w = window.innerWidth;
+      setWindowWidth(w);
+      if (w <= 768) setIsMdDevice(true);
+      else setIsMdDevice(false);
     }
     window.addEventListener('resize', handleResize);
 
@@ -51,12 +58,13 @@ function RelatedProductList(props) {
         <Col key={index} {...span}>
           <Link to={`/product/${_id}`} className="item">
             <ProductView
+              className={isMdDevice ? 'm-auto' : ''}
               name={name}
               avtUrl={avt}
               discount={discount}
               stock={stock}
               price={price}
-              height={420}
+              height={isMdDevice ? 380 : 420}
             />
           </Link>
         </Col>

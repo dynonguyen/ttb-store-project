@@ -43,7 +43,6 @@ const list = [
     content: 'Giảm đến 49%',
     deadline: convertTime(15),
   },
-
   {
     title: 'Thiết bị mạng',
     type: 11,
@@ -83,7 +82,7 @@ function DiscountList() {
         <Col
           span={24}
           md={6}
-          className="d-flex flex-direction-column justify-content-center">
+          className="d-flex flex-direction-column justify-content-center countdown">
           <Countdown
             timeTillDate={list[indexHeader].deadline}
             timeFormat="MM DD YYYY, h:mm a"

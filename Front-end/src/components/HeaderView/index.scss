@@ -1,106 +1,47 @@
-@import "commons/variables/color.scss";
+.menu-icon {
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  transition: all 0.3s;
+  &:hover,
+  &:active {
+    color: #3a5dd9;
+    transform: scale(1.2);
+  }
+}
 
-.Header-View {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  &.ant-layout-header {
-    background-color: $color-primary;
-    height: 72px;
-    line-height: 72px;
-  }
-  .ant-menu-horizontal {
-    border-bottom: none !important;
-  }
-  .ant-menu-light {
-    background-color: $color-primary;
-    color: $text-color-primary;
-    height: 64px;
+.navbar-tool-item {
+  padding-left: 32px;
+  transition: all 0.3s;
+
+  .icon {
+    color: #999;
+    font-size: 28px;
   }
 
-  .ant-menu-item {
-    margin: 0px 8px !important;
+  .title {
+    color: #999;
+    font-weight: 500;
   }
-  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover {
-    color: #3a5dd9 !important;
-    border-bottom: 2px solid #3a5dd9 !important;
-  }
-  &-icon {
-    font-size: 32px !important;
-    transform: translateY(6px);
-  }
-  .ant-menu-item a {
-    color: $icon-color-primary;
-    &:hover {
-      color: #3a5dd9 !important;
-    }
-  }
-  .ant-menu-submenu {
-    color: $color-secondary;
-  }
-  .search-icon {
-    display: none;
-    transform: translateY(2px);
-    color: $color-secondary;
-  }
-  .search-bar-responsive {
-    display: none;
-  }
-  .anticon-menu {
-    color: #9b9b9b;
-    &:hover {
+
+  &:hover,
+  &:active {
+    .icon,
+    .title {
       color: #3a5dd9;
     }
   }
-  .ant-menu {
-    .anticon {
-      margin: 0 !important;
-    }
-  }
-  .ant-input {
-    background-color: #f3f4f5;
-    border-color: #eee;
-  }
 }
 
-// ---------- RESPONSIVE ----------
-
-@media only screen and (max-width: 992px) {
-  .Header-View {
-    &-text {
-      display: none;
-    }
-    .ant-menu {
-      margin-left: 12px;
-    }
-    .logo-TTB {
-      margin-left: 20px;
-    }
-  }
+.search-bar-wrapper {
+  max-width: 55%;
 }
 
-@media only screen and (max-width: 768px) {
-  .Header-View {
-    .search-bar-responsive {
-      display: block;
-    }
-    .search-icon {
-      display: flex;
-      color: #9b9b9b;
-      &:hover,
-      &:active {
-        color: #3a5dd9;
-      }
-    }
-    &-text {
-      display: inline-block;
-    }
-    .search-bar-wrapper {
-      display: none;
-    }
-    &-text {
-      display: inherit;
+.search-bar {
+  & input {
+    outline: none;
+    &:focus {
+      border-color: transparent;
     }
   }
 }

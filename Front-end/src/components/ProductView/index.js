@@ -7,6 +7,7 @@ import './index.scss';
 // rendering ...
 function ProductView(props) {
   const {
+    className,
     name,
     price,
     avtUrl,
@@ -27,7 +28,7 @@ function ProductView(props) {
   // rendering ...
   return (
     <Card
-      className="Product-View p-b-18"
+      className={`Product-View p-b-18 ${className}`}
       id="card-item"
       style={{ height, maxWidth }}
       loading={false}
@@ -93,10 +94,12 @@ ProductView.defaultProps = {
   action: [],
   maxWidth: 280,
   height: 480,
+  className: '',
 };
 
 // check prop type
 ProductView.propTypes = {
+  className: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
   avtUrl: PropTypes.string,

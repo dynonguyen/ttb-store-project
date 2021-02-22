@@ -48,6 +48,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
+
           <FooterView />
         </div>
       </Suspense>

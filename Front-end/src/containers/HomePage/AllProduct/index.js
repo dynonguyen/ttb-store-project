@@ -42,6 +42,7 @@ function AllProduct() {
         <Col key={index} span={24} sm={12} lg={8} xl={6}>
           <Link to={`/product/${_id}`}>
             <ProductView
+              className="m-auto"
               name={name}
               price={price}
               stock={stock}
