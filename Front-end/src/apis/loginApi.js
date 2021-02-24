@@ -1,3 +1,4 @@
+import constants from 'constants/index';
 import axiosClient from './axiosClient';
 
 const LOGIN_API_ENDPOINT = '/login';
@@ -18,7 +19,13 @@ const loginApi = {
   // api: authentication
   getAuth: () => {
     const url = LOGIN_API_ENDPOINT + '/auth';
-    return axiosClient.get(url);
+    if (process.env.NODE_ENV === 'production')
+      return axiosClient.get(url, {
+        params: {
+          token: localStorage.getItem(constants.ACCESS_TOKEN_KEY),
+        },
+      });
+    else return axiosClient.get(url);
   },
 
   // api: refresh token
@@ -30,7 +37,11 @@ const loginApi = {
   // api: logout
   postLogout: () => {
     const url = LOGIN_API_ENDPOINT + '/logout';
-    return axiosClient.post(url);
+    if (process.env.NODE_ENV === 'production')
+      return axiosClient.post(url, {
+        token: localStorage.getItem(constants.ACCESS_TOKEN_KEY),
+      });
+    else return axiosClient.post(url);
   },
 };
 

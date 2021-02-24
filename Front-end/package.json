@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
-    "antd": "^4.5.4",
+    "antd": "^4.12.3",
     "axios": "^0.19.2",
     "chart.js": "^2.9.4",
     "compressorjs": "^1.0.6",

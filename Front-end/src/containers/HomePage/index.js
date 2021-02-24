@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { BackTop, Col, Row } from 'antd';
 import Filter from 'components/Filter';
 import RelatedProduct from 'containers/ProductDetailPage/RelatedProduct';
 import React from 'react';

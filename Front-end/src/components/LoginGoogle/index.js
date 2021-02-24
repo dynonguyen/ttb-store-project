@@ -14,11 +14,14 @@ function LoginGoogle(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   // xử lý khi đăng nhập thành công
-  const onLoginSuccess = async (refreshToken) => {
+  const onLoginSuccess = async (data) => {
     try {
       message.success('Đăng nhập thành công');
       // lưu refresh token vào local storage
-      localStorage.setItem(constants.REFRESH_TOKEN, refreshToken);
+      localStorage.setItem(constants.REFRESH_TOKEN, data.refreshToken);
+      // Note: Lưu jwt vào localStorage nếu deploy heroku
+      if (process.env.NODE_ENV === 'production')
+        localStorage.setItem(constants.ACCESS_TOKEN_KEY, data.token);
       dispatch(authReducers.setIsAuth(true));
       setTimeout(() => {
         history.goBack();
@@ -38,7 +41,7 @@ function LoginGoogle(props) {
       const { status, data } = response;
       //login success -> redirect home
       if (status === 200) {
-        onLoginSuccess(data.refreshToken);
+        onLoginSuccess(data);
       }
     } catch (error) {
       if (error.response) {

@@ -3,12 +3,16 @@ const GooglePlusTokenStrategy = require('passport-google-token').Strategy;
 const AccountModel = require('../models/account.models/account.model');
 const UserModel = require('../models/account.models/user.model');
 const jwt = require('jsonwebtoken');
+const express = require('express');
 
 //authentication with JWT
 const jwtAuthentication = async (req, res, next) => {
   try {
     res.locals.isAuth = false;
-    const token = req.cookies.access_token;
+    let token = null;
+    if (express().get('env') === 'production') token = req.query.token;
+    else token = req.cookies.access_token;
+
     //if not exist cookie[access_token] -> isAuth = false -> next
     if (!token) {
       next();

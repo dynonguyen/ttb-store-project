@@ -26,12 +26,15 @@ function Login() {
   const dispatch = useDispatch();
 
   // fn: xử lý khi đăng nhập thành công
-  const onLoginSuccess = async (refreshToken) => {
+  const onLoginSuccess = async (data) => {
     try {
       setIsSubmitting(false);
       message.success('Đăng nhập thành công');
       // lưu refresh token vào local storage
-      localStorage.setItem(constants.REFRESH_TOKEN, refreshToken);
+      localStorage.setItem(constants.REFRESH_TOKEN, data.refreshToken);
+      // Note: Lưu jwt vào localStorage nếu deploy heroku
+      if (process.env.NODE_ENV === 'production')
+        localStorage.setItem(constants.ACCESS_TOKEN_KEY, data.token);
       dispatch(authReducers.setIsAuth(true));
       setTimeout(() => {
         history.goBack();
@@ -47,7 +50,7 @@ function Login() {
       setIsSubmitting(true);
       const result = await loginApi.postLogin({ account });
       if (result.status === 200) {
-        onLoginSuccess(result.data.refreshToken);
+        onLoginSuccess(result.data);
       }
     } catch (error) {
       setIsSubmitting(false);

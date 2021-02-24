@@ -4,6 +4,7 @@ const constants = require('../constants');
 const bcrypt = require('bcryptjs');
 const jwtConfig = require('../configs/jwt.config');
 const jwt = require('jsonwebtoken');
+const express = require('express');
 // fn: đăng nhập local
 // Note: login success -> create refresh token -> create jwt -> set cookie client
 const postLogin = async (req, res, next) => {
@@ -62,7 +63,8 @@ const postLogin = async (req, res, next) => {
         constants.JWT_REFRESH_EXPIRES_TIME,
       );
 
-      // Note: create JWToken -> set header -> send client
+      // Note: create JWToken -> send client
+
       const token = await jwtConfig.encodedToken(process.env.JWT_SECRET_KEY, {
         accountId: account._id,
       });
@@ -73,18 +75,25 @@ const postLogin = async (req, res, next) => {
         { failedLoginTimes: 0, refreshToken },
       );
 
-      // nếu không duy trì đăng nhập thì giữ trạng thái sống token là session
-      const expiresIn = keepLogin
-        ? new Date(Date.now() + constants.COOKIE_EXPIRES_TIME)
-        : 0;
-
-      // ! gửi token lưu vào cookie và chỉ đọc
-      res.cookie('access_token', token, {
-        httpOnly: true,
-        expires: expiresIn,
-      });
-
-      return res.status(200).json({ refreshToken, message: 'success' });
+      if (express().get('env') === 'production') {
+        if (token)
+          // ! Dyno Heroku không cho set cookie cross domain (#.herokuapp.com)
+          // ! Nên ta sẽ lưu nó vào trong localStorage (key=t)
+          return res
+            .status(200)
+            .json({ token, refreshToken, message: 'success' });
+      } else {
+        //nếu không duy trì đăng nhập thì giữ trạng thái sống token là session
+        const expiresIn = keepLogin
+          ? new Date(Date.now() + constants.COOKIE_EXPIRES_TIME)
+          : 0;
+        // ! gửi token lưu vào cookie và chỉ đọc
+        res.cookie('access_token', token, {
+          httpOnly: true,
+          expires: expiresIn,
+        });
+        return res.status(200).json({ refreshToken, message: 'success' });
+      }
     }
   } catch (error) {
     return res
@@ -117,13 +126,19 @@ const postLoginWithGoogle = async (req, res, next) => {
     const token = await jwtConfig.encodedToken(process.env.JWT_SECRET_KEY, {
       accountId: user._id,
     });
-    const expiresIn = new Date(Date.now() + constants.COOKIE_EXPIRES_TIME);
-    //set cookie for web browser
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      expires: expiresIn,
-    });
-    res.status(200).json({ refreshToken, success: true });
+
+    if (express().get('env') === 'production') {
+      if (token)
+        return res.status(200).json({ token, refreshToken, success: true });
+    } else {
+      const expiresIn = new Date(Date.now() + constants.COOKIE_EXPIRES_TIME);
+      //set cookie for web browser
+      res.cookie('access_token', token, {
+        httpOnly: true,
+        expires: expiresIn,
+      });
+      res.status(200).json({ refreshToken, success: true });
+    }
   } catch (error) {
     return res.status(401).json({ message: 'Lỗi! Vui lòng thử lại.', error });
   }
@@ -171,7 +186,9 @@ const postRefreshToken = async (req, res, next) => {
 // fn: logout
 const postLogout = async (req, res, next) => {
   try {
-    const { access_token } = req.cookies;
+    let access_token = null;
+    if (express().get('env') === 'production') access_token = req.body.token;
+    else access_token = req.cookies.access_token;
     const decoded = await jwt.verify(access_token, process.env.JWT_SECRET_KEY);
     const { accountId } = decoded.sub;
     //remove refresh token

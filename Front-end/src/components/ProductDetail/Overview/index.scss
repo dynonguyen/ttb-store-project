@@ -3,6 +3,14 @@ $text-color-special: #3555c5;
 .Product-Overview {
   border-radius: 8px;
 
+  .ant-image {
+    cursor: pointer;
+  }
+
+  .ant-image-mask {
+    display: none;
+  }
+
   .catalog-item {
     &:hover,
     &:active,

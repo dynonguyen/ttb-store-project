@@ -52,6 +52,9 @@ function HeaderView() {
       if (response) {
         message.success('Đăng xuất thành công', 2);
         localStorage.removeItem(constants.REFRESH_TOKEN_KEY);
+        if (process.env.NODE_ENV === 'production')
+          localStorage.removeItem(constants.ACCESS_TOKEN_KEY);
+
         location.reload();
       }
     } catch (error) {
@@ -175,14 +178,6 @@ function HeaderView() {
               visible={drawerVisible}>
               <ul className="m-0">
                 <li className="m-b-18">
-                  <Link
-                    className="d-flex navbar-tool-item p-l-0"
-                    to={constants.ROUTES.ACCOUNT + '/orders'}>
-                    <ReconciliationOutlined className="icon m-r-12" />
-                    <span className="title">Đơn hàng</span>
-                  </Link>
-                </li>
-                <li className="m-b-18">
                   <Dropdown overlay={userActionMenu} placement="bottomLeft">
                     <Link
                       to={
@@ -197,7 +192,7 @@ function HeaderView() {
                         </div>
                       ) : (
                         <div className="d-flex navbar-tool-item p-l-0">
-                          <Avatar src={defaultAvt} className="m-auto m-r-12" />
+                          <Avatar src={defaultAvt} className="m-r-12" />
                           <span className="title">
                             {helpers.reduceProductName(user.fullName, 12)}
                           </span>
@@ -206,6 +201,15 @@ function HeaderView() {
                     </Link>
                   </Dropdown>
                 </li>
+                <li className="m-b-18">
+                  <Link
+                    className="d-flex navbar-tool-item p-l-0"
+                    to={constants.ROUTES.ACCOUNT + '/orders'}>
+                    <ReconciliationOutlined className="icon m-r-12" />
+                    <span className="title">Đơn hàng</span>
+                  </Link>
+                </li>
+
                 <li className="m-b-18">
                   <Dropdown
                     overlay={<CartView list={carts} />}

@@ -1,14 +1,5 @@
 import { CheckOutlined, PhoneOutlined } from '@ant-design/icons';
-import {
-  Button,
-  Col,
-  Image,
-  InputNumber,
-  message,
-  Modal,
-  Rate,
-  Row,
-} from 'antd';
+import { Button, Col, Image, InputNumber, message, Rate, Row } from 'antd';
 import ImgLoadFailed from 'assets/imgs/loading-img-failed.png';
 import constants from 'constants/index';
 import helpers from 'helpers';

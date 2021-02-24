@@ -24,7 +24,7 @@ function ScrollTo() {
   };
 
   return (
-    <div className="Scroll-To">
+    <div className="Scroll-To" style={{ opacity: 0.8 }}>
       {isTop ? (
         <DownCircleTwoTone onClick={onScroll} className="Scroll-To-arrow" />
       ) : (
